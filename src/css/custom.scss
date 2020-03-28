@@ -313,6 +313,75 @@ footer {
   // background: #ab9987;
   padding: 2rem 0;
   color: #ffffff;
+  ul.footer-menu > li {
+    width: 400px;
+    margin: 0 auto;
+    .header {
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-bottom: 0.5rem;
+      .icon {
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+        position: absolute;
+        right: 10%;
+        opacity: 0%;
+        transition: 0.5s;
+        transform: rotateX(0deg);
+      }
+      .icon.active {
+        opacity: 100%;
+        transform: rotateX(180deg);
+      }
+    }
+    .list-item {
+      max-height: 6px;
+      overflow: hidden;
+      transition: 0.5s;
+      &.expanded {
+        min-height: auto;
+        height: 100%;
+        max-height: 1000px;
+        overflow: visible;
+        transition: 0.5s;
+      }
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.4);
+        width: 85%;
+        margin: 5px auto 10px;
+      }
+      li {
+        margin-bottom: 0.8rem;
+        a {
+          color: #eeeeee;
+          font-size: 0.9rem;
+          display: inline-block;
+          &:hover {
+            color: #ffffff;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 768px) {
+    ul.footer-menu > li {
+      max-width: auto;
+      .header {
+        justify-content: start;
+        .icon {
+          right: 15%;
+        }
+      }
+    }
+  }
 }
 
 footer ul.footer-menu,
@@ -331,28 +400,9 @@ footer ul.footer-menu {
 footer ul.footer-menu > li {
   flex: 1 0 100%;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
   // font-size: 0.9rem;
-}
-
-footer ul.footer-menu ul > li {
-  margin-bottom: 0.5rem;
-}
-footer ul.footer-menu ul > li a {
-  color: #eeeeee;
-  font-size: 0.9rem;
-}
-
-footer ul.footer-menu ul > li a:hover {
-  color: #ffffff;
-}
-
-footer ul.footer-menu ul::before {
-  content: '';
-  display: block;
-  height: 1px;
-  background: #eeeeee;
-  width: 50px;
-  margin: 5px auto 10px;
 }
 
 footer .App-logo path,
@@ -373,7 +423,7 @@ footer .copy-right {
   footer ul.footer-menu > li {
     flex: 1 0 0%;
   }
-  footer ul.footer-menu ul::before {
+  footer ul.footer-menu ul.list-item::before {
     margin: 5px 0 10px;
   }
 }

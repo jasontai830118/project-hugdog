@@ -1,16 +1,65 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../images/logo-dark.svg'
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
+import $ from 'jquery'
 
 function Footer(props) {
+  useEffect(() => {
+    $('body').on('click', '#footerMenu .header', function () {
+      let listItem = $(this).next('.list-item')
+      let icon = $(this).find('.icon')
+      listItem.toggleClass('expanded')
+      icon.toggleClass('active')
+    })
+    $('#footerMenu .header').find('.icon:first-child').addClass('active')
+    if ($(window).width() <= 768) {
+      $('#footerMenu').find('.list-item').removeClass('expanded')
+      $('#footerMenu .header').find('.icon').toggleClass('active')
+    }
+  }, [])
   return (
     <>
       <footer>
         <div className="container">
-          <ul className="footer-menu">
+          <ul className="footer-menu" id="footerMenu">
             <li>
-              顧客服務
-              <ul>
+              <div className="header">
+                顧客服務
+                <FaChevronUp className="icon" />
+                <FaChevronDown className="icon" />
+              </div>
+              <ul className="list-item expanded">
+                <li>
+                  <Link to="#">項目項目1</Link>
+                </li>
+                <li>
+                  <Link to="#">項目2</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目項目3</Link>
+                </li>
+                <li>
+                  <Link to="#">項目4</Link>
+                </li>
+                <li>
+                  <Link to="#">項目5</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目4</Link>
+                </li>
+                <li>
+                  <Link to="#">項目5</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div className="header">
+                保姆服務
+                <FaChevronUp className="icon" />
+                <FaChevronDown className="icon" />
+              </div>
+              <ul className="list-item expanded">
                 <li>
                   <Link to="#">項目1</Link>
                 </li>
@@ -29,8 +78,33 @@ function Footer(props) {
               </ul>
             </li>
             <li>
-              保姆服務
-              <ul>
+              <div className="header">
+                所有商品
+                <FaChevronUp className="icon" />
+                <FaChevronDown className="icon" />
+              </div>
+              <ul className="list-item expanded">
+                <li>
+                  <Link to="#">項目1</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目2</Link>
+                </li>
+                <li>
+                  <Link to="#">項目3</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目項目4</Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div className="header">
+                最新消息
+                <FaChevronUp className="icon" />
+                <FaChevronDown className="icon" />
+              </div>
+              <ul className="list-item expanded">
                 <li>
                   <Link to="#">項目1</Link>
                 </li>
@@ -39,6 +113,21 @@ function Footer(props) {
                 </li>
                 <li>
                   <Link to="#">項目3</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目4</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目5</Link>
+                </li>
+                <li>
+                  <Link to="#">項目1</Link>
+                </li>
+                <li>
+                  <Link to="#">項目2</Link>
+                </li>
+                <li>
+                  <Link to="#">項目項目項目項目項目3</Link>
                 </li>
                 <li>
                   <Link to="#">項目4</Link>
@@ -49,8 +138,12 @@ function Footer(props) {
               </ul>
             </li>
             <li>
-              所有商品
-              <ul>
+              <div className="header">
+                關於我們
+                <FaChevronUp className="icon" />
+                <FaChevronDown className="icon" />
+              </div>
+              <ul className="list-item expanded">
                 <li>
                   <Link to="#">項目1</Link>
                 </li>
@@ -61,50 +154,16 @@ function Footer(props) {
                   <Link to="#">項目3</Link>
                 </li>
                 <li>
-                  <Link to="#">項目4</Link>
+                  <Link to="#">項目項目4</Link>
                 </li>
                 <li>
-                  <Link to="#">項目5</Link>
+                  <Link to="#">項目項目5</Link>
                 </li>
-              </ul>
-            </li>
-            <li>
-              最新消息
-              <ul>
                 <li>
                   <Link to="#">項目1</Link>
                 </li>
                 <li>
                   <Link to="#">項目2</Link>
-                </li>
-                <li>
-                  <Link to="#">項目3</Link>
-                </li>
-                <li>
-                  <Link to="#">項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              關於我們
-              <ul>
-                <li>
-                  <Link to="#">項目1</Link>
-                </li>
-                <li>
-                  <Link to="#">項目2</Link>
-                </li>
-                <li>
-                  <Link to="#">項目3</Link>
-                </li>
-                <li>
-                  <Link to="#">項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
                 </li>
               </ul>
             </li>
