@@ -22,6 +22,7 @@ function ServiceDetail(props) {
   const [photo, setPhoto] = useState([]) //照片(service_photo的資料)
   const [extra, setExtra] = useState([]) //額外服務(service_extra的資料)
   const [member, setMember] = useState([]) //額外服務(member的資料)
+  // const [like, setLike] = useState([]) //收藏資料
 
   useEffect(() => {
     //返回最頂端
@@ -37,7 +38,7 @@ function ServiceDetail(props) {
     // })
     //取得額外服務
     const sExtra = getDataFromServer('http://localhost:6001/service/extra')
-    Promise.resolve(sExtra).then(data => {
+    Promise.resolve(sExtra).then((data) => {
       setExtra(data)
     })
     //取得評價資料
@@ -46,7 +47,7 @@ function ServiceDetail(props) {
         props.match.params.userId +
         '?order=created_at'
     )
-    Promise.resolve(commentData).then(data => {
+    Promise.resolve(commentData).then((data) => {
       let dataDefaultTotal = [...data].splice(0, 3) //預設回傳3筆
       setCommentTotal(data.length) //評論總筆數
       setComment(dataDefaultTotal)
@@ -56,25 +57,25 @@ function ServiceDetail(props) {
     })
     // //取得會員
     const memberData = getDataFromServer(`http://localhost:6001/service/member`)
-    Promise.resolve(memberData).then(data => {
+    Promise.resolve(memberData).then((data) => {
       setMember(data)
       // console.log(data)
     })
     //取得服務類型資料
     const sTypeData = getDataFromServer('http://localhost:6001/service/type')
-    Promise.resolve(sTypeData).then(data => {
+    Promise.resolve(sTypeData).then((data) => {
       setType(data)
     })
     //取得狗狗體型資料
     const dogSize = getDataFromServer('http://localhost:6001/service/size')
-    Promise.resolve(dogSize).then(data => {
+    Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
     //取得個別保母資料
     const data = getDataFromServer(
       'http://localhost:6001/service/user/' + props.match.params.userId
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       setUsers(data)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,12 +90,14 @@ function ServiceDetail(props) {
               {users.map((v, i) => (
                 <ServiceDetailSidebar
                   sUsers={v}
+                  sUserId={v.id}
                   sMemberId={props.sMemberId}
                   sMId={v.mId}
                   sType={type}
                   sSize={size}
                   sExtra={extra}
                   sRating={rating}
+                  // sLike={like}
                   sComment={comment}
                   sCommentTotal={commentTotal}
                   key={i}

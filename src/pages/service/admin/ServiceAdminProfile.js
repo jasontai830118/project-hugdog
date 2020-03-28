@@ -3,6 +3,7 @@ import { withRouter } from 'react-router'
 import { Row, Col, Form, Button, Card } from 'react-bootstrap'
 import ServiceAdminBreadcrumb from '../../../components/service/admin/ServiceAdminBreadcrumb'
 import ServiceProfileForm from '../../../components/service/ServiceProfileForm'
+import { getGoogleMapLocation } from '../../../utils/service/ServiceFunction'
 import { MdEdit } from 'react-icons/md'
 import Swal from 'sweetalert2'
 import $ from 'jquery'
@@ -17,7 +18,7 @@ function ServiceAdminProfile(props) {
   //表單驗證
   const [validated, setValidated] = useState(false)
   const [customValidated, setCustomValidated] = useState(false)
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     setValidated(true)
     event.preventDefault()
     const form = event.currentTarget
@@ -37,6 +38,14 @@ function ServiceAdminProfile(props) {
         }
       }
     } else {
+      //-----取得座標位置-----
+      Promise.resolve(
+        getGoogleMapLocation(userData.sCity, userData.sDist, userData.sAddr)
+      ).then((data) => {
+        const location = data
+        userData.lat = location.lat
+        userData.lng = location.lng
+      })
       //完成驗證
       Swal.fire({
         title: '確認更新資料?',
@@ -47,7 +56,7 @@ function ServiceAdminProfile(props) {
         cancelButtonColor: '#8f8f8f',
         confirmButtonText: '確認',
         cancelButtonText: '返回',
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
           //子元件回傳的資料並傳送
           fetch('http://localhost:6001/service/user/edit/' + userData.id, {
@@ -57,8 +66,8 @@ function ServiceAdminProfile(props) {
             },
             body: JSON.stringify(userData),
           })
-            .then(r => r.json())
-            .then(obj => {
+            .then((r) => r.json())
+            .then((obj) => {
               console.log(obj)
               //回饋訊息
               Swal.fire({
@@ -75,11 +84,11 @@ function ServiceAdminProfile(props) {
   }
 
   //子元件回傳資料
-  const callbackUserData = child => {
+  const callbackUserData = (child) => {
     setUserData(child)
   }
   //子元件回傳自訂驗證
-  const callbackCustomValid = child => {
+  const callbackCustomValid = (child) => {
     setCustomValidated(child)
   }
 

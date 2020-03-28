@@ -15,7 +15,8 @@ import ServiceComment from './ServiceComment'
 
 function ServiceApp(props) {
   //判斷是否登入(模擬登入會員id)
-  const sMemberId = '10'
+  const sMemberId = parseInt(localStorage.getItem('mId'))
+  // console.log('會員ID:', sMemberId)
   //設定載入狀態
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {

@@ -3,7 +3,7 @@ import { Row, Col, Form, Card, Button } from 'react-bootstrap'
 import { withRouter } from 'react-router'
 import ServiceCommentForm from '../../components/service/ServiceCommentForm'
 import ServiceGoBack from '../../components/service/ServiceGoBack'
-import { getDataFromServer } from '../../utils/service/ServiceFunction'
+import { getDataFromServer, linkTo } from '../../utils/service/ServiceFunction'
 import ServiceNoOrder from '../../components/service/redirect/ServiceNoOrder'
 import Swal from 'sweetalert2'
 import $ from 'jquery'
@@ -19,7 +19,7 @@ function ServiceBooking(props) {
   //表單驗證
   const [validated, setValidated] = useState(false)
   // const [customValidated, setCustomValidated] = useState(false)
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     setValidated(true)
     event.preventDefault()
     const form = event.currentTarget
@@ -48,7 +48,7 @@ function ServiceBooking(props) {
         cancelButtonColor: '#8f8f8f',
         confirmButtonText: '確認',
         cancelButtonText: '返回',
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
           //子元件回傳的資料並傳送
           console.log(commentData)
@@ -63,8 +63,8 @@ function ServiceBooking(props) {
               body: JSON.stringify(commentData),
             }
           )
-            .then(r => r.json())
-            .then(obj => {
+            .then((r) => r.json())
+            .then((obj) => {
               //修改訂單狀態
               fetch(
                 `http://localhost:6001/service/orderdetail/ordersts/${order[0].orderId}`,
@@ -74,21 +74,21 @@ function ServiceBooking(props) {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
-                    ordersts: 'o05',
+                    ordersts: 'o06',
                   }),
                 }
               )
-                .then(r => r.json())
-                .then(obj => {
+                .then((r) => r.json())
+                .then((obj) => {
                   //回饋訊息
                   Swal.fire({
                     title: '評論完成',
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 1500,
-                  }).then(result => {
+                  }).then((result) => {
                     //-----待處理-----
-                    props.history.push('/member/member-service')
+                    linkTo('/member/member-service')
                   })
                 })
             })
@@ -103,14 +103,14 @@ function ServiceBooking(props) {
     const data = getDataFromServer(
       `http://localhost:6001/service/orderdetail/${props.match.params.orderId}?orderStsId='o03'&mId=${sMemberId}`
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       setOrder(data)
       if (data.length) {
         //取得個別保母資料
         const userData = getDataFromServer(
           `http://localhost:6001/service/user/${data[0].sId}`
         )
-        Promise.resolve(userData).then(data => {
+        Promise.resolve(userData).then((data) => {
           setUsers(data)
         })
       }
@@ -118,13 +118,13 @@ function ServiceBooking(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   //子元件回傳資料
-  const callbackCommentData = child => {
+  const callbackCommentData = (child) => {
     setCommentData(child)
   }
 
   return (
     <>
-      {order.length !== 0 ? (
+      {order.length !== 0 && sMemberId === order[0].mId ? (
         order.map((v, i) => {
           return (
             <div className="ServiceComment" key={i}>

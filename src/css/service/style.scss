@@ -39,8 +39,40 @@
   }
 
   .google-map-maker {
-    font-size: 2rem;
+    font-size: 1rem;
     transform: translate(-50%, -100%);
+    position: relative;
+    color: $info;
+  }
+  .google-map-maker > .icon {
+    font-size: 2rem;
+  }
+  .google-map-maker > .text {
+    font-size: 0.9rem;
+    position: absolute;
+    display: block;
+    transform: translate(-20%, -220%);
+    text-align: center;
+    background: #ffffff;
+    word-break: keep-all;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+  }
+  .google-map-maker > .text::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 20px 10px 0 10px;
+    border-color: #ffffff transparent transparent transparent;
+  }
+  .google-map-maker.my {
     color: $danger;
   }
 
@@ -187,7 +219,7 @@
   .gobackLink {
     font-size: 2rem;
     color: $secondary;
-    display: flex;
+    padding: 1rem;
     align-items: center;
     span.linkTxt {
       font-size: 1rem;

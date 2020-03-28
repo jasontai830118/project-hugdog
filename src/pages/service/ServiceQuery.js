@@ -25,6 +25,7 @@ function ServiceQuery(props) {
   const [extra, setExtra] = useState([]) //額外服務
   const [nowPage, SetNowPage] = useState(currentPage) //目前頁數
   const [totalPage, SetTotalPage] = useState([]) //總頁數陣列
+  const [onChangeChk, setOnChangeChk] = useState(0) //總頁數陣列
   // console.log(CurrentPage)
   //縣市區域
   const [city, setCity] = useState([])
@@ -34,29 +35,29 @@ function ServiceQuery(props) {
     SctollToTop()
     //取得額外服務
     const sExtra = getDataFromServer('http://localhost:6001/service/extra')
-    Promise.resolve(sExtra).then(data => {
+    Promise.resolve(sExtra).then((data) => {
       setExtra(data)
     })
     //取得狗狗體型
     const dogSize = getDataFromServer('http://localhost:6001/service/size')
-    Promise.resolve(dogSize).then(data => {
+    Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
     //取得服務類型資料
     const sTypeData = getDataFromServer('http://localhost:6001/service/type')
-    Promise.resolve(sTypeData).then(data => {
+    Promise.resolve(sTypeData).then((data) => {
       setType(data)
     })
     //取得縣市資料
     const city = getDataFromServer('http://localhost:6001/service/zipcode/city')
-    Promise.resolve(city).then(data => {
+    Promise.resolve(city).then((data) => {
       setCity(data)
     })
     //找出所有資料
     const totalData = getDataFromServer(
       `http://localhost:6001/service/query/${nowPage}?showTotalPage=Y`
     )
-    Promise.resolve(totalData).then(data => {
+    Promise.resolve(totalData).then((data) => {
       //總頁數
       const totalPageArr = []
       for (let i = 1; i <= Math.ceil(data[0].num / 10); i++) {
@@ -66,13 +67,18 @@ function ServiceQuery(props) {
       const nowPageData = getDataFromServer(
         `http://localhost:6001/service/query/${nowPage}`
       )
-      Promise.resolve(nowPageData).then(data => {
+      Promise.resolve(nowPageData).then((data) => {
         setUsers(data) //帶入使用者資料
         // console.log(nowPage)
       })
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowPage])
+  //子元件回傳資料
+  const callbackUserData = (child) => {
+    setUsers(child)
+    setOnChangeChk(onChangeChk + 1)
+  }
   //-----篩選功能-----
   //以下為子元件回傳篩選的值
   return (
@@ -86,13 +92,21 @@ function ServiceQuery(props) {
               sSize={size}
               sExtra={extra}
               sCity={city}
+              sPage={nowPage}
+              parentUserData={callbackUserData}
             />
           </Col>
         </Row>
         <Row>
           <Col lg={6}>
             {users.map((v, i) => (
-              <ServiceQueryList sUsers={v} sType={type} key={i} />
+              <ServiceQueryList
+                sUsers={v}
+                sType={type}
+                onChangeChk={onChangeChk}
+                sTypePrice={JSON.parse(v.sTypePrice)}
+                key={i}
+              />
             ))}
             {totalPage.length !== 0 ? (
               <Pagination>
@@ -130,7 +144,7 @@ function ServiceQuery(props) {
             )}
           </Col>
           <Col lg={6} className="d-none d-lg-block">
-            <ServiceQueryMap />
+            <ServiceQueryMap sUsers={users} />
           </Col>
         </Row>
       </div>

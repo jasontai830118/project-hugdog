@@ -1,45 +1,98 @@
-import React, { Component } from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import GoogleMapReact from 'google-map-react'
+import { GiPerson } from 'react-icons/gi'
 import { MdLocationOn } from 'react-icons/md'
+import { withRouter } from 'react-router'
+import { myGoogleMapApiKey } from '../../utils/service/ServiceFunction'
 
 // const AnyReactComponent = ({ text }) => <div>{text}</div>
-
-const Marker = props => {
+//自訂座標圖示
+const MyMarker = ({ text }) => {
   return (
     <>
-      <MdLocationOn className="google-map-maker" />
+      <div className="google-map-maker my">
+        <GiPerson className="icon" />
+        <span className="text">{text}</span>
+      </div>
+    </>
+  )
+}
+const Marker = ({ text }) => {
+  return (
+    <>
+      <div className="google-map-maker">
+        <MdLocationOn className="icon" />
+        <span className="text">{text}</span>
+      </div>
     </>
   )
 }
 
-class ServiceQueryMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 25.034601,
-      lng: 121.543463,
-    },
-    zoom: 14,
+function ServiceQueryMap(props) {
+  //預設座標位置
+  const [center, setCenter] = useState({
+    lat: 25.034601,
+    lng: 121.543463,
+  })
+  const [zoom, setZoom] = useState(15)
+  // const [lat, setLat] = useState()
+  // const [lng, setLng] = useState()
+  const [location, setLocation] = useState([])
+  //判斷是否取得用戶座標權限
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success)
   }
+  //設定目前座標
+  function success(position) {
+    setLocation([
+      {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      },
+    ])
+  }
+  //讀取保姆位置
+  useEffect(() => {}, [])
+  useEffect(() => {
+    //設定中心座標位置
+    if (location.length !== 0) {
+      setCenter({
+        lat: location[0].lat,
+        lng: location[0].lng,
+      })
+    }
+  }, [location])
 
-  render() {
-    return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100vh', width: '100%' }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: '' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          {/* <AnyReactComponent
-            lat={25.034601}
-            lng={121.543463}
-            text={'Kreyser Avrora'}
-          /> */}
-          <Marker lat={25.034601} lng={121.543463} />
-        </GoogleMapReact>
-      </div>
-    )
-  }
+  return (
+    <>
+      {/* Important! Always set the container height explicitly */}
+      {location.map((v, i) => {
+        return (
+          <div style={{ height: '100vh', width: '100%' }}>
+            <GoogleMapReact
+              bootstrapURLKeys={
+                {
+                  // key: `${myGoogleMapApiKey()}`,
+                }
+              }
+              center={center}
+              defaultZoom={zoom}
+              // onChildMouseEnter={() => {
+              //   console.log('123')
+              // }}
+            >
+              {/* 保姆座標位置 */}
+              {props.sUsers.map((u, i) => {
+                return <Marker lat={u.lat} lng={u.lng} text={u.sName} />
+              })}
+              {/* 使用者座標位置 */}
+              <MyMarker lat={v.lat} lng={v.lng} text="您的位置" />
+            </GoogleMapReact>
+          </div>
+        )
+      })}
+    </>
+  )
 }
 
-export default ServiceQueryMap
+export default withRouter(ServiceQueryMap)

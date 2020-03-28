@@ -22,25 +22,37 @@ import ServiceAdminApplyChk from '../../../components/service/redirect/ServiceAd
 
 function ServiceAdminApp(props) {
   //判斷是否登入(模擬帶入會員id)
-  const sMemberId = '40'
+  const sMemberId = parseInt(localStorage.getItem('mId'))
+  // console.log('服務者mID:', sMemberId)
   //設定sId
   const [userId, setUserId] = useState('')
   //設定載入狀態
   const [loaded, setLoaded] = useState(false)
+  //訂單數量資料
+  const [sOrderNum, setsOrderNum] = useState()
   useEffect(() => {
     //取得個別保母資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/getmId?mId=${sMemberId}&dataSts=Y`
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       //如果查詢有使用者資料則帶入資料
       if (data.length !== 0) {
         setUserId(data[0].id)
+        //查詢訂單數量
+        const sOrder = getDataFromServer(
+          `http://localhost:6001/service/order/${data[0].id}?orderStsId='o01'`
+        )
+        Promise.resolve(sOrder).then((data) => {
+          //如果查詢有使用者資料則帶入資料
+          setsOrderNum(data.length)
+        })
       } else {
         //否則為空物件
         setUserId('0')
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     //載入畫面
@@ -59,7 +71,7 @@ function ServiceAdminApp(props) {
             <div className="container pt-3 pb-5">
               <Row>
                 <Col md={3}>
-                  <ServiceAdminSidebar />
+                  <ServiceAdminSidebar sOrderNum={sOrderNum} />
                 </Col>
                 <Col md={9}>
                   <Route path="/service/admin/profile/">

@@ -3,7 +3,7 @@ import { Row, Col, Form, Card, Button } from 'react-bootstrap'
 import { withRouter } from 'react-router'
 import ServiceBookingForm from '../../components/service/ServiceBookingForm'
 import ServiceGoBack from '../../components/service/ServiceGoBack'
-import { getDataFromServer } from '../../utils/service/ServiceFunction'
+import { getDataFromServer, linkTo } from '../../utils/service/ServiceFunction'
 import ServiceNoUser from '../../components/service/redirect/ServiceNoUser'
 import { MdSend } from 'react-icons/md'
 import Swal from 'sweetalert2'
@@ -20,7 +20,7 @@ function ServiceBooking(props) {
   //表單驗證
   const [validated, setValidated] = useState(false)
   // const [customValidated, setCustomValidated] = useState(false)
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     console.log(orderData)
     setValidated(true)
     event.preventDefault()
@@ -51,7 +51,7 @@ function ServiceBooking(props) {
         cancelButtonColor: '#8f8f8f',
         confirmButtonText: '確認',
         cancelButtonText: '返回',
-      }).then(result => {
+      }).then((result) => {
         if (result.value) {
           //子元件回傳的資料並傳送
           fetch(
@@ -64,8 +64,8 @@ function ServiceBooking(props) {
               body: JSON.stringify(orderData),
             }
           )
-            .then(r => r.json())
-            .then(obj => {
+            .then((r) => r.json())
+            .then((obj) => {
               console.log(obj)
               //回饋訊息
               Swal.fire({
@@ -73,11 +73,9 @@ function ServiceBooking(props) {
                 icon: 'success',
                 showConfirmButton: false,
                 timer: 1500,
-              }).then(result => {
-                if (result.value) {
-                  //-----待處理-----
-                  props.history.push('/member/member-service')
-                }
+              }).then((result) => {
+                //-----待處理-----
+                linkTo('/member/member-service')
               })
             })
         }
@@ -87,7 +85,7 @@ function ServiceBooking(props) {
   }
 
   //子元件回傳資料
-  const callbackOrderData = child => {
+  const callbackOrderData = (child) => {
     setOrderData(child)
   }
   //子元件回傳自訂驗證
@@ -100,7 +98,7 @@ function ServiceBooking(props) {
     const data = getDataFromServer(
       `http://localhost:6001/service/user/${props.match.params.userId}?dataSts=Y`
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       setUsers(data)
     })
   }, [])

@@ -18,6 +18,11 @@ function ServiceAdminSidebar(props) {
         <li>
           <NavLink to="/service/admin/order/" activeClassName="active">
             訂單查詢
+            {props.sOrderNum ? (
+              <span className="badge badge-danger ml-1">{props.sOrderNum}</span>
+            ) : (
+              ''
+            )}
           </NavLink>
         </li>
         {/* <li>

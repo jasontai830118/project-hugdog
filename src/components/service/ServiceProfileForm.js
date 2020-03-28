@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { Form, Row, Col } from 'react-bootstrap'
+import { Form, Row, Col, Button } from 'react-bootstrap'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
 import { MdFileUpload } from 'react-icons/md'
 import {
@@ -49,29 +49,29 @@ function ServiceProfileForm(props) {
     SctollToTop()
     //取得額外服務
     const sExtra = getDataFromServer('http://localhost:6001/service/extra')
-    Promise.resolve(sExtra).then(data => {
+    Promise.resolve(sExtra).then((data) => {
       setExtra(data)
     })
     //取得狗狗體型
     const dogSize = getDataFromServer('http://localhost:6001/service/size')
-    Promise.resolve(dogSize).then(data => {
+    Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
     //取得服務類型資料
     const sTypeData = getDataFromServer('http://localhost:6001/service/type')
-    Promise.resolve(sTypeData).then(data => {
+    Promise.resolve(sTypeData).then((data) => {
       setType(data)
     })
     //取得縣市資料
     const city = getDataFromServer('http://localhost:6001/service/zipcode/city')
-    Promise.resolve(city).then(data => {
+    Promise.resolve(city).then((data) => {
       setCity(data)
     })
     //取得個別保母資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/${sUserId}?dataSts=Y`
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       //如果查詢有使用者資料則帶入資料(偵測產生sId值後才產出資料)
       if (data.length !== 0) {
         setUsers(data[0])
@@ -83,18 +83,19 @@ function ServiceProfileForm(props) {
       const sAvatar = getDataFromServer(
         'http://localhost:6001/service/photo/' + sMemberId + '?category=1'
       )
-      Promise.resolve(sAvatar).then(data => {
+      Promise.resolve(sAvatar).then((data) => {
         setAvatar(data)
       })
       //取得相簿資料
       const sAlbum = getDataFromServer(
         'http://localhost:6001/service/photo/' + sMemberId + '?category=2'
       )
-      Promise.resolve(sAlbum).then(data => {
+      Promise.resolve(sAlbum).then((data) => {
         setAlbum(data)
       })
     })
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sUserId])
   //-----表單驗證-----
   //處理項目勾選時價格欄位的屬性(onChange)
   function handlePriceDaisbled(e) {
@@ -107,7 +108,7 @@ function ServiceProfileForm(props) {
   //處理填入價格資料並回傳users的值
   function handleTypePrice(e) {
     let typePriceArr = []
-    $(":checkbox:checked[name='serviceType[]']").each(function(i) {
+    $(":checkbox:checked[name='serviceType[]']").each(function (i) {
       typePriceArr.push({
         sTypeId: $(this).val(),
         sPrice: $(this)
@@ -124,11 +125,7 @@ function ServiceProfileForm(props) {
     let el = e.target.name,
       noChecked = true
     for (let i = 0; i < $(`:checkbox[name='${el}']`).length; i++) {
-      if (
-        $(`:checkbox[name='${el}']`)
-          .eq(i)
-          .prop('checked')
-      ) {
+      if ($(`:checkbox[name='${el}']`).eq(i).prop('checked')) {
         noChecked = false
         break
       }
@@ -141,7 +138,7 @@ function ServiceProfileForm(props) {
   //處理體型資料回傳
   function handleSize(e) {
     let sizeArr = []
-    $(":checkbox:checked[name='sSizeId[]']").each(function(i) {
+    $(":checkbox:checked[name='sSizeId[]']").each(function (i) {
       sizeArr.push($(this).val())
     })
     users.sSizeId = sizeArr.toString()
@@ -149,7 +146,7 @@ function ServiceProfileForm(props) {
   //處理額外服務資料回傳
   function handleExtra(e) {
     let extraArr = []
-    $(":checkbox:checked[name='sExtra[]']").each(function(i) {
+    $(":checkbox:checked[name='sExtra[]']").each(function (i) {
       extraArr.push($(this).val())
     })
     users.sExtra = extraArr.toString()
@@ -159,7 +156,7 @@ function ServiceProfileForm(props) {
     const city = getDataFromServer(
       `http://localhost:6001/service/zipcode/city/'${cityValue}'`
     )
-    Promise.resolve(city).then(data => {
+    Promise.resolve(city).then((data) => {
       setDist(data)
     })
   }
@@ -169,7 +166,7 @@ function ServiceProfileForm(props) {
     const dist = getDataFromServer(
       `http://localhost:6001/service/zipcode/city/'${users.sCity}'`
     )
-    Promise.resolve(dist).then(data => {
+    Promise.resolve(dist).then((data) => {
       setDist(data)
     })
   }, [users.sCity])
@@ -179,7 +176,7 @@ function ServiceProfileForm(props) {
     //項目與價格
     let sTypePriceArr = users.sTypePrice ? JSON.parse(users.sTypePrice) : []
     // eslint-disable-next-line array-callback-return
-    sTypePriceArr.map(v => {
+    sTypePriceArr.map((v) => {
       $(`:checkbox[name='serviceType[]']`).attr('required', false)
       let el = $(`:checkbox[name='serviceType[]'][value='${v.sTypeId}']`)
       $(el).prop('checked', true)
@@ -193,7 +190,7 @@ function ServiceProfileForm(props) {
     //體型
     let sSizeId = users.sSizeId ? users.sSizeId.split(',') : []
     // eslint-disable-next-line array-callback-return
-    sSizeId.map(v => {
+    sSizeId.map((v) => {
       $(`:checkbox[name='sSizeId[]']`).attr('required', false)
       let el = $(`:checkbox[name='sSizeId[]'][value='${v}']`)
       $(el).prop('checked', true)
@@ -201,7 +198,7 @@ function ServiceProfileForm(props) {
     //額外項目
     let sExtra = users.sExtra ? users.sExtra.split(',') : []
     // eslint-disable-next-line array-callback-return
-    sExtra.map(v => {
+    sExtra.map((v) => {
       let el = $(`:checkbox[name='sExtra[]'][value='${v}']`)
       $(el).prop('checked', true)
     })
@@ -221,7 +218,7 @@ function ServiceProfileForm(props) {
     //相簿
     if (album.length !== 0) {
       let albumImg = ''
-      album.forEach(function(v, i) {
+      album.forEach(function (v, i) {
         albumImg += `<figure><img src="http://localhost:6001/uploads/service/album/${v.fileName}.${v.fileType}"></figure>`
       })
       setAlbumImg(albumImg)
@@ -236,7 +233,7 @@ function ServiceProfileForm(props) {
   //-----圖片上傳-----
   //大頭貼單張圖片上傳
   const [selectedSingleFile, SetSelectedSingleFile] = useState(null)
-  const addFileSingle = event => {
+  const addFileSingle = (event) => {
     // console.log(event.target.files[0])
     if (checkMimeType(event)) {
       //檢查類型
@@ -245,12 +242,15 @@ function ServiceProfileForm(props) {
       //即時預覽圖片
       if (event.target.files && event.target.files[0]) {
         let reader = new FileReader()
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           $('.avatar-preview figure img').remove()
           $('.avatar-preview figure').append(`<img src="${e.target.result}">`)
         }
         reader.readAsDataURL(event.target.files[0])
         $('.avatar-preview .text').hide()
+      } else {
+        $('.avatar-preview .text').hide()
+        SetSelectedSingleFile(null)
       }
     }
   }
@@ -261,7 +261,7 @@ function ServiceProfileForm(props) {
       .post('http://localhost:6001/serviceAvatar/avatar/' + sMemberId, data, {
         // receive two parameter endpoint url ,form data
       })
-      .then(res => {
+      .then((res) => {
         // then print response status
         console.log(res)
         Swal.fire({
@@ -274,7 +274,7 @@ function ServiceProfileForm(props) {
   }
   //相簿多張圖片上傳
   const [selectedMutiFile, SetSelectedMutiFile] = useState(null)
-  const addFileMuti = event => {
+  const addFileMuti = (event) => {
     const files = event.target.files
     if (checkMimeType(event)) {
       //檢查類型
@@ -288,7 +288,7 @@ function ServiceProfileForm(props) {
           console.log($('.album-preview figure'))
           for (let i = 0; i < files.length; i++) {
             let reader = new FileReader()
-            reader.onload = function(e) {
+            reader.onload = function (e) {
               // console.log(e.target.result)
               $('.album-preview').append(
                 `<figure><img src="${e.target.result}"></figure>`
@@ -296,6 +296,8 @@ function ServiceProfileForm(props) {
             }
             reader.readAsDataURL(files[i])
           }
+        } else {
+          SetSelectedMutiFile(null)
         }
       }
     }
@@ -310,7 +312,7 @@ function ServiceProfileForm(props) {
       .post('http://localhost:6001/serviceAlbum/album/' + sMemberId, data, {
         // receive two    parameter endpoint url ,form data
       })
-      .then(res => {
+      .then((res) => {
         // then print response status
         console.log(res.statusText)
         Swal.fire({
@@ -322,7 +324,7 @@ function ServiceProfileForm(props) {
       })
   }
   //限制檔案上傳數量
-  const maxSelectFile = event => {
+  const maxSelectFile = (event) => {
     let files = event.target.files // create file object
     if (files.length > 10) {
       Swal.fire({
@@ -337,7 +339,7 @@ function ServiceProfileForm(props) {
     return true
   }
   //限制檔案上傳類型
-  const checkMimeType = event => {
+  const checkMimeType = (event) => {
     //getting file object
     let files = event.target.files
     //define message container
@@ -347,7 +349,7 @@ function ServiceProfileForm(props) {
     // loop access array
     for (let x = 0; x < files.length; x++) {
       // compare file type find doesn't matach
-      if (types.every(type => files[x].type !== type)) {
+      if (types.every((type) => files[x].type !== type)) {
         // create error message and assign to container
         Swal.fire({
           title: `${(err += files[x].type)}檔案格式錯誤`,
@@ -382,7 +384,7 @@ function ServiceProfileForm(props) {
               placeholder="請填入名稱"
               required
               defaultValue={users.sName}
-              onChange={e => handleFormValue(e, users)}
+              onChange={(e) => handleFormValue(e, users)}
             />
             <Form.Control.Feedback type="invalid">
               請填入名稱
@@ -401,7 +403,7 @@ function ServiceProfileForm(props) {
               required
               // pattern="09\d{2}\-?\d{3}\-?\d{3}"
               defaultValue={users.sPhone}
-              onChange={e =>
+              onChange={(e) =>
                 setCustomFormat(
                   handleFormValueMatch(
                     e,
@@ -411,7 +413,7 @@ function ServiceProfileForm(props) {
                 )
               }
               isInvalid={!customFormat}
-              onBlur={e => (!customFormat ? (e.target.value = '') : '')}
+              onBlur={(e) => (!customFormat ? (e.target.value = '') : '')}
             />
             <Form.Control.Feedback type="invalid">
               請填入手機格式 (09xx-xxx-xxx)
@@ -429,7 +431,7 @@ function ServiceProfileForm(props) {
               placeholder="請填入Email"
               required
               defaultValue={users.sEmail}
-              onChange={e => handleFormValue(e, users)}
+              onChange={(e) => handleFormValue(e, users)}
             />
             <Form.Control.Feedback type="invalid">
               請填入正確Email格式
@@ -446,7 +448,7 @@ function ServiceProfileForm(props) {
                 as="select"
                 name="sCity"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   handleChangeCity(e.target.value)
                   handleFormValue(e, users)
                 }}
@@ -468,7 +470,7 @@ function ServiceProfileForm(props) {
                 as="select"
                 name="sDist"
                 required
-                onChange={e => {
+                onChange={(e) => {
                   handleFormValue(e, users)
                 }}
                 defaultValue=""
@@ -495,7 +497,7 @@ function ServiceProfileForm(props) {
                 placeholder="請填入地址"
                 required
                 defaultValue={users.sAddr}
-                onChange={e => handleFormValue(e, users)}
+                onChange={(e) => handleFormValue(e, users)}
               />
               <Form.Control.Feedback type="invalid">
                 請填入正確地址
@@ -540,12 +542,18 @@ function ServiceProfileForm(props) {
                 上傳
               </button>
               <div className="my-2 text-info avatar-preview">
-                <figure>
+                <figure className="mb-1">
                   <img alt="" />
                 </figure>
                 <span className="text">
-                  <AiOutlineExclamationCircle className="mr-1 mb-1" />
-                  上傳頭像以完成驗證
+                  {avatar.length === 0 ? (
+                    <>
+                      <AiOutlineExclamationCircle className="mr-1 mb-1" />
+                      上傳頭像以完成驗證
+                    </>
+                  ) : (
+                    ''
+                  )}
                 </span>
               </div>
             </div>
@@ -566,7 +574,7 @@ function ServiceProfileForm(props) {
               placeholder="請填入服務標題"
               required
               defaultValue={users.sTitle}
-              onChange={e => handleFormValue(e, users)}
+              onChange={(e) => handleFormValue(e, users)}
             />
             <Form.Control.Feedback type="invalid">
               請填入服務標題
@@ -586,7 +594,7 @@ function ServiceProfileForm(props) {
               max="99"
               min="1"
               defaultValue={users.sYear}
-              onChange={e => handleFormValue(e, users)}
+              onChange={(e) => handleFormValue(e, users)}
             />
             <Form.Control.Feedback type="invalid">
               請填入服務年資 (1-99)
@@ -606,7 +614,7 @@ function ServiceProfileForm(props) {
               maxLength={remarkMaxLengthLimit}
               placeholder={`最多${remarkMaxLengthLimit}個字`}
               defaultValue={users.sInfo}
-              onChange={e => {
+              onChange={(e) => {
                 setRemarkLength(e.target.value.length)
                 return handleFormValue(e, users)
               }}
@@ -685,7 +693,7 @@ function ServiceProfileForm(props) {
                     id={`serviceType${i}`}
                     label={v.sTypeName}
                     value={v.sTypeId}
-                    onChange={e => {
+                    onChange={(e) => {
                       handlePriceDaisbled(e)
                       handleTypePrice(e)
                       handleNoChecked(e)
@@ -701,7 +709,7 @@ function ServiceProfileForm(props) {
                     type="number"
                     id={`servicePrice${i}`}
                     placeholder="每小時服務價格"
-                    onChange={e => {
+                    onChange={(e) => {
                       handleTypePrice(e)
                     }}
                     disabled
@@ -734,7 +742,7 @@ function ServiceProfileForm(props) {
                     label={`${v.sizeName} (${v.sizeWeight})`}
                     value={v.sizeId}
                     ref={customCheckRef}
-                    onChange={e => {
+                    onChange={(e) => {
                       handleSize(e)
                       handleNoChecked(e)
                     }}
@@ -764,7 +772,7 @@ function ServiceProfileForm(props) {
                     label={v.extraName}
                     value={v.extraId}
                     ref={customCheckRef}
-                    onChange={e => handleExtra(e)}
+                    onChange={(e) => handleExtra(e)}
                   />
                 </Col>
               ))}
