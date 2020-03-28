@@ -1,0 +1,121 @@
+// * {
+//   font-family: '微軟正黑體';
+// }
+// .Member {
+//   font-family: '微軟正黑體';
+// }
+
+.Member {
+  .member-bg {
+    max-width: 1920px;
+    height: 674px;
+    background-size: cover;
+    background: url(../../images/member/member-bg.png) center center;
+    // opacity: 70%;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .member-sidebar-text-content {
+    color: black;
+    font-size: 20px;
+  }
+  footer {
+  }
+  .head {
+    width: 300px;
+    height: 300px;
+
+    /* background: url(../../images/member/head.png); */
+    border-radius: 50%;
+    opacity: 100%;
+    z-index: 5;
+    margin: 0 auto;
+    float: none;
+    transform: translateY(107px) scale(0.8);
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .head-text {
+    font-size: 30px;
+    color: white;
+    transform: translateY(80px);
+  }
+
+  .member-content {
+    margin-bottom: 40px;
+    // transform: translateY(-100px);
+    // height: 700px;
+    li {
+      transform: translate(15px);
+    }
+  }
+
+  .member-sidebar {
+    transform: translate(-60px, -60px);
+    font-size: 20px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+}
+
+/* member-content */
+
+.member-sidebar-text {
+  color: black;
+  font-size: 20px;
+}
+
+.Member {
+  .member-form-container {
+    transform: translateY(-80px);
+  }
+  .member-form {
+    width: 340px;
+    height: 240px;
+    // border: 1px solid black;
+    border-radius: 30px;
+    margin: 10px;
+    background: #fffcf0;
+    // transform: translateX(-700px);
+
+    ul {
+      margin-top: 20px;
+
+      /* list-style: url(../../images/member/paws-s.png); */
+      list-style: none;
+      transform: translateX(-30px);
+
+      li {
+        height: 37px;
+      }
+    }
+  }
+
+  .title-box {
+    height: 50px;
+    // border-bottom: 1px black solid;
+    background: #eeeeee;
+    border-radius: 30px 30px 0 0;
+    line-height: 50px;
+    font-size: 20px;
+
+    p {
+      transform: translateX(20px);
+    }
+  }
+}
+
+.w120 {
+  width: 120px;
+}
+.sm_cart_img {
+  width: 200px;
+  height: 200px;
+}
+/* member-info */

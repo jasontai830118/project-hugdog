@@ -1,0 +1,197 @@
+//首頁
+
+.home {
+  figure {
+    height: 500px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .product-collection {
+    color: white;
+
+    .collection1 {
+      height: 350px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s linear;
+      }
+      img:hover {
+        transform: scale(1.05);
+      }
+    }
+    .collection-info1 {
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .collection2 {
+      height: 350px;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s linear;
+      }
+      img:hover {
+        transform: scale(1.05);
+      }
+    }
+    .collection-info2 {
+      position: absolute;
+      right: 70px;
+      top: 35%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .product-list {
+    .product {
+      height: 250px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.3s ease;
+      }
+      img:hover {
+        opacity: 0;
+      }
+    }
+    .product-hover {
+      top: 0;
+      left: 0;
+      opacity: 1;
+      transition: all 0.3s ease;
+      position: absolute;
+    }
+  }
+}
+.index-banner {
+  color: black;
+  height: 350px;
+  background-image: url(../../images/index/ad.jpg);
+  background-size: cover;
+  background-position: right bottom;
+  h1 {
+    line-height: 3.3rem;
+    font-weight: 500;
+  }
+}
+.home2 {
+  .pet-supplies {
+    color: white;
+    .supply {
+      overflow: hidden;
+      height: 383px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s linear;
+      }
+      img:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .supply-2 {
+      overflow: hidden;
+      height: 296px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s linear;
+      }
+      img:hover {
+        transform: scale(1.05);
+      }
+    }
+    .supply-info {
+      position: absolute;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+
+      .button {
+        border: 1px solid white;
+        padding: 10px;
+      }
+    }
+    .supply-info2 {
+      position: absolute;
+      left: 50%;
+      bottom: 10%;
+      transform: translateX(-50%);
+
+      .button {
+        border: 1px solid white;
+        padding: 10px;
+      }
+    }
+    .supply-info-top {
+      position: absolute;
+      left: 50%;
+      top: 4%;
+      transform: translateX(-50%);
+    }
+  }
+  .blog-card {
+    figure {
+      margin: 0px;
+    }
+    .card-body {
+      padding: 10px;
+      p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+    }
+    .blog-pic {
+      height: 200px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+    }
+    .blog-pic {
+      overflow: hidden;
+      img:hover {
+        transform: scale(1.1);
+        filter: brightness(50%);
+      }
+    }
+    .card-icon-clock img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+.home {
+  position: relative;
+  // filter: brightness(50%);
+}
+.home_login {
+  position: absolute;
+  z-index: 3;
+  left: 20%;
+}
+.home_hide {
+  display: none;
+}
+.user {
+}

@@ -1,0 +1,87 @@
+.login-container {
+  width: 800px;
+  height: 1000px;
+  //   border: 1px black solid;
+  position: relative;
+  .login {
+    width: 600px;
+    height: 800px;
+    // border: 1px black solid;
+    background: rgb(255, 252, 240);
+    margin: 0 auto;
+    float: none;
+    position: absolute;
+    top: 10%;
+    left: 8%;
+    text-align: center;
+    transform: translateX(160px);
+  }
+  img {
+    width: 200px;
+    transform: translateY(70%);
+  }
+  hr {
+    width: 450px;
+    border: 1px solid black;
+    transform: translateY(70px);
+  }
+  form {
+    width: 450px;
+    transform: translate(80px, 70px);
+    input {
+      margin-top: 30px;
+      height: 60px;
+    }
+    #exampleInputPassword1 {
+      position: relative;
+    }
+    img {
+      width: 30px;
+      position: absolute;
+      top: 85px;
+      left: 400px;
+      opacity: 70%;
+      cursor: pointer;
+    }
+    .active {
+      display: none;
+    }
+    .login-btn {
+      height: 60px;
+      color: white;
+      font-size: 24px;
+      margin-bottom: 30px;
+      background: black;
+      cursor: pointer;
+    }
+    .register {
+      font-size: 20px;
+      background: rgb(245, 243, 243);
+      height: 50px;
+      line-height: 50px;
+      p {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+    p {
+      color: grey;
+    }
+  }
+}
+.alertBox {
+  width: 600px;
+  height: 50px;
+  text-align: center;
+  transform: translateY(-20px);
+  transition: 1s;
+  font-size: 20px;
+}
+.appear {
+  display: inline-block;
+  transition: 1s;
+}
+.disappear {
+  display: none;
+  transition: 1s;
+}

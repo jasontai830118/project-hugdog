@@ -1,0 +1,11 @@
+.event-icon img {
+  width: 40px;
+  height: 40px;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+ul li {
+  list-style: none;
+}
