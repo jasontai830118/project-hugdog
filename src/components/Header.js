@@ -9,6 +9,7 @@ import { FaDog } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getDataFromServer, linkTo } from '../utils/service/ServiceFunction'
 var i = parseInt(localStorage.getItem('mId') - 1)
 $('#logout').click(function () {
   // clearAllCookie()
@@ -18,6 +19,29 @@ $('#logout').click(function () {
   window.location.replace('http://localhost:3000/login/')
 })
 function Header(props) {
+  //-----保姆管理介面-----
+  const [sUserData, setsUserData] = useState([]) //保姆資料
+  const [sOrderNum, setsOrderNum] = useState() //訂單數量資料
+  useEffect(() => {
+    const sUser = getDataFromServer(
+      `http://localhost:6001/service/user/getmId?mId=${localStorage.getItem(
+        'mId'
+      )}&dataSts=Y`
+    )
+    Promise.resolve(sUser).then((data) => {
+      //如果查詢有使用者資料則帶入資料
+      setsUserData(data)
+    })
+    //----------
+  }, [])
+  //登出
+  function logout() {
+    // clearAllCookie()
+    localStorage.removeItem('mName')
+    localStorage.setItem('mId', '0')
+    localStorage.setItem('mImg', 'M030')
+    linkTo(props.location.pathname)
+  }
   useEffect(() => {
     $('.user').click(function () {
       $('.home_login').removeClass('home_hide')
@@ -104,23 +128,14 @@ function Header(props) {
               <Nav.Link href="/products">找商品</Nav.Link>
               <NavDropdown title="找服務" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/service/">
-                  什麼是保母服務
+                  什麼是保姆服務
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/service/query/">
-                  尋找狗狗保母
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/service/detail/m001">
-                  測試-保母內頁
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/service/message/m001">
-                  測試-聯繫保母
-                </NavDropdown.Item>
-                <NavDropdown.Item href="/service/booking/order001">
-                  測試-預約保母表單
+                  尋找狗狗保姆
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/service/apply/">
-                  成為狗狗保母
+                  成為狗狗保姆
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/activity">找活動</Nav.Link>
@@ -144,39 +159,56 @@ function Header(props) {
           </Navbar.Collapse>
 
           <Nav className="nav-icon order-3 order-md-4">
-            <div className="nav-link">
-              <div className="icon icon-unread">
-                <IconContext.Provider value={{ size: '1.5rem' }}>
-                  <FaDog />
-                </IconContext.Provider>
-              </div>
+            {sUserData.map((v, i) => {
+              const sOrder = getDataFromServer(
+                `http://localhost:6001/service/order/${v.id}?orderStsId='o01'`
+              )
+              Promise.resolve(sOrder).then((data) => {
+                //如果查詢有使用者資料則帶入資料
+                setsOrderNum(data.length)
+              })
+              return (
+                <div className="nav-link" key={i}>
+                  <div className={`icon ${sOrderNum ? 'icon-unread' : ''}`}>
+                    <IconContext.Provider value={{ size: '1.5rem' }}>
+                      <FaDog />
+                    </IconContext.Provider>
+                  </div>
 
-              <div className="dropdown-menu">
-                <div className="dropdown-item text-center">OOO 您好</div>
-                <div className="dropdown-divider" role="separator"></div>
-                <Link to="/service/admin/" className="dropdown-item nav-link">
-                  主頁
-                </Link>
-                <Link
-                  to="/service/admin/profile/"
-                  className="dropdown-item nav-link"
-                >
-                  資料修改
-                </Link>
-                <Link
-                  to="/service/admin/order/"
-                  className="dropdown-item nav-link"
-                >
-                  訂單查詢
-                </Link>
-                <Link
-                  to="/service/admin/message/"
-                  className="dropdown-item nav-link"
-                >
-                  訊息<span className="badge badge-danger">1</span>
-                </Link>
-              </div>
-            </div>
+                  <div className="dropdown-menu">
+                    {/* <div className="dropdown-item text-center">
+                      {v.sName} 您好
+                    </div>
+                    <div className="dropdown-divider" role="separator"></div> */}
+                    <Link
+                      to="/service/admin/"
+                      className="dropdown-item nav-link"
+                    >
+                      主頁
+                    </Link>
+                    <Link
+                      to="/service/admin/profile/"
+                      className="dropdown-item nav-link"
+                    >
+                      資料修改
+                    </Link>
+                    <Link
+                      to="/service/admin/order/"
+                      className="dropdown-item nav-link"
+                    >
+                      訂單查詢
+                      {sOrderNum ? (
+                        <span className="badge badge-danger ml-1">
+                          {sOrderNum}
+                        </span>
+                      ) : (
+                        ''
+                      )}
+                    </Link>
+                  </div>
+                </div>
+              )
+            })}
 
             <div className="nav-link">
               <IconContext.Provider
@@ -186,11 +218,21 @@ function Header(props) {
               </IconContext.Provider>
               <div className="dropdown-menu">
                 {localStorage.getItem('mId') === '0' ? (
-                  <Link to="/login" className="dropdown-item nav-link">
+                  <Link
+                    to={{
+                      pathname: '/login',
+                      state: { from: props.location.pathname },
+                    }}
+                    className="dropdown-item nav-link"
+                  >
                     登入
                   </Link>
                 ) : (
-                  <Link to="/login" className="dropdown-item nav-link logout">
+                  <Link
+                    to="#"
+                    className="dropdown-item nav-link logout"
+                    onClick={() => logout()}
+                  >
                     登出
                   </Link>
                 )}
