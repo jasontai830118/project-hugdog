@@ -44,7 +44,7 @@ function ServiceQueryList(props) {
     //最低價格
     setBasePrice(Math.min(...props.sTypePrice.map((p) => p.sPrice)))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [props.sUsers])
 
   return (
     <>

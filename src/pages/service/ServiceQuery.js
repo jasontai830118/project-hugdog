@@ -108,7 +108,7 @@ function ServiceQuery(props) {
                 key={i}
               />
             ))}
-            {totalPage.length !== 0 ? (
+            {totalPage.length > 1 ? (
               <Pagination>
                 <Pagination.Prev
                   onClick={() => {

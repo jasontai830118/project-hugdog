@@ -440,7 +440,7 @@ function ServiceBookingForm(props) {
                               type="radio"
                               id={`sizeId${i}`}
                               value={v}
-                              label={`${size[sizeIndex].sizeName} (${size[sizeIndex].sizeName})`}
+                              label={`${size[sizeIndex].sizeName} (${size[sizeIndex].sizeWeight})`}
                               onChange={(e) => handleFormValue(e, order)}
                             />
                           </Col>

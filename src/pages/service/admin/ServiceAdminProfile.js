@@ -107,6 +107,7 @@ function ServiceAdminProfile(props) {
                   parentCustomValidated={callbackCustomValid}
                   sUserId={sUserId}
                   sMemberId={sMemberId}
+                  isApply={false}
                 />
 
                 <div className="pb-4 px-0">

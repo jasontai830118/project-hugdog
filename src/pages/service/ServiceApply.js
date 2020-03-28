@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import { Row, Col, Form, Button, Card } from 'react-bootstrap'
 import { withRouter } from 'react-router'
 import ServiceRegistered from '../../components/service/redirect/ServiceRegistered'
@@ -134,6 +133,7 @@ function ServiceBooking(props) {
                           parentUserData={callbackUserData}
                           parentCustomValidated={callbackCustomValid}
                           sMemberId={sMemberId}
+                          isApply={true}
                         />
                         <div className="pb-4 px-0">
                           <Form.Group as={Row}>

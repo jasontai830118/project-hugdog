@@ -87,7 +87,6 @@ function ServiceBooking(props) {
                     showConfirmButton: false,
                     timer: 1500,
                   }).then((result) => {
-                    //-----待處理-----
                     linkTo('/member/member-service')
                   })
                 })

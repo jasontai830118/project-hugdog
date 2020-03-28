@@ -35,11 +35,11 @@ function ServiceQuerySearch(props) {
     if (checked.length) {
       for (let i = 0; i < checked.length; i++) {
         if (i === 0) {
-          sqlArr[2] += `${sExtra[i].value}`
+          sqlArr[2] += `${checked[i].value}`
         } else if (i === 1) {
-          sqlArr[2] += `,${sExtra[i].value}`
+          sqlArr[2] += `,${checked[i].value}`
         } else {
-          sqlArr[2] += `,${sExtra[i].value}`
+          sqlArr[2] += `,${checked[i].value}`
         }
       }
     }

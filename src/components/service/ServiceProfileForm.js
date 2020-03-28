@@ -28,6 +28,7 @@ function ServiceProfileForm(props) {
   const [avatar, setAvatar] = useState([]) //照片(service_photo的資料)
   const [album, setAlbum] = useState([]) //照片(service_photo的資料)
   const [albumImg, setAlbumImg] = useState('') //照片(service_photo的資料)
+  const [member, setMember] = useState([]) //會員(member的資料)
   //設定custom checkbox的ref(偵測是否完全載入)
   const customCheckRef = React.createRef()
   //設定自訂驗證提示
@@ -92,6 +93,13 @@ function ServiceProfileForm(props) {
       )
       Promise.resolve(sAlbum).then((data) => {
         setAlbum(data)
+      })
+      //取得會員資料
+      const memberData = getDataFromServer(
+        `http://localhost:6001/service/member?mId=${props.sMemberId}`
+      )
+      Promise.resolve(memberData).then((data) => {
+        setMember(data)
       })
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -202,19 +210,6 @@ function ServiceProfileForm(props) {
       let el = $(`:checkbox[name='sExtra[]'][value='${v}']`)
       $(el).prop('checked', true)
     })
-    //大頭照
-    let avatarImg = $('.avatar-preview figure img')
-    if (avatar.length !== 0) {
-      avatarImg.attr(
-        'src',
-        `http://localhost:6001/uploads/service/avatar/${avatar[0].fileName}.${avatar[0].fileType}`
-      )
-    } else {
-      avatarImg.attr(
-        'src',
-        'http://localhost:6001/uploads/service/avatar/placeholder.png'
-      )
-    }
     //相簿
     if (album.length !== 0) {
       let albumImg = ''
@@ -271,6 +266,8 @@ function ServiceProfileForm(props) {
           timer: 1500,
         })
       })
+    //寫入驗證
+    users.isConfirmed = 'Y'
   }
   //相簿多張圖片上傳
   const [selectedMutiFile, SetSelectedMutiFile] = useState(null)
@@ -367,10 +364,65 @@ function ServiceProfileForm(props) {
     }
     return true
   }
+  useEffect(() => {
+    //大頭照判斷顯示
+    let avatarImg = $('.avatar-preview figure img')
+    if (avatar.length !== 0) {
+      avatarImg.attr(
+        'src',
+        `http://localhost:6001/uploads/service/avatar/${avatar[0].fileName}.${avatar[0].fileType}`
+      )
+    } else {
+      avatarImg.attr(
+        'src',
+        'http://localhost:6001/uploads/service/avatar/placeholder.png'
+      )
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [avatar])
+
+  //帶入會員資料
+  const memberDefaultData = (e) => {
+    if ($(e.target).prop('checked')) {
+      //寫入陣列
+      users.sName = member[0].mName
+      users.sPhone = member[0].mPhone
+      users.sEmail = member[0].mEmail
+      //欄位值寫入
+      $("input[name='sName'").val(member[0].mName)
+      $("input[name='sPhone'").val(member[0].mPhone)
+      $("input[name='sEmail'").val(member[0].mEmail)
+    } else {
+      users.sName = ''
+      users.sPhone = ''
+      users.sEmail = ''
+      $("input[name='sName'").val('')
+      $("input[name='sPhone'").val('')
+      $("input[name='sEmail'").val('')
+    }
+    return
+  }
 
   return (
     <>
-      <h5>保姆基本資料</h5>
+      <h5>
+        保姆基本資料
+        {props.isApply ? (
+          <small className="inline-block-memberDefaultData ml-3">
+            <Form.Check
+              custom
+              name="memberDefaultData"
+              type="checkbox"
+              id="memberDefaultData"
+              className="text-muted"
+              label="帶入會員資料"
+              onChange={memberDefaultData}
+            />
+          </small>
+        ) : (
+          ''
+        )}
+      </h5>
       <hr className="title" />
       <div className="pb-4 px-0">
         <Form.Group as={Row} controlId="sName">
@@ -511,19 +563,6 @@ function ServiceProfileForm(props) {
           </Form.Label>
           <Col sm="9">
             <div className="custom-file">
-              {/* <input
-                type="file"
-                name="avatar"
-                className="custom-file-input"
-                id="avatar"
-              />
-              <label
-                className="custom-file-label"
-                htmlFor="avatar"
-                data-browse="選擇"
-              >
-                請選擇檔案
-              </label> */}
               <div className="form-group files mb-0">
                 <input
                   type="file"
