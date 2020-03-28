@@ -19,7 +19,7 @@ function ServiceQuery(props) {
     props.match.params.page !== undefined && !isNaN(props.match.params.page)
       ? parseInt(props.match.params.page)
       : 1
-  const [users, setUsers] = useState([]) //保母資料
+  const [users, setUsers] = useState([]) //保姆資料
   const [type, setType] = useState([]) //服務類型(service_type的資料)
   const [size, setSize] = useState([]) //狗狗體型(service_size的資料)
   const [extra, setExtra] = useState([]) //額外服務

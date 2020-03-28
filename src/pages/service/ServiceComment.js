@@ -13,7 +13,7 @@ import '../../css/service/style.scss'
 function ServiceBooking(props) {
   const sMemberId = props.sMemberId
 
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
   const [order, setOrder] = useState([]) //訂單資料(service_user的資料)
   const [commentData, setCommentData] = useState([]) //評論回傳資料
   //表單驗證
@@ -106,7 +106,7 @@ function ServiceBooking(props) {
     Promise.resolve(data).then((data) => {
       setOrder(data)
       if (data.length) {
-        //取得個別保母資料
+        //取得個別保姆資料
         const userData = getDataFromServer(
           `http://localhost:6001/service/user/${data[0].sId}`
         )

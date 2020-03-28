@@ -13,7 +13,7 @@ import {
 import '../../css/service/style.scss'
 
 function ServiceDetail(props) {
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
   const [type, setType] = useState([]) //服務類型(service_type的資料)
   const [size, setSize] = useState([]) //狗狗體型(service_size的資料)
   const [rating, setRating] = useState(0) //評價分數
@@ -71,7 +71,7 @@ function ServiceDetail(props) {
     Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       'http://localhost:6001/service/user/' + props.match.params.userId
     )

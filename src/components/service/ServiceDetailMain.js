@@ -71,7 +71,7 @@ function ServiceDetailMain(props) {
                     )}
                   </div>
                   <h4>
-                    保母評價
+                    保姆評價
                     <span className="inline-block-icon ml-3">
                       {starRating(props.sRating)}
                       <span className="icon-text">

@@ -24,7 +24,7 @@ function ServiceProfileForm(props) {
   const [type, setType] = useState([]) //服務類型(service_type的資料)
   const [size, setSize] = useState([]) //狗狗體型(service_size的資料)
   const [extra, setExtra] = useState([]) //額外服務
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
   const [avatar, setAvatar] = useState([]) //照片(service_photo的資料)
   const [album, setAlbum] = useState([]) //照片(service_photo的資料)
   const [albumImg, setAlbumImg] = useState('') //照片(service_photo的資料)
@@ -67,7 +67,7 @@ function ServiceProfileForm(props) {
     Promise.resolve(city).then((data) => {
       setCity(data)
     })
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/${sUserId}?dataSts=Y`
     )
@@ -370,7 +370,7 @@ function ServiceProfileForm(props) {
 
   return (
     <>
-      <h5>保母基本資料</h5>
+      <h5>保姆基本資料</h5>
       <hr className="title" />
       <div className="pb-4 px-0">
         <Form.Group as={Row} controlId="sName">

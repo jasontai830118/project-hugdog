@@ -12,7 +12,7 @@ function ServiceMessageDialog() {
       <Card className="message-chat-wrapper card-light">
         <Card.Header>
           <h5 className="member-name">
-            與 <span className="text-info">保母1</span> 的對話
+            與 <span className="text-info">保姆1</span> 的對話
           </h5>
         </Card.Header>
         <Card.Body>

@@ -12,11 +12,11 @@ function ServiceRegistered(props) {
             <Col>
               <div className="p-5 text-center">
                 <h4 className="mb-3 text-success">
-                  <MdCheck /> 您已註冊成為狗狗保母
+                  <MdCheck /> 您已註冊成為狗狗保姆
                 </h4>
-                <h6 className="mb-3 text-muted">立即前往保母中心看看吧！</h6>
+                <h6 className="mb-3 text-muted">立即前往保姆中心看看吧！</h6>
                 <Link className="btn btn-theme" to="/service/admin/">
-                  前往保母中心
+                  前往保姆中心
                 </Link>
               </div>
             </Col>

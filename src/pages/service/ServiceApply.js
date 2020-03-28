@@ -19,7 +19,7 @@ import '../../css/service/style.scss'
 function ServiceBooking(props) {
   const sMemberId = props.sMemberId
 
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
   //設定子元件回傳資料
   const [userData, setUserData] = useState(JSON)
   //表單驗證
@@ -57,7 +57,7 @@ function ServiceBooking(props) {
       //完成驗證
       Swal.fire({
         title: '確認送出申請?',
-        text: '送出後將開通保母服務',
+        text: '送出後將開通保姆服務',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#cea160',
@@ -104,7 +104,7 @@ function ServiceBooking(props) {
   }
 
   useEffect(() => {
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/getmId?mId=${sMemberId}&dataSts=Y`
     )
@@ -121,7 +121,7 @@ function ServiceBooking(props) {
           <div className="ServiceApply">
             <Row>
               <Col>
-                <h4 className="my-4">申請成為保母</h4>
+                <h4 className="my-4">申請成為保姆</h4>
                 <Card className="card-light">
                   <Card.Body>
                     <Form
@@ -143,7 +143,7 @@ function ServiceBooking(props) {
                                 name="admit"
                                 type="checkbox"
                                 id="admit"
-                                label="我同意HugDog保母服務條款"
+                                label="我同意HugDog保姆服務條款"
                                 feedback="您必須勾選同意才能繼續"
                                 required
                               />

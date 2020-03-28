@@ -14,7 +14,7 @@ import '../../css/service/style.scss'
 function ServiceBooking(props) {
   const sMemberId = props.sMemberId
 
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
   //設定子元件回傳資料
   const [orderData, setOrderData] = useState(JSON)
   //表單驗證
@@ -44,7 +44,7 @@ function ServiceBooking(props) {
       //完成驗證
       Swal.fire({
         title: '確認送出預約?',
-        text: '送出後保母將收到您的訂單',
+        text: '送出後保姆將收到您的訂單',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#cea160',
@@ -94,7 +94,7 @@ function ServiceBooking(props) {
   // }
 
   useEffect(() => {
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/${props.match.params.userId}?dataSts=Y`
     )

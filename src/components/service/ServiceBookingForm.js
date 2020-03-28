@@ -27,8 +27,8 @@ function ServiceBookingForm(props) {
   const [type, setType] = useState([]) //服務類型(service_type的資料)
   const [size, setSize] = useState([]) //狗狗體型(service_size的資料)
   const [extra, setExtra] = useState([]) //額外服務
-  const [users, setUsers] = useState([]) //保母資料(service_user的資料)
-  const [order, setOrder] = useState({}) //保母訂單(service_order的資料)
+  const [users, setUsers] = useState([]) //保姆資料(service_user的資料)
+  const [order, setOrder] = useState({}) //保姆訂單(service_order的資料)
   const [typePrice, setTypePrice] = useState(0) //選擇項目的價格
   const [basePrice, setBasePrice] = useState(0) //選擇項目的價格
   const [extraPrice, setExtraPrice] = useState(0) //選擇額外的價格
@@ -54,29 +54,29 @@ function ServiceBookingForm(props) {
     SctollToTop()
     //取得額外服務
     const sExtra = getDataFromServer('http://localhost:6001/service/extra')
-    Promise.resolve(sExtra).then(data => {
+    Promise.resolve(sExtra).then((data) => {
       setExtra(data)
     })
     //取得狗狗體型
     const dogSize = getDataFromServer('http://localhost:6001/service/size')
-    Promise.resolve(dogSize).then(data => {
+    Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
     //取得服務類型資料
     const sTypeData = getDataFromServer('http://localhost:6001/service/type')
-    Promise.resolve(sTypeData).then(data => {
+    Promise.resolve(sTypeData).then((data) => {
       setType(data)
     })
     //取得縣市資料
     const city = getDataFromServer('http://localhost:6001/service/zipcode/city')
-    Promise.resolve(city).then(data => {
+    Promise.resolve(city).then((data) => {
       setCity(data)
     })
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/${props.match.params.userId}`
     )
-    Promise.resolve(data).then(data => {
+    Promise.resolve(data).then((data) => {
       setUsers(data)
     })
     //初始化訂單資料
@@ -92,7 +92,7 @@ function ServiceBookingForm(props) {
   //處理額外服務資料回傳
   function handleExtra(e) {
     let extraArr = []
-    $(":checkbox:checked[name='sExtra[]']").each(function(i) {
+    $(":checkbox:checked[name='sExtra[]']").each(function (i) {
       extraArr.push($(this).val())
     })
     order.extraId = extraArr.toString()
@@ -102,21 +102,15 @@ function ServiceBookingForm(props) {
     const city = getDataFromServer(
       `http://localhost:6001/service/zipcode/city/'${cityValue}'`
     )
-    Promise.resolve(city).then(data => {
+    Promise.resolve(city).then((data) => {
       setDist(data)
     })
   }
   //-----價格計算-----
   //取得選擇項目項格
   function handelTypePrice(e) {
-    let typePrice =
-      $(e.target)
-        .find(':selected')
-        .data('price') || 0
-    let basePrice =
-      $(e.target)
-        .find(':selected')
-        .data('baseprice') || 0
+    let typePrice = $(e.target).find(':selected').data('price') || 0
+    let basePrice = $(e.target).find(':selected').data('baseprice') || 0
     setTypePrice(typePrice) //紀錄選擇項目價格
     setBasePrice(basePrice) //紀錄選擇項目價格
     calcTotalPrice(typePrice, basePrice, extraPrice) //計算總價
@@ -125,7 +119,7 @@ function ServiceBookingForm(props) {
   function handleExtraPrice(e) {
     console.log(e.target.name)
     let extraPrice = 0
-    $(`:checkbox[name='${e.target.name}']`).each(function(i, v) {
+    $(`:checkbox[name='${e.target.name}']`).each(function (i, v) {
       if ($(this).prop('checked')) {
         extraPrice += $(this).data('price')
       }
@@ -168,7 +162,7 @@ function ServiceBookingForm(props) {
   ) //結束日最小時間
 
   //起始目前值操作
-  const handleStartDate = date => {
+  const handleStartDate = (date) => {
     if (date) {
       //若設定時間小於預設值,則設定為預設值
       if (date < defaultStartDate) {
@@ -213,7 +207,7 @@ function ServiceBookingForm(props) {
   }, [startDate])
 
   //結束目前值操作
-  const handleEndDate = date => {
+  const handleEndDate = (date) => {
     if (date) {
       //若設定時間小於起始值,則設定為起始值+1小時
       if (date <= startDate.getTime() + 3600000) {
@@ -271,7 +265,7 @@ function ServiceBookingForm(props) {
                     as="select"
                     name="mCity"
                     required
-                    onChange={e => {
+                    onChange={(e) => {
                       handleChangeCity(e.target.value)
                       handleFormValue(e, order)
                     }}
@@ -292,7 +286,7 @@ function ServiceBookingForm(props) {
                     as="select"
                     name="mDist"
                     required
-                    onChange={e => {
+                    onChange={(e) => {
                       handleFormValue(e, order)
                     }}
                   >
@@ -314,7 +308,7 @@ function ServiceBookingForm(props) {
                     placeholder="請填入地址"
                     required
                     defaultValue={order.mAddr}
-                    onChange={e => handleFormValue(e, order)}
+                    onChange={(e) => handleFormValue(e, order)}
                   />
                   <Form.Control.Feedback type="invalid">
                     請填入正確地址
@@ -334,7 +328,7 @@ function ServiceBookingForm(props) {
                   required
                   // pattern="09\d{2}\-?\d{3}\-?\d{3}"
                   defaultValue={order.sPhone}
-                  onChange={e =>
+                  onChange={(e) =>
                     setCustomFormat(
                       handleFormValueMatch(
                         e,
@@ -344,7 +338,7 @@ function ServiceBookingForm(props) {
                     )
                   }
                   isInvalid={!customFormat}
-                  onBlur={e => (!customFormat ? (e.target.value = '') : '')}
+                  onBlur={(e) => (!customFormat ? (e.target.value = '') : '')}
                 />
                 <Form.Control.Feedback type="invalid">
                   請填入手機格式 (09xx-xxx-xxx)
@@ -365,7 +359,7 @@ function ServiceBookingForm(props) {
                   type="text"
                   placeholder="請填入狗狗名字"
                   required
-                  onChange={e => handleFormValue(e, order)}
+                  onChange={(e) => handleFormValue(e, order)}
                 />
                 <Form.Control.Feedback type="invalid">
                   請填入狗狗名字
@@ -382,7 +376,7 @@ function ServiceBookingForm(props) {
                   type="text"
                   placeholder="請填入品種"
                   required
-                  onChange={e => handleFormValue(e, order)}
+                  onChange={(e) => handleFormValue(e, order)}
                 />
                 <Form.Control.Feedback type="invalid">
                   請填入品種
@@ -401,7 +395,7 @@ function ServiceBookingForm(props) {
                   max="99"
                   placeholder="請填入犬齡"
                   required
-                  onChange={e => handleFormValue(e, order)}
+                  onChange={(e) => handleFormValue(e, order)}
                 />
                 <Form.Control.Feedback type="invalid">
                   請填入犬齡
@@ -417,7 +411,7 @@ function ServiceBookingForm(props) {
                   as="select"
                   name="dGender"
                   required
-                  onChange={e => handleFormValue(e, order)}
+                  onChange={(e) => handleFormValue(e, order)}
                 >
                   <option value="">請選擇</option>
                   <option value="m">公</option>
@@ -436,7 +430,7 @@ function ServiceBookingForm(props) {
                 <Row>
                   {!!v.sSizeId && size.length !== 0
                     ? v.sSizeId.split(',').map((v, i) => {
-                        let sizeIndex = size.map(s => s.sizeId).indexOf(v)
+                        let sizeIndex = size.map((s) => s.sizeId).indexOf(v)
                         return (
                           <Col md={6} key={i} className="py-2">
                             <Form.Check
@@ -447,7 +441,7 @@ function ServiceBookingForm(props) {
                               id={`sizeId${i}`}
                               value={v}
                               label={`${size[sizeIndex].sizeName} (${size[sizeIndex].sizeName})`}
-                              onChange={e => handleFormValue(e, order)}
+                              onChange={(e) => handleFormValue(e, order)}
                             />
                           </Col>
                         )
@@ -469,7 +463,7 @@ function ServiceBookingForm(props) {
                   as="select"
                   name="sTypeId"
                   required
-                  onChange={e => {
+                  onChange={(e) => {
                     handelTypePrice(e)
                     handleFormValue(e, order)
                   }}
@@ -478,7 +472,7 @@ function ServiceBookingForm(props) {
                   {type.length !== 0
                     ? JSON.parse(v.sTypePrice).map((v, i) => {
                         let typeIndex = type
-                          .map(s => s.sTypeId)
+                          .map((s) => s.sTypeId)
                           .indexOf(v.sTypeId)
                         return (
                           <option
@@ -586,7 +580,7 @@ function ServiceBookingForm(props) {
                 <Row>
                   {!!v.sExtra && extra.length !== 0
                     ? v.sExtra.split(',').map((v, i) => {
-                        let index = extra.map(x => x.extraId).indexOf(v)
+                        let index = extra.map((x) => x.extraId).indexOf(v)
                         return (
                           <Col md={6} key={i} className="py-2">
                             <Form.Check
@@ -598,7 +592,7 @@ function ServiceBookingForm(props) {
                               label={`${extra[index].extraName} ($${extra[index].extraPrice})`}
                               value={v}
                               ref={customCheckRef}
-                              onChange={e => {
+                              onChange={(e) => {
                                 handleExtraPrice(e)
                                 handleExtra(e)
                               }}
@@ -665,7 +659,7 @@ function ServiceBookingForm(props) {
                   rows="5"
                   maxLength={remarkMaxLengthLimit}
                   placeholder={`最多${remarkMaxLengthLimit}個字`}
-                  onChange={e => {
+                  onChange={(e) => {
                     setRemarkLength(e.target.value.length)
                     return handleFormValue(e, order)
                   }}

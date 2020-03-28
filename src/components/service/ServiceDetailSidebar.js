@@ -92,7 +92,7 @@ function ServiceDetailSidebar(props) {
       <Row>
         <Col md={6} lg={12}>
           <Row className="mb-3">
-            {/* 保母資料 */}
+            {/* 保姆資料 */}
             <Col md={12}>
               <figure className="avatar mx-auto mb-3">
                 <img className="rounded-circle" src={avatar} alt="" />

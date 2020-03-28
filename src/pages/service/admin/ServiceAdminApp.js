@@ -31,7 +31,7 @@ function ServiceAdminApp(props) {
   //訂單數量資料
   const [sOrderNum, setsOrderNum] = useState()
   useEffect(() => {
-    //取得個別保母資料
+    //取得個別保姆資料
     const data = getDataFromServer(
       `http://localhost:6001/service/user/getmId?mId=${sMemberId}&dataSts=Y`
     )

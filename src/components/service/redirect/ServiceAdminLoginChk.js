@@ -15,7 +15,7 @@ function ServiceAdminLoginChk(props) {
                 <h4 className="mb-3 text-danger">
                   <FiAlertTriangle /> 您尚未登入會員
                 </h4>
-                <h6 className="mb-3 text-muted">請登入使用保母服務</h6>
+                <h6 className="mb-3 text-muted">請登入使用保姆服務</h6>
                 <Link
                   className="btn btn-theme"
                   to={{

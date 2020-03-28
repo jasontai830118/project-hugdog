@@ -6,7 +6,7 @@ import { getDataFromServer } from '../../utils/service/ServiceFunction'
 import $ from 'jquery'
 
 function ServiceQueryList(props) {
-  //保母提供的服務類型
+  //保姆提供的服務類型
   //類型定義資料(比對用)
   //設定評論
   const [rating, setRating] = useState(0) //評價分數

@@ -49,7 +49,7 @@ function ServiceAdminProfile(props) {
       //完成驗證
       Swal.fire({
         title: '確認更新資料?',
-        text: '確認後將更新保母資料',
+        text: '確認後將更新保姆資料',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#cea160',
