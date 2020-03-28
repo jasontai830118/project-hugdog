@@ -193,23 +193,8 @@ header .navbar .navbar-collapse {
   }
 }
 
-/* header .navbar .navbar-collapse.show::after {
-  content: '';
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  top: 0;
-  left: 0;
-  z-index: 1;
-} */
-
 header .navbar-toggler {
   border: 0;
-}
-
-header .nav-menu {
-  // font-size: 0.9rem;
 }
 
 header .navbar-light .navbar-nav .nav-link {
