@@ -349,6 +349,16 @@
       object-fit: cover;
     }
   }
+  //條款
+  .ServiceTerms {
+    section.banner {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(../../images/service/pic/banner2.png) center bottom no-repeat;
+      background-size: 80%;
+      height: 500px;
+      color: #ffffff;
+    }
+  }
   //首頁
   .ServiceHome {
     section {
