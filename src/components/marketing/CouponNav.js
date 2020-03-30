@@ -12,9 +12,9 @@ function CouponNav(props) {
         <div className="border-bottom mb-3 justify-content-center d-flex">
           <Nav bg="white" variant="light" expand="md">
             <Nav className="mr-auto nav-menu">
-              <Nav.Link href="/coupon">優惠卷輸入</Nav.Link>
-              <Nav.Link href="/coupon/event">取得優惠卷</Nav.Link>
-              <Nav.Link href="/coupon/description">優惠卷說明</Nav.Link>
+              <Nav.Link href="/coupon">優惠券輸入</Nav.Link>
+              <Nav.Link href="/coupon/event">取得優惠券</Nav.Link>
+              <Nav.Link href="/coupon/description">優惠券說明</Nav.Link>
               <Nav></Nav>
               <div className="marketing-nav"></div>
             </Nav>

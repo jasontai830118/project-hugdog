@@ -81,7 +81,7 @@ function Header(props) {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="#qa">常見Q&A</Nav.Link>
-              <Nav.Link href="/coupon">Test Coupon</Nav.Link>
+              {/* <Nav.Link href="/coupon">Test Coupon</Nav.Link> */}
               {/* <h3 className="text-right">
                 {localStorage.getItem('mName')}你好
               </h3> */}
@@ -161,7 +161,13 @@ function Header(props) {
                     登出
                   </Link>
                 )}
-
+                {localStorage.getItem('mId') === '0' ? (
+                  ''
+                ) : (
+                  <Link to="/coupon" className="dropdown-item nav-link logout">
+                    優惠券
+                  </Link>
+                )}
                 <Link to="/member" className="dropdown-item nav-link">
                   會員頁測試
                 </Link>

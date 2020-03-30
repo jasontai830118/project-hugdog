@@ -42,7 +42,7 @@ const MemberLogin = (props) => {
         $('.password').val() === mPassword
       ) {
         console.log('正確')
-        $('.alertBox')
+        $('#alertBox')
           .removeClass('disappear')
           .removeClass('alert-danger')
           .addClass('appear')
@@ -57,31 +57,11 @@ const MemberLogin = (props) => {
         localStorage.setItem('mId', mId)
         localStorage.setItem('mName', mName)
         localStorage.setItem('mImg', mImg)
-      }
-      // if ($('#exampleInputAccount1').val() === '') {
-      //   // alert('帳號不能為空白')
-      //   $('.alertBox')
-      //     .removeClass('disappear')
-      //     .addClass('appear')
-      //     .text('帳號不能為空白')
-      // }
-      // // if ($('#exampleInputAccount1').length < 3) {
-      // //   alert('帳號要大於三位')
-      // // }
-      // if ($('#exampleInputPassword1').val() === '') {
-      //   // alert('密碼不能為空白')
-      //   $('.alertBox')
-      //     .removeClass('disappear')
-      //     .addClass('appear')
-      //     .text('密碼不能為空白')
-      // }
-      // // if ($('#exampleInputPassword1').length < 3) {
-      // //   alert('密碼要大於三位')
-      // // }
-      else {
+        return
+      } else {
         console.log('不正確')
         // alert('帳號或密碼錯誤')
-        $('.alertBox')
+        $('#alertBox')
           .removeClass('disappear')
           .addClass('appear')
           .text('帳號或密碼錯誤')
@@ -101,7 +81,7 @@ const MemberLogin = (props) => {
       $('.show').addClass('active')
       $('.hide').removeClass('active')
       $('#exampleInputPassword1').attr('type', 'text')
-      // $('.alertBox')
+      // $('#alertBox')
       //   .removeClass('disappear')
       //   .removeClass('alert-danger')
       //   .addClass('appear')
@@ -111,7 +91,7 @@ const MemberLogin = (props) => {
       $('.hide').addClass('active')
       $('.show').removeClass('active')
       $('#exampleInputPassword1').attr('type', 'password')
-      // $('.alertBox')
+      // $('#alertBox')
       //   // .removeClass('appear')
       //   .removeClass('alert-success')
       //   // .addClass('disappear')
@@ -128,16 +108,18 @@ const MemberLogin = (props) => {
           <div className="container">
             <div className=" login-container">
               <div className="login">
-                {/* <div
-                  className="alertBox alert alert-danger disappear"
+                <div
+                  className="alert alert-danger disappear w-100 border-0 rounded-0"
+                  id="alertBox"
                   role="alert"
-                ></div> */}
-                <img
-                  src={require('../../images/logo-dark.svg')}
-                  alt="Background"
-                  className="text-center"
-                />
-                <hr className="hrhr" />
+                ></div>
+                <figure className="logo">
+                  <img
+                    src={require('../../images/logo-dark.svg')}
+                    alt="Background"
+                    className="text-center"
+                  />
+                </figure>
                 <form>
                   <div class="form-group">
                     <input

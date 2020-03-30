@@ -135,6 +135,32 @@ export const insertCouponAsync = (userData, callback) => {
   }
 }
 
+export const updateCouponAsync = (userData2, callback) => {
+  return async (dispatch) => {
+    const request = new Request(
+      'http://localhost:6001/marketing_member/update',
+      {
+        method: 'POST',
+        body: JSON.stringify(userData2),
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+      }
+    )
+
+    // console.log(JSON.stringify(userData))
+
+    const response = await fetch(request)
+    const data = await response.json()
+    console.log(data)
+
+    // 設定資料
+    dispatch(insertCoupon(data))
+    callback()
+  }
+}
+
 // export const insertCoupon = (userData, callback) => {
 //   return async dispatch => {
 //     const request = new Request(
