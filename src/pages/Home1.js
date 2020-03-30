@@ -29,23 +29,24 @@ function Home(props) {
     handleClose()
     setShow2(true)
   }
-  $('.show').click(function () {
-    console.log('show')
-    $('.show').addClass('active')
-    $('.hide').removeClass('active')
-    $('#exampleInputPassword1').attr('type', 'text')
-  })
-  $('.hide').click(function () {
-    console.log('hide')
-    $('.hide').addClass('active')
-    $('.show').removeClass('active')
-    $('#exampleInputPassword1').attr('type', 'password')
-  })
+
   useEffect(() => {
     // props.getMemberDetail(mId)
     // props.getMemberData()
     // window.location.reload()
     //第一种只刷新一次
+    $('.show').click(function () {
+      console.log('show')
+      $('.show').addClass('active')
+      $('.hide').removeClass('active')
+      $('#exampleInputPassword1').attr('type', 'text')
+    })
+    $('.hide').click(function () {
+      console.log('hide')
+      $('.hide').addClass('active')
+      $('.show').removeClass('active')
+      $('#exampleInputPassword1').attr('type', 'password')
+    })
   }, [])
   return (
     <>
@@ -389,14 +390,14 @@ function Home(props) {
       </div>
       <div className="container home2 mb-4">
         <div className="">
-          <h3 className="text-center mb-4">寵物補給站</h3>
+          <h3 className="text-center mb-4">Pet Supplies</h3>
           <div className="row pet-supplies d-flex justify-content-between">
             <div className="col-12 col-sm-12 col-md-6">
               <figure className="supply supply1 position-relative">
                 <img src={require('../images/index/sup1.jpg')} alt="" />
               </figure>
               <div className="supply-info">
-                <h2 className="text-center">公園時間</h2>
+                <h2 className="text-center">PARK TIME</h2>
                 <div className="">
                   <button type="button" className="btn btn-outline-theme1">
                     立即前往選購
@@ -409,7 +410,7 @@ function Home(props) {
                 <img src={require('../images/index/sup2.jpg')} alt="" />
               </figure>
               <div className="supply-info">
-                <h2 className="text-center">散步去</h2>
+                <h2 className="text-center">LEAD ME</h2>
                 <div className="">
                   <button type="button" className="btn btn-outline-theme1">
                     立即前往選購
@@ -422,7 +423,7 @@ function Home(props) {
                 <img src={require('../images/index/sup8.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>陪伴玩偶</h2>
+                <h2>PARK TIME</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -437,7 +438,7 @@ function Home(props) {
                 <img src={require('../images/index/sup7.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>美食時刻</h2>
+                <h2>PARK TIME</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -452,7 +453,7 @@ function Home(props) {
                 <img src={require('../images/index/sup13.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>貼身防護</h2>
+                <h2>PARK TIME</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -464,7 +465,7 @@ function Home(props) {
             </div>
           </div>
         </div>
-        <h3 className="text-center my-4">HugDog 部落格</h3>
+        <h3 className="text-center my-4">Our Blog</h3>
         <div className="row blog-card">
           <div className="col-md-4">
             <Link>

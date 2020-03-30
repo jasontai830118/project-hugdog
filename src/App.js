@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Error from './pages/Error'
 import Home from './pages/Home'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -39,10 +40,10 @@ function App() {
             <Route path="/member">
               <Member />
             </Route>
-            <Route path="/service/admin/">
+            <Route path="/service/admin">
               <ServiceAdmin />
             </Route>
-            <Route path="/service/">
+            <Route path="/service">
               <Service />
             </Route>
             <Route path="/activity/lecture/:LId">
@@ -104,6 +105,9 @@ function App() {
             </Route>
             <Route path="/dog-edit">
               <DogDetail />
+            </Route>
+            <Route path="/">
+              <Error />
             </Route>
           </Switch>
         </section>

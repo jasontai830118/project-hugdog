@@ -181,17 +181,53 @@
     }
   }
 }
-.home {
-  position: relative;
-  // filter: brightness(50%);
-}
-.home_login {
-  position: absolute;
-  z-index: 3;
-  left: 20%;
-}
-.home_hide {
-  display: none;
-}
-.user {
+
+.login {
+  input {
+    height: 55px;
+  }
+  .modal-logo {
+    img {
+      height: 50px;
+    }
+  }
+  .show {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 44%;
+  }
+  .hide {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 44%;
+  }
+  .active {
+    display: none;
+  }
+  .show2 {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 52%;
+  }
+  .hide2 {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 52%;
+  }
+  .show3 {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 39%;
+  }
+  .hide3 {
+    cursor: pointer;
+    position: absolute;
+    right: 45px;
+    bottom: 39%;
+  }
 }

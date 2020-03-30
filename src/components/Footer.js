@@ -85,16 +85,19 @@ function Footer(props) {
               </div>
               <ul className="list-item expanded">
                 <li>
-                  <Link to="#">項目1</Link>
+                  <Link to="/products?cId=1">飼料</Link>
                 </li>
                 <li>
-                  <Link to="#">項目項目2</Link>
+                  <Link to="/products?cId=4">狗罐頭/鮮食/餐盒</Link>
                 </li>
                 <li>
-                  <Link to="#">項目3</Link>
+                  <Link to="/products?cId=7">狗籠/狗屋</Link>
                 </li>
                 <li>
-                  <Link to="#">項目項目項目4</Link>
+                  <Link to="/products?cId=8">床組</Link>
+                </li>
+                <li>
+                  <Link to="/products?cId=9">狗衣服</Link>
                 </li>
               </ul>
             </li>

@@ -11,14 +11,14 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getDataFromServer, linkTo } from '../utils/service/ServiceFunction'
 var i = parseInt(localStorage.getItem('mId') - 1)
-$('#logout').click(function () {
-  // clearAllCookie()
-  localStorage.removeItem('mName')
-  localStorage.setItem('mId', '0')
-  localStorage.setItem('mImg', 'M030')
-  window.location.replace('http://localhost:3000/login/')
-})
 function Header(props) {
+  $('#logout').click(function () {
+    // clearAllCookie()
+    localStorage.removeItem('mName')
+    localStorage.setItem('mId', '0')
+    localStorage.setItem('mImg', 'M030')
+    window.location.replace('http://localhost:3000/login/')
+  })
   //-----保姆管理介面-----
   const [sUserData, setsUserData] = useState([]) //保姆資料
   const [sOrderNum, setsOrderNum] = useState() //訂單數量資料
@@ -34,7 +34,7 @@ function Header(props) {
     })
     //----------
   }, [])
-  //登出
+  //-----登出-----
   function logout() {
     // clearAllCookie()
     localStorage.removeItem('mName')
@@ -42,80 +42,10 @@ function Header(props) {
     localStorage.setItem('mImg', 'M030')
     linkTo(props.location.pathname)
   }
-  useEffect(() => {
-    $('.user').click(function () {
-      $('.home_login').removeClass('home_hide')
-      $('.home').css('filter', 'brightness(50%)')
-    })
-  }, [props.qty])
+
+  useEffect(() => {}, [props.qty || props.data])
   return (
     <>
-      <div className="container home_login home_hide">
-        <div className=" login-container">
-          <div className="login">
-            <div
-              className="alertBox alert alert-danger disappear"
-              role="alert"
-            ></div>
-            <img
-              src={require('../images/logo-dark.svg')}
-              alt="Background"
-              className="text-center"
-            />
-            <hr />
-            <form>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputAccount1"
-                  aria-describedby="accountHelp"
-                  placeholder="帳號"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="exampleInputPassword1"
-                  placeholder="密碼"
-                />
-                <img
-                  src={require('../images/member/hide_password.png')}
-                  alt="Background"
-                  className="show"
-                />
-                <img
-                  src={require('../images/member/show_hide_password.png')}
-                  alt="Background"
-                  className="hide active"
-                />
-              </div>
-              <Link class="form-group text-left">
-                <p>忘記密碼?</p>
-              </Link>
-              <br />
-              <Link
-                type="submit"
-                class="btn btn-primary btn-block login-btn"
-                // to={'/member/'}
-              >
-                登入
-              </Link>
-              <div class="form-group d-flex justify-content-between register">
-                <div>
-                  <p>還沒有註冊帳號?</p>
-                </div>
-                <div>
-                  <Link class="" to="/register">
-                    <p>立即註冊→</p>
-                  </Link>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
       <header className="sticky-top">
         <Navbar bg="white" variant="light" expand="md">
           <Navbar.Toggle aria-controls="basic-navbar-nav order-1" />
@@ -127,14 +57,14 @@ function Header(props) {
               <Nav.Link href="#news">最新消息</Nav.Link>
               <Nav.Link href="/products">找商品</Nav.Link>
               <NavDropdown title="找服務" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/service/">
-                  什麼是保姆服務
+                <NavDropdown.Item href="/service">
+                  保姆照顧服務
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/service/query/">
+                <NavDropdown.Item href="/service/query">
                   尋找狗狗保姆
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="/service/apply/">
+                <NavDropdown.Item href="/service/apply">
                   成為狗狗保姆
                 </NavDropdown.Item>
               </NavDropdown>
@@ -157,7 +87,6 @@ function Header(props) {
               </h3> */}
             </Nav>
           </Navbar.Collapse>
-
           <Nav className="nav-icon order-3 order-md-4">
             {sUserData.map((v, i) => {
               const sOrder = getDataFromServer(
@@ -176,10 +105,6 @@ function Header(props) {
                   </div>
 
                   <div className="dropdown-menu">
-                    {/* <div className="dropdown-item text-center">
-                      {v.sName} 您好
-                    </div>
-                    <div className="dropdown-divider" role="separator"></div> */}
                     <Link
                       to="/service/admin/"
                       className="dropdown-item nav-link"
@@ -255,10 +180,17 @@ function Header(props) {
                 <FiHeart />
               </IconContext.Provider>
             </Nav.Link>
-            <Nav className="nav-icon order-3 order-md-4">
+            <Nav
+              className="nav-icon order-3 order-md-4"
+              onClick={() => {
+                props.history.push('/cart')
+              }}
+            >
               <div className="nav-link">
                 {JSON.parse(localStorage.getItem('cart')) === null ||
-                JSON.parse(localStorage.getItem('cart')).length === 0 ? (
+                JSON.parse(localStorage.getItem('cart')).length === 0 ||
+                localStorage.getItem('mId') === '0' ||
+                localStorage.getItem('mId') === null ? (
                   <div className="icon">
                     <IconContext.Provider value={{ size: '1.5rem' }}>
                       <AiOutlineShopping />
@@ -280,7 +212,9 @@ function Header(props) {
 
                   <Link className="dropdown-item nav-link">
                     {JSON.parse(localStorage.getItem('cart')) === null ||
-                    JSON.parse(localStorage.getItem('cart')).length === 0 ? (
+                    JSON.parse(localStorage.getItem('cart')).length === 0 ||
+                    localStorage.getItem('mId') === '0' ||
+                    localStorage.getItem('mId') === null ? (
                       <div className="text-center">
                         <span>購物車沒有商品</span>
                         <br />
@@ -315,6 +249,7 @@ function Header(props) {
 const mapStateToProps = (store) => {
   return {
     qty: store.getQuantity,
+    data: store.getMember,
   }
 }
 export default withRouter(connect(mapStateToProps, null)(Header))
