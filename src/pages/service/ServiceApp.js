@@ -12,6 +12,7 @@ import ServiceDetail from './ServiceDetail'
 import ServiceBooking from './ServiceBooking'
 import ServiceApply from './ServiceApply'
 import ServiceComment from './ServiceComment'
+import ServiceTerms from './ServiceTerms'
 import Error from '../../pages/Error'
 
 function ServiceApp(props) {
@@ -50,10 +51,13 @@ function ServiceApp(props) {
           <Route path="/service/apply/">
             <ServiceApply sMemberId={sMemberId} />
           </Route>
-          <Route exact path="/service/">
+          <Route exact path="/service/terms">
+            <ServiceTerms sMemberId={sMemberId} />
+          </Route>
+          <Route exact path="/service">
             <ServiceHome sMemberId={sMemberId} />
           </Route>
-          <Route path="/service/">
+          <Route path="/service">
             <Error />
           </Route>
         </Switch>
