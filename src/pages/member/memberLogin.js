@@ -22,7 +22,7 @@ import '../../css/member/member-login.scss'
 
 const MemberLogin = (props) => {
   localStorage.setItem('mId', 0)
-  $('.login-btn').click(function () {
+  $('#login-btn').click(function () {
     console.log('輸入帳號: ' + $('#exampleInputAccount1').val())
     console.log('輸入密碼: ' + $('#exampleInputPassword1').val())
     // console.log('帳號: ' + mAccount)
@@ -42,7 +42,7 @@ const MemberLogin = (props) => {
         $('.password').val() === mPassword
       ) {
         console.log('正確')
-        $('.alertBox')
+        $('#alertBox')
           .removeClass('disappear')
           .removeClass('alert-danger')
           .addClass('appear')
@@ -57,37 +57,20 @@ const MemberLogin = (props) => {
         localStorage.setItem('mId', mId)
         localStorage.setItem('mName', mName)
         localStorage.setItem('mImg', mImg)
-      }
-      // if ($('#exampleInputAccount1').val() === '') {
-      //   // alert('帳號不能為空白')
-      //   $('.alertBox')
-      //     .removeClass('disappear')
-      //     .addClass('appear')
-      //     .text('帳號不能為空白')
-      // }
-      // // if ($('#exampleInputAccount1').length < 3) {
-      // //   alert('帳號要大於三位')
-      // // }
-      // if ($('#exampleInputPassword1').val() === '') {
-      //   // alert('密碼不能為空白')
-      //   $('.alertBox')
-      //     .removeClass('disappear')
-      //     .addClass('appear')
-      //     .text('密碼不能為空白')
-      // }
-      // // if ($('#exampleInputPassword1').length < 3) {
-      // //   alert('密碼要大於三位')
-      // // }
-      else {
+        return
+      } else {
         console.log('不正確')
         // alert('帳號或密碼錯誤')
-        $('.alertBox')
+        $('#alertBox')
           .removeClass('disappear')
           .addClass('appear')
           .text('帳號或密碼錯誤')
       }
     }
   })
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   useEffect(() => {
     // props.getMemberDetail(mId)
     props.getMemberData()
@@ -98,7 +81,7 @@ const MemberLogin = (props) => {
       $('.show').addClass('active')
       $('.hide').removeClass('active')
       $('#exampleInputPassword1').attr('type', 'text')
-      // $('.alertBox')
+      // $('#alertBox')
       //   .removeClass('disappear')
       //   .removeClass('alert-danger')
       //   .addClass('appear')
@@ -108,7 +91,7 @@ const MemberLogin = (props) => {
       $('.hide').addClass('active')
       $('.show').removeClass('active')
       $('#exampleInputPassword1').attr('type', 'password')
-      // $('.alertBox')
+      // $('#alertBox')
       //   // .removeClass('appear')
       //   .removeClass('alert-success')
       //   // .addClass('disappear')
@@ -121,67 +104,70 @@ const MemberLogin = (props) => {
   return (
     <>
       {localStorage.getItem('mId') === '0' ? (
-        <div className="container Member">
-          <div className=" login-container">
-            <div className="login">
-              <div
-                className="alertBox alert alert-danger disappear"
-                role="alert"
-              ></div>
-              <img
-                src={require('../../images/logo-dark.svg')}
-                alt="Background"
-                className="text-center"
-              />
-              <hr className="hrhr" />
-              <form>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control account"
-                    id="exampleInputAccount1"
-                    aria-describedby="accountHelp"
-                    placeholder="帳號"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control password"
-                    id="exampleInputPassword1"
-                    placeholder="密碼"
-                  />
+        <div className="Member MemberLogin">
+          <div className="container">
+            <div className=" login-container">
+              <div className="login">
+                <div
+                  className="alert alert-danger disappear w-100 border-0 rounded-0"
+                  id="alertBox"
+                  role="alert"
+                ></div>
+                <figure className="logo">
                   <img
-                    src={require('../../images/member/hide_password.png')}
+                    src={require('../../images/logo-dark.svg')}
                     alt="Background"
-                    className="show"
+                    className="text-center"
                   />
-                  <img
-                    src={require('../../images/member/show_hide_password.png')}
-                    alt="Background"
-                    className="hide active"
-                  />
-                </div>
+                </figure>
+                <form>
+                  <div class="form-group">
+                    <input
+                      type="text"
+                      class="form-control account"
+                      id="exampleInputAccount1"
+                      aria-describedby="accountHelp"
+                      placeholder="帳號"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      class="form-control password"
+                      id="exampleInputPassword1"
+                      placeholder="密碼"
+                    />
+                    <img
+                      src={require('../../images/member/hide_password.png')}
+                      alt="Background"
+                      className="show"
+                    />
+                    <img
+                      src={require('../../images/member/show_hide_password.png')}
+                      alt="Background"
+                      className="hide active"
+                    />
+                  </div>
 
-                <br />
-                <Link
-                  type="submit"
-                  class="btn  btn-block login-btn"
-                  // to={'/member/'}
-                >
-                  登入
-                </Link>
-                <Link class="form-group text-left">
-                  <p className="text-center">忘記密碼??</p>
-                </Link>
-                <div class="form-group d-flex justify-content-center register">
-                  <div>
-                    <Link class="" to="/register">
-                      <p>還沒有註冊帳號? 立即註冊→</p>
+                  <br />
+                  <Button
+                    type="button"
+                    className="btn btn-block btn-theme-reverse"
+                    id="login-btn"
+                    // to={'/member/'}
+                  >
+                    登入
+                  </Button>
+                  <Link class="form-group text-left">
+                    <p className="text-center">忘記密碼??</p>
+                  </Link>
+                  <div class="form-group d-flex justify-content-center register">
+                    <Link className="btn btn-theme btn-block" to="/register">
+                      還沒有註冊帳號? 立即註冊
                     </Link>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>
