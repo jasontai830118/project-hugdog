@@ -116,7 +116,7 @@ const List = (props) => {
                   >
                     <Button
                       className="mb-2"
-                      variant="primary"
+                      variant="outline-primary"
                       size="md"
                       onClick={() => {
                         let item = {
@@ -183,7 +183,7 @@ const List = (props) => {
                     </Button>
                     <Button
                       className="mb-2"
-                      variant="primary"
+                      variant="outline-primary"
                       size="md"
                       onClick={(e) => {
                         Swal.fire({

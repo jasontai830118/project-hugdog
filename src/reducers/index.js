@@ -148,7 +148,7 @@ const getQuantity = (state = 0, action) => {
   }
 }
 //紀錄優惠券的優惠金額
-const useCoupon = (state = 0, action) => {
+const useCoupon = (state = '', action) => {
   switch (action.type) {
     case 'USE_COUPON':
       return action.discount

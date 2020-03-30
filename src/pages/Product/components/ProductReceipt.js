@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 function ProductReceipt(props) {
   const [show, setShow] = useState(false)
   const [mycart, setMycart] = useState([])
-
+  const [price, setPrice] = useState('')
   //提取購物車資料
   function getCartFromLocalStorage() {
     const newCart = localStorage.getItem('cart') || []
@@ -35,7 +35,25 @@ function ProductReceipt(props) {
     (new Date().getMonth() + 1) +
     '/' +
     new Date().getDate()
-
+  {
+    /* 下面為新版價錢顯示 */
+  }
+  useEffect(() => {
+    if (props.discount) {
+      let test2 = props.discount.slice(-1)
+      let test3 = props.discount.substring(0, props.discount.length - 1)
+      if (test2 == '%') {
+        setPrice((sum(mycart) * (100 - test3)) / 100)
+      } else {
+        setPrice(sum(mycart) - props.discount)
+      }
+      console.log(123, test2)
+      console.log(456, test3)
+    }
+  }, [mycart])
+  useEffect(() => {
+    console.log('price', price)
+  }, [price])
   return (
     <>
       <Row>
@@ -47,7 +65,9 @@ function ProductReceipt(props) {
             onClick={() => setShow(true)}
           >
             檢視訂單摘要：NT$
-            {props.discount ? sum(mycart) - props.discount : sum(mycart)}
+            {/* {props.discount ? sum(mycart) - props.discount : sum(mycart)} */}
+            {/* 新版價錢顯示 */}
+            {props.discount ? price : sum(mycart)}
           </Button>
           <Modal centered size="md" show={show} onHide={() => setShow(false)}>
             <Modal.Header className="d-flex justify-content-center">
@@ -96,7 +116,9 @@ function ProductReceipt(props) {
                       <div>
                         {props.discount ? '使用優惠券' : '未使用優惠券'}
                       </div>
-                      <div>優惠:{props.discount}</div>
+                      <div>
+                        優惠:{props.discount ? props.discount : '未使用優惠券'}
+                      </div>
                     </div>
                   </Col>
                 </Row>
@@ -107,9 +129,11 @@ function ProductReceipt(props) {
                       <div>合計</div>
                       <div>
                         總計:
-                        {props.discount
+                        {/* {props.discount
                           ? sum(mycart) - props.discount
-                          : sum(mycart)}
+                          : sum(mycart)} */}
+                        {/* 新版價錢顯示 */}
+                        NT${props.discount ? price : sum(mycart)}
                       </div>
                     </div>
                   </Col>

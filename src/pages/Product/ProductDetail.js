@@ -81,6 +81,7 @@ const ProductDetail = (props) => {
 
   //加入願望清單的request
   async function postList(list) {
+    console.log(list)
     const req = new Request('http://localhost:6001/list/post', {
       method: 'POST',
       credentials: 'include',
@@ -116,10 +117,41 @@ const ProductDetail = (props) => {
       })
     }
   }
-  console.log('評論', props.comments)
+  // console.log('評論', props.comments)
+  //刪除評論
+  async function delComment(id, mId) {
+    const req = new Request(
+      `http://localhost:6001/productComment/del/${id}/${mId}`,
+      {
+        method: 'POST',
+        credentials: 'include',
+      }
+    )
+    const res = await fetch(req)
+    const result = await res.json()
+  }
+  //修改內容
+  const comment = { content: '', rating: null }
+
+  async function editComment(id, mId) {
+    const req = new Request(
+      `http://localhost:6001/productComment/edit/${id}/${mId}`,
+      {
+        method: 'POST',
+        headers: new Headers({
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(comment),
+      }
+    )
+    const res = await fetch(req)
+    const result = await res.json()
+  }
+
   return (
     <Container className="detail">
-      <Row className="my-5">
+      <Row className="my-5 d-flex justify-content-center">
         <ProductSidebar />
         <Col md={10}>
           {/* <Row className="m-2">
@@ -172,7 +204,7 @@ const ProductDetail = (props) => {
               <div className="mt-3 d-flex justify-content-between">
                 <Button
                   className="mb-md-2"
-                  variant="primary"
+                  variant="outline-primary"
                   size="md"
                   onClick={() => {
                     if (
@@ -210,7 +242,7 @@ const ProductDetail = (props) => {
                 </Button>
                 <ButtonGroup className="mb-md-2" size="sm">
                   <Button
-                    className="border-dark bg-light text-dark"
+                    className="border-primary bg-transparent text-dark"
                     onClick={() => {
                       total > 1 && setTotal(total - 1)
                     }}
@@ -218,14 +250,14 @@ const ProductDetail = (props) => {
                     -
                   </Button>
                   <Button
-                    className="border-dark bg-light text-dark"
+                    className="border-primary bg-transparent text-dark font-weight-bold"
                     type="input"
                     min="1"
                   >
                     {total}
                   </Button>
                   <Button
-                    className="border-dark bg-light text-dark"
+                    className="border-primary bg-transparent text-dark"
                     onClick={() => {
                       total < props.detail[0].pQuantity && setTotal(total + 1)
                     }}
@@ -237,7 +269,7 @@ const ProductDetail = (props) => {
               <div className="my-3 d-flex justify-content-between">
                 <Button
                   className="mb-md-2"
-                  variant="primary"
+                  variant="outline-primary"
                   size="md"
                   onClick={() => {
                     if (
@@ -271,7 +303,7 @@ const ProductDetail = (props) => {
                 </Button>
                 <Button
                   className="mb-md-2"
-                  variant="primary"
+                  variant="outline-primary"
                   size="md"
                   onClick={() => {
                     if (
@@ -404,8 +436,8 @@ const ProductDetail = (props) => {
                     商品說明
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="0">
-                    <Card.Body>
-                      {props.detail[0] ? props.detail[0].pInfo : ''}
+                    <Card.Body style={{ whiteSpace: 'pre-line' }}>
+                      {props.detail[0] ? props.detail[0].pDes : ''}
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
@@ -452,18 +484,55 @@ const ProductDetail = (props) => {
                               <p>
                                 {'***' + value.mAccount.slice(0, 3) + '***'}
                               </p>
-                              <p id="rating">
-                                {value.rating === 1 ? (
-                                  <AiFillLike />
-                                ) : (
-                                  <AiFillDislike />
-                                )}
-                              </p>
+                              <div className="d-none">
+                                <Button
+                                  variant="outline-transparent"
+                                  className="p-0 btn-transparent text-dark border-0 mr-1"
+                                  onClick={(e) => {
+                                    $(e.currentTarget)
+                                      .children()
+                                      .addClass('like')
+                                      .parent()
+                                      .siblings()
+                                      .children()
+                                      .removeClass('dislike')
+                                    comment.rating = 1
+                                  }}
+                                >
+                                  <div>
+                                    <AiFillLike />
+                                    <span>喜歡</span>
+                                  </div>
+                                </Button>
+                                <Button
+                                  variant="outline-transparent"
+                                  className="p-0 btn-transparent text-dark border-0 ml-1"
+                                  rating="0"
+                                  onClick={(e) => {
+                                    $(e.currentTarget)
+                                      .children()
+                                      .addClass('dislike')
+                                      .parent()
+                                      .siblings()
+                                      .children()
+                                      .removeClass('like')
+                                    comment.rating = 0
+                                  }}
+                                >
+                                  <div>
+                                    <AiFillDislike />
+                                    <span>不喜歡</span>
+                                  </div>
+                                </Button>
+                              </div>
                               <textarea
                                 readOnly="readOnly"
                                 className="border-0"
                                 style={{ resize: 'none' }}
                                 defaultValue={value.comment}
+                                onChange={(e) => {
+                                  comment.content = e.currentTarget.value
+                                }}
                               />
                               <div className="d-flex justify-content-between">
                                 <span>{value.updated_at}</span>
@@ -484,6 +553,22 @@ const ProductDetail = (props) => {
                                             'class',
                                             'p-0 text-decoration-none btn btn-link'
                                           )
+                                        $(e.currentTarget)
+                                          .next()
+                                          .next()
+                                          .attr(
+                                            'class',
+                                            'p-0 text-decoration-none btn btn-link'
+                                          )
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .prev()
+                                          .attr('class', 'd-block')
+                                        $(e.currentTarget).attr(
+                                          'class',
+                                          'd-none'
+                                        )
                                       }}
                                     >
                                       編輯評論
@@ -497,18 +582,79 @@ const ProductDetail = (props) => {
                                           'd-none'
                                         )
                                         $(e.currentTarget)
+                                          .next()
+                                          .attr('class', 'd-none')
+                                        $(e.currentTarget)
                                           .parents('.d-flex')
                                           .prev()
                                           .attr('readOnly', 'readOnly')
                                           .attr('class', 'border-0')
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .prev()
+                                          .attr('class', 'd-none')
+                                        $(e.currentTarget)
+                                          .prev()
+                                          .attr(
+                                            'class',
+                                            'p-0 text-decoration-none btn btn-link'
+                                          )
+                                        editComment(value.id, value.mId)
                                       }}
                                     >
-                                      esc
+                                      編輯完成 |{' '}
+                                    </Button>
+                                    <Button
+                                      variant="link"
+                                      className="p-0 text-decoration-none d-none"
+                                      onClick={(e) => {
+                                        $(e.currentTarget).attr(
+                                          'class',
+                                          'd-none'
+                                        )
+                                        $(e.currentTarget)
+                                          .prev()
+                                          .attr('class', 'd-none')
+                                        $(e.currentTarget)
+                                          .prev()
+                                          .prev()
+                                          .attr(
+                                            'class',
+                                            'p-0 text-decoration-none btn btn-link'
+                                          )
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .attr('readOnly', 'readOnly')
+                                          .attr('class', 'border-0')
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .prev()
+                                          .attr('class', 'd-none')
+                                      }}
+                                    >
+                                      編輯取消 |{' '}
                                     </Button>
                                     <Button
                                       variant="link"
                                       className="p-0 text-decoration-none"
-                                      onClick={() => {}}
+                                      onClick={() => {
+                                        delComment(value.id, value.mId)
+                                        Swal.fire({
+                                          icon: 'success',
+                                          title: '成功刪除1筆評論',
+                                          showConfirmButton: false,
+                                          timer: 1500,
+                                        })
+                                        setTimeout(() => {
+                                          window.location.reload(
+                                            '/productdetail/' +
+                                              props.detail[0].pId
+                                          )
+                                        }, 1800)
+                                      }}
                                     >
                                       刪除評論
                                     </Button>

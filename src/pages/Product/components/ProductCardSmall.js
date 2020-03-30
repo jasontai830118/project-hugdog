@@ -11,7 +11,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js'
 
 const ProductCardSmall = (props) => {
   return (
-    <Col md={3} className="mb-3 WNQcard">
+    <Col sm={12} md={6} lg={3} className="mb-3 WNQcard">
       <Card className="shadow-sm text-center">
         <Link to={'/productdetail/' + props.data.pId}>
           <Image

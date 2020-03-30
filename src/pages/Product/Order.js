@@ -34,7 +34,26 @@ const Order = (props) => {
     }
     return total
   }
+  const [price, setPrice] = useState('')
 
+  useEffect(() => {
+    if (props.discount) {
+      let test2 = props.discount.slice(-1)
+      let test3 = props.discount.substring(0, props.discount.length - 1)
+      if (test2 == '%') {
+        setPrice(
+          (sum(order[0] ? JSON.parse(order[0].cart) : 0) * (100 - test3)) / 100
+        )
+      } else {
+        setPrice(sum(order[0] ? JSON.parse(order[0].cart) : 0) - props.discount)
+      }
+      console.log(123, test2)
+      console.log(456, test3)
+    }
+  }, [order])
+  useEffect(() => {
+    console.log('price-order', price)
+  }, [price])
   return (
     <Container>
       <Row>
@@ -227,7 +246,7 @@ const Order = (props) => {
           className="mt-3 d-flex justify-content-between"
         >
           <span>{props.discount ? '使用優惠' : '未用優惠'}</span>
-          <span>NT${props.discount}</span>
+          <span>NT${props.discount ? props.discount : 0}</span>
         </Col>
       </Row>
       <Row>
@@ -246,7 +265,7 @@ const Order = (props) => {
           <p className="font-weight-bold">
             NT$
             {props.discount
-              ? sum(order[0] ? JSON.parse(order[0].cart) : 0) - props.discount
+              ? price
               : sum(order[0] ? JSON.parse(order[0].cart) : 0)}
           </p>
         </Col>

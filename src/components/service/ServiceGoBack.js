@@ -10,7 +10,7 @@ function ServiceServiceGoBack(props) {
 
   return (
     <>
-      <Row className="mb-3">
+      <Row>
         <Col>
           <Link
             className="gobackLink"
