@@ -1,4 +1,7 @@
 .Member {
+  .wrapper {
+    transform: translateY(-50px);
+  }
   .member-info {
     // height: 900px;
     transform: translateX(-20px);
@@ -19,7 +22,7 @@
         transform: translate(0px, 0px);
       }
     }
-    @media screen and (max-width: 930px) {
+    @media screen and (max-width: 1000px) {
       .member-sidebar {
         display: none;
         color: red;
@@ -27,6 +30,10 @@
       .member-sidebar-RWD {
         display: flex;
         transform: translate(50px, -50px);
+        margin-bottom: 50px;
+      }
+      .member-form-container {
+        display: none;
       }
     }
   }
@@ -166,14 +173,38 @@
 .activityOrderListContainer,
 .orderListContainer,
 .couponListContainer,
-.serviceOrderListContainer,
-.dogListContainer {
+.dogListContainer,
+.favoriteItems,
+.LoveNannyList,
+.commentList {
   .card-body {
     background: #ffffff;
     border: none;
   }
   .card-width {
     border: none;
+  }
+  th {
+    color: rgb(117, 117, 117);
+    font-size: 17px;
+  }
+  td {
+    line-height: 74px;
+    font-size: 17px;
+  }
+}
+.serviceOrderListContainer {
+  .card-body {
+    background: #ffffff;
+    border: none;
+  }
+  .card-width {
+    border: none;
+  }
+  th {
+    color: rgb(117, 117, 117);
+  }
+  td {
   }
 }
 .dogDetailContainer {
@@ -188,7 +219,13 @@
     border: none;
   }
   .dog-insert {
-    transform: translate(300px, 50px);
+    transform: translate(300px, 150px);
+    // font-family: '微軟正黑體', 'Microsoft JhengHei', 'Segoe UI Semibold',
+    //   'Segoe UI', 'Lucida Grande';
+    // font-family: Arial, Helvetica, sans-serif;
+  }
+  .dogInsertSumbit {
+    border-radius: 10px;
   }
   .form-group {
     label {
@@ -215,4 +252,37 @@
   .form {
     // border: none;
   }
+}
+.dogListContainer {
+  .table,
+  .table-striped,
+  th,
+  tr,
+  .card-body {
+    border: none;
+  }
+  .dogListBtn {
+    border-radius: 10px;
+    // background: #6b9bff;
+    height: 40px;
+    line-height: 20px;
+    font-weight: 100;
+    box-shadow: 0px 5px 5px rgb(187, 187, 187);
+  }
+  th {
+    color: rgb(117, 117, 117);
+    font-size: 16px;
+  }
+  td {
+    line-height: 74px;
+    font-size: 20px;
+  }
+}
+.allListBtn {
+  border-radius: 30px;
+  // background: #6b9bff;
+  // height: 40px;
+  // line-height: 40px;
+  font-weight: 100;
+  box-shadow: 0px 5px 5px rgb(187, 187, 187);
 }

@@ -15,7 +15,7 @@ import Breadcrumbs from '../../components/Breadcrumbs'
 import '../../components/Knowledge/knowledge.scss'
 import BlogArticleSm from './BlogArticleSm'
 
-const BlogArticle = props => {
+const BlogArticle = (props) => {
   const aId = props.match.params.aId ? props.match.params.aId : ''
 
   console.log(aId)
@@ -31,7 +31,7 @@ const BlogArticle = props => {
 
   // console.log(props.match.params)
 
-  $('.trun').click(function() {
+  $('.trun').click(function () {
     document.getElementById('trun').innerHTML = <FaHeart />
   })
 
@@ -46,7 +46,7 @@ const BlogArticle = props => {
     showBlogType = '美容與保養'
   }
 
-  let arr = props.post.rows && props.post.rows.slice(0, 3)
+  let arr = props.post && props.post.slice(-4, -1)
 
   const [heart, setHeart] = useState(true)
 
@@ -100,19 +100,20 @@ const BlogArticle = props => {
             </div>
           </Col>
           <Col md={3}>
-            <div className="mt-3 text-center">
-              <h4 className="r">最新文章</h4>
+            <div className="mt-3 ">
+              <div className="text-center">
+                <h4 className="r">最新文章</h4>
+              </div>
               <br></br>
               <div className="sidebar mr-4 ml-4">
-                <Link>
-                  {props.post.rows &&
-                    arr.map((value, index) => {
-                      return (
-                        <BlogArticleSm key={index} data={props.post[index]} />
-                      )
-                    })}
-                  {/* <BlogArticleSm /> */}
-                </Link>
+                {props.post &&
+                  arr.map((value, index) => {
+                    return (
+                      <BlogArticleSm key={index} data={props.post[index]} />
+                    )
+                  })}
+
+                <BlogArticleSm />
               </div>
             </div>
           </Col>
@@ -122,10 +123,10 @@ const BlogArticle = props => {
   )
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return { post: store.getBlog, article: store.getBlogArticle }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getBlog, getBlogArticle }, dispatch)
 }
 export default withRouter(

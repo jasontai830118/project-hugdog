@@ -55,8 +55,40 @@ function Member() {
               </div>
             </div>
             <div className="full-body">
-              <div className="member-content d-flex container">
-                <div className="member-sidebar">
+              <div className="member-content d-flex row ">
+                <div className="member-sidebar w120 member-sidebar-home">
+                  <Nav>
+                    <Nav.Link className="member-sidebar-text" href="/member">
+                      首頁
+                    </Nav.Link>
+                    <Nav.Link
+                      className="member-sidebar-text"
+                      href="/member/member-info"
+                    >
+                      個人資訊
+                    </Nav.Link>
+
+                    <Nav.Link
+                      className="member-sidebar-text"
+                      href="/member/member-item"
+                    >
+                      商品查詢
+                    </Nav.Link>
+                    <Nav.Link
+                      className="member-sidebar-text"
+                      href="/member/member-service"
+                    >
+                      服務查詢
+                    </Nav.Link>
+                    <Nav.Link
+                      className="member-sidebar-text"
+                      href="/member/member-activity"
+                    >
+                      活動查詢
+                    </Nav.Link>
+                  </Nav>
+                </div>
+                <div className="member-sidebar-RWD">
                   <Nav>
                     <Nav.Link className="member-sidebar-text" href="/member">
                       首頁

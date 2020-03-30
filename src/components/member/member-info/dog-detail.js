@@ -217,14 +217,14 @@ const DogInfo = (props) => {
                         <td class="" colspan="6">
                           <div
                             href="./member-updateEdit.php"
-                            class="btn btn-sm btn-danger"
+                            class="btn  btn-primary"
                             onClick={(e) => handleSubmit(e)}
                           >
                             <i class="fa fa-trash"></i> 修改
                           </div>
                           <div
                             href="./member-updateEdit.php"
-                            class="btn btn-sm btn-danger"
+                            class="btn  btn-primary"
                             onClick={back}
                           >
                             <i class="fa fa-trash"></i> 返回

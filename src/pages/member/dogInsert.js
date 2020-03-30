@@ -197,7 +197,7 @@ const DogInsert = (props) => {
 
                         <div
                           type="submit"
-                          class="btn btn-primary"
+                          class="btn btn-primary dogInsertSumbit pull-right"
                           onClick={() => {
                             insertDog(dogInfo)
                           }}

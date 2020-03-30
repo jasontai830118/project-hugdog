@@ -74,7 +74,7 @@ const LoveList = (props) => {
   }
   console.log('pName: ', pName)
   return (
-    <div class="tab-content content" id="content3">
+    <div class="tab-content content favoriteItems" id="content3">
       <div>
         <h3>
           最愛商品

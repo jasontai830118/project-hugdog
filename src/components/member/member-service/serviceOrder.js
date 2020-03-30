@@ -18,12 +18,15 @@ import '../../../css/member/member-info.scss'
 
 const ServiceOrder = (props) => {
   //狗狗基本資料
-  console.log('length: ', props.data.length)
+  // console.log('length: ', props.data.length)
   useEffect(() => {
     props.getServiceOrder()
   }, [])
   let ServiceOrderList = []
+
   for (let i = 0; i < props.data.length; i++) {
+    const orderId = props.data[i].orderId
+    console.log('oId', orderId)
     ServiceOrderList.push(
       <tr className="order_show" onClick="" id={i} name={i}>
         {/* <th scope="row">{i + 1}</th> */}
@@ -45,8 +48,47 @@ const ServiceOrder = (props) => {
 
           {props.data[i] ? props.data[i].mAddr : ''}
         </td>
+        <td>
+          {props.data[i].orderStsId === 'o02' ? (
+            <div
+              className="btn btn-primary allListBtn"
+              onClick={() => updateServerService(orderId)}
+            >
+              完成訂單
+            </div>
+          ) : (
+            <div className="btn btn-primary allListBtn" onClick={jump2}>
+              評論
+            </div>
+          )}
+        </td>
       </tr>
     )
+
+    async function updateServerService(orderId) {
+      const req = new Request(
+        `http://localhost:6001/member/Sorder/update/${orderId}`,
+        {
+          method: 'POST',
+          credentials: 'include',
+          headers: new Headers({
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          }),
+          body: JSON.stringify({ orderStsId: 'o03' }),
+        }
+      )
+      const res = await fetch(req)
+      const data = await res.json()
+      console.log('oId: ', orderId)
+      window.location.reload()
+    }
+    function jump2() {
+      window.location.replace(
+        `http://localhost:3000/service/comment/${orderId}`
+      )
+      console.log(123)
+    }
   }
   return (
     <div class="tab-content content serviceOrderListContainer" id="content1">
@@ -65,10 +107,11 @@ const ServiceOrder = (props) => {
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">保姆編號</th>
-                        <th scope="col">服務時間</th>
-                        <th scope="col">服務價格</th>
+                        <th scope="col">時間</th>
+                        <th scope="col">價格</th>
                         <th scope="col">狗狗狀況</th>
-                        <th scope="col">會員地址</th>
+                        <th scope="col">地址</th>
+                        <th scope="col">功能</th>
                       </tr>
                     </thead>
                     <tbody>{ServiceOrderList}</tbody>

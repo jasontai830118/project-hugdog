@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
 import { withRouter, Link } from 'react-router-dom'
-import {
-  Col,
-  Collapse,
-  Card,
-  Button,
-  Badge,
-  Image,
-  Figure,
-} from 'react-bootstrap'
+import { Col, Collapse, Card, Button, Badge, Image } from 'react-bootstrap'
 import { FaDog } from 'react-icons/fa'
 import { GiDogBowl } from 'react-icons/gi'
 import { TiPipette } from 'react-icons/ti'
@@ -25,11 +17,39 @@ function QuestionArt(props) {
 
   let showQuestionType = ''
   if (props.data.qType === '1') {
-    showQuestionType = '食慾/精神不濟'
+    showQuestionType = '過度舔毛'
   } else if (props.data.qType === '2') {
     showQuestionType = '排泄異常'
   } else if (props.data.qType === '3') {
-    showQuestionType = '營養與處方'
+    showQuestionType = '顫抖'
+  } else if (props.data.qType === '4') {
+    showQuestionType = '攻擊'
+  } else if (props.data.qType === '5') {
+    showQuestionType = '食慾/精神不振'
+  } else if (props.data.qType === '6') {
+    showQuestionType = '嘔吐'
+  } else if (props.data.qType === '7') {
+    showQuestionType = '搔抓身體'
+  } else if (props.data.qType === '8') {
+    showQuestionType = '身體出現分泌物'
+  } else if (props.data.qType === '9') {
+    showQuestionType = '呼吸困難'
+  } else if (props.data.qType === '10') {
+    showQuestionType = '鮮食調理'
+  } else if (props.data.qType === '11') {
+    showQuestionType = '乾糧餵食'
+  } else if (props.data.qType === '12') {
+    showQuestionType = '罐頭主食/副食'
+  } else if (props.data.qType === '13') {
+    showQuestionType = '幼貓飲食'
+  } else if (props.data.qType === '14') {
+    showQuestionType = '成貓飲食'
+  } else if (props.data.qType === '15') {
+    showQuestionType = '高齡貓飲食'
+  } else if (props.data.qType === '16') {
+    showQuestionType = '食物中毒'
+  } else if (props.data.qType === '17') {
+    showQuestionType = '營養品與處方'
   } else {
     showQuestionType = '其他'
   }
@@ -43,7 +63,29 @@ function QuestionArt(props) {
     showPic = <GiDogBowl />
   }
 
+  const [dQuestion, setdQuestion] = useState([])
+  //刪除發問
+  async function deleteQuestion() {
+    let id = props.data.id
+    console.log('name', id)
+    const req = new Request(
+      `http://localhost:6001/knowledge/question/del/${id}`,
+      {
+        method: 'POST',
+        credentials: 'include',
+      }
+    )
+    const res = await fetch(req)
+    const data = await res.json()
+    if (data.success) {
+      alert('成功刪除')
+    } else {
+      alert('刪除失敗')
+    }
+  }
+
   const [open, setOpen] = useState(false)
+  console.log('props', props.r)
 
   return (
     <>
@@ -86,7 +128,26 @@ function QuestionArt(props) {
 
               <Card.Text>{props.data.qDes}</Card.Text>
               <div className="text-right">
-                {props.data.qAns === '' ? (
+                {props.data.qAns === null ? (
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="mr-2"
+                    onClick={() => {
+                      deleteQuestion()
+                      // props.r()
+                      console.log('b', props.r)
+                    }}
+                  >
+                    刪除回答
+                  </Button>
+                ) : (
+                  <Button variant="primary" size="sm" className="mr-2 d-none">
+                    刪除回答
+                  </Button>
+                )}
+
+                {props.data.qAns === null ? (
                   <Button variant="secondary" size="sm" disabled>
                     未回答
                   </Button>

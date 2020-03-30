@@ -33,12 +33,12 @@ const DogInfo = (props) => {
         <td>{props.data[i] ? props.data[i].dYear : ''}</td>
         <td>{props.data[i] ? props.data[i].dWeight : ''}</td>
         <td>
-          <div className="btn btn-info" onClick={dogEdit}>
+          <div className="btn btn-primary dogListBtn" onClick={dogEdit}>
             修改
           </div>
         </td>
         <td>
-          <div className="btn btn-info">刪除</div>
+          <div className="btn btn-primary dogListBtn">刪除</div>
         </td>
       </tr>
     )
@@ -50,10 +50,12 @@ const DogInfo = (props) => {
   return (
     <div class="tab-content content dogListContainer" id="content2">
       <div>
-        <h3>
-          狗狗資訊{' '}
+        <h3 className="mb-4">
+          狗狗資訊
           <Link to="/dog-insert">
-            <button className="btn btn-info ">新增狗狗</button>
+            <button className="btn btn-primary dogListBtn pull-right mb-2">
+              新增狗狗
+            </button>
           </Link>
           <br />
         </h3>
@@ -65,11 +67,11 @@ const DogInfo = (props) => {
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">狗狗編號</th>
-                        <th scope="col">狗狗姓名</th>
-                        <th scope="col">狗狗性別</th>
-                        <th scope="col">狗狗年齡</th>
-                        <th scope="col">狗狗體重</th>
+                        <th scope="col">編號</th>
+                        <th scope="col">汪汪姓名</th>
+                        <th scope="col">性別</th>
+                        <th scope="col">年齡</th>
+                        <th scope="col">體重</th>
                         <th scope="col">功能</th>
                       </tr>
                     </thead>

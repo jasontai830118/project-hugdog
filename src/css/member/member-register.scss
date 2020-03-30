@@ -32,4 +32,19 @@
   }
   .form {
   }
+
+  @media screen and (max-width: 1000px) {
+    transition: 1s;
+    .imgContainer {
+      // position: absolute;
+      opacity: 40%;
+      img {
+        min-width: 900px;
+        height: auto;
+      }
+    }
+    .register_container {
+      position: absolute;
+    }
+  }
 }

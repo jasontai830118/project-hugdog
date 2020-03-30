@@ -289,7 +289,7 @@ const MemberInfo = (props) => {
                         <td class="" colspan="6">
                           <div
                             href="./member-updateEdit.php"
-                            class="btn btn-sm btn-danger"
+                            class="btn btn-sm btn-primary pull-right"
                             onClick={(e) => handleSubmit(e)}
                           >
                             <i class="fa fa-trash"></i> 修改

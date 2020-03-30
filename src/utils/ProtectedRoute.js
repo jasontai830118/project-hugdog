@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props =>
+      render={(props) =>
         children.props.isAuth === true ? (
           children
         ) : (

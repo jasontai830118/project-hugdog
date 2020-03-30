@@ -79,10 +79,28 @@ const getLoveList = (state = [], action) => {
       return state
   }
 }
-//會員最愛商品
+//會員最愛活動
 const getLoveActivity = (state = [], action) => {
   switch (action.type) {
     case 'SHOW_LOVE_ACTIVITY':
+      return action.data
+    default:
+      return state
+  }
+}
+//會員最愛保母
+const getLoveNanny = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_LOVE_NANNY':
+      return action.data
+    default:
+      return state
+  }
+}
+//會員最愛保母
+const getCommentList = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_COMMENT_LIST':
       return action.data
     default:
       return state
@@ -186,6 +204,15 @@ const updateDog = (state = [], action) => {
       return state
   }
 }
+//更新服務狀態
+const updateService = (state = [], action) => {
+  switch (action.type) {
+    case 'UPDATE_SERVICE':
+      return { ...action.data }
+    default:
+      return state
+  }
+}
 //knowledge reducers
 //blog
 
@@ -274,6 +301,10 @@ const rootReducer = combineReducers({
   useCoupon,
   showComments,
   couponId,
+  getLoveNanny,
+  getCommentList,
+  updateDog,
+  updateService,
 })
 
 export { rootReducer }

@@ -575,8 +575,8 @@
     h1[alt='Simple'] {
       color: white;
     }
-    a[href],
-    a[href]:hover {
+    a[href]:not(.gobackLink),
+    a[href]:hover:not(.gobackLink) {
       color: grey;
       font-size: 0.5em;
       text-decoration: none;

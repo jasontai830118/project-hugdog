@@ -14,7 +14,7 @@ import Component1 from './components/Component1'
 import IconMenu from './components/IconMenu'
 import ActCard from '../../components/activity/ActCard'
 
-function ActivityMain(props) {
+function ActivityQueryClass(props) {
   const [activityClassData, setActivityClassData] = useState([])
   const [activityLectureData, setActivityLectureData] = useState([])
   const [activitySaleData, setActivitySaleData] = useState([])
@@ -44,22 +44,22 @@ function ActivityMain(props) {
     // console.log(data.activity_event)
   }
 
-  //   useEffect(() => {
-  //     // console.log(search)
-  //     // setSearch(search)
-  //   }, [search])
+  useEffect(() => {
+    // console.log(search)
+    setSearch(search)
+  }, [search])
 
   useEffect(() => {
     getActQueryData()
   }, [])
 
   function handleSearch(el) {
+    // console.log('enter')
     if (el.charCode === 13) {
       setSearch(el.target.value)
       getActQueryData(search)
     }
   }
-
   function handleSearchType(type) {
     setSearch(type)
     getActQueryData(search)
@@ -67,33 +67,33 @@ function ActivityMain(props) {
 
   useEffect(() => {
     // Your code here
-    $('.event-icon .icon_time1').click(function () {
-      $('.icon_dropdown-menu').removeClass('active')
-      $('.icon_dropdown-menu1').addClass('active')
+    $('.event-icon .icon-time1').click(function () {
+      $('.icon-dropdown-menu').removeClass('active')
+      $('.icon-dropdown-menu1').addClass('active')
     })
-    $('.event-icon .icon_categories').click(function () {
-      $('.icon_dropdown-menu').removeClass('active')
-      $('.icon_dropdown-menu2').addClass('active')
+    $('.event-icon .icon-categories').click(function () {
+      $('.icon-dropdown-menu').removeClass('active')
+      $('.icon-dropdown-menu2').addClass('active')
     })
-    $('.event-icon .icon_location').click(function () {
-      $('.icon_dropdown-menu').removeClass('active')
-      $('.icon_dropdown-menu3').addClass('active')
+    $('.event-icon .icon-location').click(function () {
+      $('.icon-dropdown-menu').removeClass('active')
+      $('.icon-dropdown-menu3').addClass('active')
     })
-    $('.event-icon .icon_keyword').click(function () {
-      $('.icon_dropdown-menu').removeClass('active')
-      $('.icon_dropdown-menu4').addClass('active')
+    $('.event-icon .icon-keyword').click(function () {
+      $('.icon-dropdown-menu').removeClass('active')
+      $('.icon-dropdown-menu4').addClass('active')
     })
     // $('.event-icon').mouseleave(function () {
-    //   $('.icon_dropdown-menu').removeClass('active')
+    //   $('.icon-dropdown-menu').removeClass('active')
     // })
-    $('.icon_dropdown-menu').mouseover(function () {
+    $('.icon-dropdown-menu').mouseover(function () {
       $(this).addClass('active')
     })
-    // $('.icon_dropdown-menu').mouseleave(function () {
+    // $('.icon-dropdown-menu').mouseleave(function () {
     //   $(this).removeClass('active')
     // })
     // $('.activity-main2').click(function () {
-    //   $('.icon_dropdown-menu').removeClass('active')
+    //   $('.icon-dropdown-menu').removeClass('active')
     // })
 
     //fetch課程資料
@@ -161,80 +161,78 @@ function ActivityMain(props) {
         <IconMenu />
         <hr />
         <div className="dropdown_menu menu1 row">
-          <div className="col-6 icon_dropdown-menu icon_dropdown-menu1 px-4 pb-4">
+          <div className="col-6 icon-dropdown-menu icon-dropdown-menu1 px-4 pb-4">
             <div className="d-flex justify-content-around ">
-              <Link>
-                <div className=" ">全部</div>
+              <Link to="/activity/sales/">
+                <div className="">優惠活動</div>
               </Link>
-              <Link>
-                <div className="">進行中</div>
+              <Link to="/activity/lecture/">
+                <div className="">講座活動</div>
               </Link>
-              <Link>
-                <div className="">預告中</div>
+              <Link to="/activity/class/">
+                <div className="">課程活動</div>
               </Link>
-              <Link>
-                <div className="">已截止</div>
+              <Link to="/activity">
+                <div className="">所有活動</div>
               </Link>
             </div>
           </div>
         </div>
         <div className="dropdown_menu menu2 row">
-          <div className="col-6 icon_dropdown-menu icon_dropdown-menu2 px-4 pb-4">
-            <div className="d-flex justify-content-around">
-              <div>
-                <a type="button" onClick={() => handleSearchType('優惠')}>
-                  優惠活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('講座')}>
-                  講座活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('課程')}>
-                  課程活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('活動')}>
-                  所有活動
-                </a>
-              </div>
+          <div className="col-6 icon-dropdown-menu icon-dropdown-menu2 px-4 pb-4">
+            <div>
+              <a type="button" onClick={() => handleSearchType('優惠')}>
+                優惠活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('講座')}>
+                講座活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('課程')}>
+                課程活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('活動')}>
+                所有活動
+              </a>
             </div>
           </div>
         </div>
-        <div className="dropdown_menu menu3 row">
-          <div className="col-6 icon_dropdown-menu icon_dropdown-menu3 px-4 pb-4">
-            <div className="d-flex justify-content-around">
-              <div>
-                <a type="button" onClick={() => handleSearchType('優惠')}>
-                  優惠活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('講座')}>
-                  講座活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('課程')}>
-                  課程活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('活動')}>
-                  所有活動
-                </a>
-              </div>
+      </div>
+      <div className="dropdown_menu menu3 row">
+        <div className="col-6 icon-dropdown-menu icon-dropdown-menu3 px-4 pb-4">
+          <div className="d-flex justify-content-around">
+            <div>
+              <a type="button" onClick={() => handleSearchType('優惠')}>
+                優惠活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('講座')}>
+                講座活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('課程')}>
+                課程活動
+              </a>
+            </div>
+            <div className="">
+              <a type="button" onClick={() => handleSearchType('活動')}>
+                所有活動
+              </a>
             </div>
           </div>
         </div>
         <div className="dropdown_menu menu4 row">
-          <div className="col-6 icon_dropdown-menu icon_dropdown-menu4 px-4">
+          <div className="col-6 icon-dropdown-menu icon-dropdown-menu4 px-4">
             <div className="">
               <div className="input-group-prepend">
-                {/* <button
+                <button
                   type="button"
                   className="btn btn-outline-secondary"
                   id="button-addon1"
@@ -248,7 +246,7 @@ function ActivityMain(props) {
                   >
                     <FiSearch />
                   </IconContext.Provider>
-                </button> */}
+                </button>
               </div>
               <input
                 type="text"
@@ -262,9 +260,9 @@ function ActivityMain(props) {
           </div>
         </div>
         <div className="new-activity">
-          <h4>所有活動</h4>
+          <h4>講座活動</h4>
           <div className="row">
-            {activityQueryData.map((v, i) => (
+            {activityLectureData.map((v, i) => (
               <div className="col-lg-4" key={i}>
                 <ActCard data={v} />
               </div>
@@ -276,4 +274,4 @@ function ActivityMain(props) {
   )
 }
 
-export default withRouter(ActivityMain)
+export default withRouter(ActivityQueryClass)

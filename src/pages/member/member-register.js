@@ -108,7 +108,7 @@ const MemberRegister = (props) => {
   return (
     <>
       <div className="member-register d-flex">
-        <div>
+        <div className="imgContainer">
           <img
             className="side_dog"
             src={require('../../images/member/side-dog.webp')}
