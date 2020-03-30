@@ -142,7 +142,8 @@ function Header(props) {
                 <AiOutlineUser />
               </IconContext.Provider>
               <div className="dropdown-menu">
-                {localStorage.getItem('mId') === '0' ? (
+                {localStorage.getItem('mId') === null ||
+                localStorage.getItem('mId') === '0' ? (
                   <Link
                     to={{
                       pathname: '/login',
