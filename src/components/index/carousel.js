@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import Carousel from 'react-grid-carousel'
+import { Link } from 'react-router-dom'
 import '../../css/index/index.scss'
 
 const images = [
@@ -27,9 +28,26 @@ const CarouselWapeer = styled.div`
 
 const CarouselPage = () => {
   const [isHover, setIsHover] = useState(false)
+  const [data, setData] = useState([
+    {
+      text: '保姆照顧服務',
+      src: '/service',
+      btnText: '去看看',
+    },
+    {
+      text: '多項商品優惠中',
+      src: '/products',
+      btnText: '前往',
+    },
+    {
+      text: '不定時好康活動',
+      src: '/activity',
+      btnText: '前往',
+    },
+  ])
 
   const handleHover = useCallback(() => {
-    setIsHover(state => !state)
+    setIsHover((state) => !state)
   }, [])
 
   return (
@@ -47,9 +65,17 @@ const CarouselPage = () => {
         >
           {images.map((img, i) => (
             <Carousel.Item key={i}>
-              <figure className="">
-                <img src={img} alt="" className="" />
-              </figure>
+              <Link to={data[i].src}>
+                <div className="position-relative">
+                  <figure className="">
+                    <img src={img} alt="" className="" />
+                  </figure>
+                  <div className="title">
+                    <span className="text">{data[i].text}</span>
+                    <button className="btn btn-theme">{data[i].btnText}</button>
+                  </div>
+                </div>
+              </Link>
             </Carousel.Item>
           ))}
         </Carousel>

@@ -202,7 +202,9 @@ function Home(props) {
       </Modal>
 
       <div className="home">
-        <CarouselPage />
+        <div className="carousel">
+          <CarouselPage />
+        </div>
         <div className="container">
           <div className="product-collection my-4">
             <div className="row">
