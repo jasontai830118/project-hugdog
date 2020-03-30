@@ -1,13 +1,13 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { FaPaw } from 'react-icons/fa'
 import { Col, Card, Nav, Button, Image } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { count } from '../actions/index'
 import $ from 'jquery'
 import '../../../css/product/productCard.scss'
+import Swal from 'sweetalert2/src/sweetalert2.js'
 
 const ProductCardSmall = (props) => {
   return (
@@ -26,10 +26,6 @@ const ProductCardSmall = (props) => {
           <Card.Text className="text-danger ">
             NTD {props.data.pPrice}元
           </Card.Text>
-          <div className="d-flex justify-content-around mb-3">
-            <FaPaw className="text-danger" /> <FaPaw /> <FaPaw /> <FaPaw />
-            <FaPaw />
-          </div>
           <div className="d-flex justify-content-around">
             <Button
               className=" p-1"
@@ -65,17 +61,55 @@ const ProductCardSmall = (props) => {
                         (value) => value.pId === props.data.pId
                       )
                     ) {
-                      return alert('已加入購物車')
+                      Swal.fire({
+                        title: '已加入購物車',
+                        text: '前往購物車結帳?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                      }).then((result) => {
+                        if (result.value) {
+                          props.history.push('/cart')
+                        }
+                      })
                     } else {
                       const newCart = [...currentCart, item]
                       props.count(newCart)
                       localStorage.setItem('cart', JSON.stringify(newCart))
-                      $(e.currentTarget).parentsUntil('.col-md-3').fadeOut()
+                      Swal.fire({
+                        title: '加入成功',
+                        text: '前往購物車結帳?',
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                      }).then((result) => {
+                        if (result.value) {
+                          props.history.push('/cart')
+                        }
+                      })
                     }
                   }
-                  props.history.push('/cart')
                 } else {
-                  return alert('尚未登入')
+                  Swal.fire({
+                    title: '尚未登入',
+                    text: '前往登入頁面?',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '確定',
+                    cancelButtonText: '取消',
+                  }).then((result) => {
+                    if (result.value) {
+                      props.history.push('/login')
+                    }
+                  })
                 }
               }}
             >

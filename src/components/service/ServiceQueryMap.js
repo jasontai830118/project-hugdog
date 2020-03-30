@@ -34,7 +34,7 @@ function ServiceQueryMap(props) {
     lat: 25.034601,
     lng: 121.543463,
   })
-  const [zoom, setZoom] = useState(15)
+  const [zoom, setZoom] = useState(13)
   // const [lat, setLat] = useState()
   // const [lng, setLng] = useState()
   const [location, setLocation] = useState([])
@@ -68,23 +68,18 @@ function ServiceQueryMap(props) {
       {/* Important! Always set the container height explicitly */}
       {location.map((v, i) => {
         return (
-          <div style={{ height: '100vh', width: '100%' }}>
+          <div className="google-map" key={i}>
             <GoogleMapReact
-              bootstrapURLKeys={
-                {
-                  // key: `${myGoogleMapApiKey()}`,
-                }
-              }
+              bootstrapURLKeys={{
+                key: `${myGoogleMapApiKey()}`,
+              }}
               center={center}
               defaultZoom={zoom}
-              // onChildMouseEnter={() => {
-              //   console.log('123')
-              // }}
             >
               {/* 保姆座標位置 */}
-              {props.sUsers.map((u, i) => {
-                return <Marker lat={u.lat} lng={u.lng} text={u.sName} />
-              })}
+              {props.sUsers.map((u, i) => (
+                <Marker lat={u.lat} lng={u.lng} text={u.sName} key={i} />
+              ))}
               {/* 使用者座標位置 */}
               <MyMarker lat={v.lat} lng={v.lng} text="您的位置" />
             </GoogleMapReact>

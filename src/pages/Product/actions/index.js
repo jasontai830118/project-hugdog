@@ -12,7 +12,7 @@ export const minusQuantity = (quantity) => ({
 export const showProducts = (data) => {
   return { type: 'SHOW_PRODUCTS', data }
 }
-export const getProducts = (page, orderBy = 'DESC') => {
+export const getProducts = (page = 1, orderBy = 'DESC') => {
   return async (dispatch) => {
     const req = new Request(
       `http://localhost:6001/products/${page}?orderBy=${orderBy}`,
@@ -82,4 +82,25 @@ export const count = (quantity) => ({
   type: 'COUNT_QUANTITY',
   quantity,
 })
-//跟server要清單資料
+//紀錄使用過優惠券的折扣或減價
+export const useCoupon = (discount) => ({
+  type: 'USE_COUPON',
+  discount,
+})
+//紀錄使用過的優惠券的編號
+export const couponId = (mmId) => ({ type: 'COUPON_ID', mmId })
+//跟server要評論資料
+export const showComments = (comments) => {
+  return { type: 'SHOW_COMMENTS', comments }
+}
+export const getComments = (pId) => {
+  return async (dispatch) => {
+    const req = new Request(`http://localhost:6001/productComment/${pId}`, {
+      method: 'GET',
+      credentials: 'include',
+    })
+    const res = await fetch(req)
+    const data = await res.json()
+    dispatch(showComments(data))
+  }
+}

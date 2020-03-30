@@ -12,6 +12,7 @@ import ServiceDetail from './ServiceDetail'
 import ServiceBooking from './ServiceBooking'
 import ServiceApply from './ServiceApply'
 import ServiceComment from './ServiceComment'
+import Error from '../../pages/Error'
 
 function ServiceApp(props) {
   //判斷是否登入(模擬登入會員id)
@@ -30,31 +31,32 @@ function ServiceApp(props) {
     <>
       {loaded ? '' : <ServiceLoading />}
       <div className="Service">
-        <div className="container pt-3 pb-5">
-          <Switch>
-            <Route path="/service/query/:page?">
-              <ServiceQuery sMemberId={sMemberId} />
-            </Route>
-            <Route path="/service/detail/:userId">
-              <ServiceDetail sMemberId={sMemberId} />
-            </Route>
-            {/* <Route path="/service/message/:MsgId">
+        <Switch>
+          <Route path="/service/query/:page?">
+            <ServiceQuery sMemberId={sMemberId} />
+          </Route>
+          <Route path="/service/detail/:userId">
+            <ServiceDetail sMemberId={sMemberId} />
+          </Route>
+          {/* <Route path="/service/message/:MsgId">
               <ServiceMessage />
             </Route> */}
-            <Route path="/service/booking/:userId">
-              <ServiceBooking sMemberId={sMemberId} />
-            </Route>
-            <Route exact path="/service/comment/:orderId">
-              <ServiceComment sMemberId={sMemberId} />
-            </Route>
-            <Route path="/service/apply/">
-              <ServiceApply sMemberId={sMemberId} />
-            </Route>
-            <Route exact path="/service/">
-              <ServiceHome sMemberId={sMemberId} />
-            </Route>
-          </Switch>
-        </div>
+          <Route path="/service/booking/:userId">
+            <ServiceBooking sMemberId={sMemberId} />
+          </Route>
+          <Route exact path="/service/comment/:orderId">
+            <ServiceComment sMemberId={sMemberId} />
+          </Route>
+          <Route path="/service/apply/">
+            <ServiceApply sMemberId={sMemberId} />
+          </Route>
+          <Route exact path="/service/">
+            <ServiceHome sMemberId={sMemberId} />
+          </Route>
+          <Route path="/service/">
+            <Error />
+          </Route>
+        </Switch>
       </div>
     </>
   )

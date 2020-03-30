@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Nav, Navbar } from 'react-bootstrap'
+import { Row, Col, Nav, Navbar } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 //redux
 import { connect } from 'react-redux'
@@ -91,25 +91,39 @@ const ProductSidebar = (props) => {
     </Nav.Link>
   ))
   return (
-    <Col md={2} className="sidebar">
-      <Navbar expand="md">
+    <Col sm={12} md={12} lg={2} className="sidebar">
+      <Navbar expand="lg">
         <Navbar.Toggle aria-controls="basic-navbar-nav order-1" />
         <Navbar.Collapse id="basic-navbar-nav" className="order-4 order-md-3">
           <Nav className="nav-menu mr-auto flex-column">
-            <Nav.Link
-              as="h4"
-              className="mt-1 p-0"
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                props.history.push('/products')
-                props.getProducts(props.match.params.page || '')
-              }}
-            >
-              全部商品
-            </Nav.Link>
-            {productCategorysidebar}
-            <h4 className="mt-1">品牌</h4>
-            {productBrandSidebar}
+            <Row>
+              <Col md={6} lg={12}>
+                <Nav.Link
+                  as="h4"
+                  className="mt-1 p-0"
+                  style={{ cursor: 'pointer' }}
+                  onClick={(e) => {
+                    props.history.push('/products')
+                    props.getProducts(props.match.params.page || '')
+                    $(e.currentTarget)
+                      .addClass(
+                        'bg-primary text-dark text-right font-weight-bold selected'
+                      )
+                      .siblings()
+                      .removeClass(
+                        'bg-primary text-dark text-right font-weight-bold selected'
+                      )
+                  }}
+                >
+                  全部商品
+                </Nav.Link>
+                {productCategorysidebar}
+              </Col>
+              <Col md={6} lg={12}>
+                <h4 className="mt-1">品牌</h4>
+                {productBrandSidebar}
+              </Col>
+            </Row>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

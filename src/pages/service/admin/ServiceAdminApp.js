@@ -3,10 +3,7 @@ import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import { getDataFromServer } from '../../../utils/service/ServiceFunction'
-// import { Link } from 'react-router-dom'
-// import { FaDog } from 'react-icons/fa'
 import ServiceAdminSidebar from '../../../components/service/admin/ServiceAdminSidebar'
-// import ServiceAdminBreadcrumb from '../../../components/service/admin/ServiceAdminBreadcrumb'
 //引入自己的scss
 import '../../../css/service/style.scss'
 import ServiceLoading from '../../../components/service/ServiceLoading'
@@ -17,8 +14,6 @@ import ServiceAdminOrder from './ServiceAdminOrder'
 import ServiceAdminOrderDetail from './ServiceAdminOrderDetail'
 import ServiceAdminLoginChk from '../../../components/service/redirect/ServiceAdminLoginChk'
 import ServiceAdminApplyChk from '../../../components/service/redirect/ServiceAdminApplyChk'
-// import ServiceAdminMessage from './ServiceAdminMessage'
-// import ServiceAdminMessageDetail from './ServiceAdminMessageDetail'
 
 function ServiceAdminApp(props) {
   //判斷是否登入(模擬帶入會員id)
@@ -26,6 +21,8 @@ function ServiceAdminApp(props) {
   // console.log('服務者mID:', sMemberId)
   //設定sId
   const [userId, setUserId] = useState('')
+  //保姆名字
+  const [userName, setUserName] = useState('')
   //設定載入狀態
   const [loaded, setLoaded] = useState(false)
   //訂單數量資料
@@ -39,6 +36,7 @@ function ServiceAdminApp(props) {
       //如果查詢有使用者資料則帶入資料
       if (data.length !== 0) {
         setUserId(data[0].id)
+        setUserName(data[0].sName)
         //查詢訂單數量
         const sOrder = getDataFromServer(
           `http://localhost:6001/service/order/${data[0].id}?orderStsId='o01'`
@@ -74,7 +72,7 @@ function ServiceAdminApp(props) {
                   <ServiceAdminSidebar sOrderNum={sOrderNum} />
                 </Col>
                 <Col md={9}>
-                  <Route path="/service/admin/profile/">
+                  <Route exact path="/service/admin/profile/">
                     <ServiceAdminProfile
                       sUserId={userId}
                       sMemberId={sMemberId}
@@ -86,14 +84,8 @@ function ServiceAdminApp(props) {
                   <Route exact path="/service/admin/order/">
                     <ServiceAdminOrder sUserId={userId} />
                   </Route>
-                  {/* <Route path="/service/admin/message/:msgId">
-                <ServiceAdminMessageDetail />
-              </Route>
-              <Route exact path="/service/admin/message/">
-                <ServiceAdminMessage />
-              </Route> */}
                   <Route exact path="/service/admin/">
-                    <ServiceAdminHome sUserId={userId} />
+                    <ServiceAdminHome sUserId={userId} sUserName={userName} />
                   </Route>
                 </Col>
               </Row>

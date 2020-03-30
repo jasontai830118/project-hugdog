@@ -49,6 +49,7 @@
 
   .member-content {
     margin-bottom: 40px;
+
     // transform: translateY(-100px);
     // height: 700px;
     li {
@@ -74,6 +75,7 @@
 .Member {
   .member-form-container {
     transform: translateY(-80px);
+    // background: #fffcf0;
   }
   .member-form {
     width: 340px;
@@ -81,7 +83,7 @@
     // border: 1px solid black;
     border-radius: 30px;
     margin: 10px;
-    background: #fffcf0;
+    background: #ffffff;
     // transform: translateX(-700px);
 
     ul {
@@ -101,7 +103,7 @@
     height: 50px;
     // border-bottom: 1px black solid;
     background: #eeeeee;
-    border-radius: 30px 30px 0 0;
+    border-radius: 10px 10px 0 0;
     line-height: 50px;
     font-size: 20px;
 
@@ -118,4 +120,9 @@
   width: 200px;
   height: 200px;
 }
+
 /* member-info */
+.full-body {
+  background: #fffcf0;
+  margin: 0;
+}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { Table, Row, Col, Button, Card } from 'react-bootstrap'
+import { Row, Col, Button, Card } from 'react-bootstrap'
 import { FaCheck, FaTimes } from 'react-icons/fa'
 import ServiceGoBack from '../../../components/service/ServiceGoBack'
 import Swal from 'sweetalert2'
@@ -33,7 +33,7 @@ function ServiceAdminOrderDetail(props) {
       cancelButtonColor: '#8f8f8f',
       confirmButtonText: '確認接受',
       cancelButtonText: '返回',
-    }).then(result => {
+    }).then((result) => {
       if (result.value) {
         fetch(
           `http://localhost:6001/service/orderdetail/ordersts/${props.match.params.orderId}`,
@@ -47,8 +47,8 @@ function ServiceAdminOrderDetail(props) {
             }),
           }
         )
-          .then(r => r.json())
-          .then(obj => {
+          .then((r) => r.json())
+          .then((obj) => {
             // console.log(obj)
             //回饋訊息
             Swal.fire({
@@ -56,7 +56,7 @@ function ServiceAdminOrderDetail(props) {
               icon: 'success',
               showConfirmButton: false,
               timer: 1500,
-            }).then(result => {
+            }).then((result) => {
               window.location.reload()
             })
           })
@@ -78,7 +78,7 @@ function ServiceAdminOrderDetail(props) {
       cancelButtonColor: '#8f8f8f',
       confirmButtonText: '確認取消',
       cancelButtonText: '返回',
-    }).then(result => {
+    }).then((result) => {
       if (result.value) {
         fetch(
           `http://localhost:6001/service/orderdetail/ordersts/${props.match.params.orderId}`,
@@ -92,8 +92,8 @@ function ServiceAdminOrderDetail(props) {
             }),
           }
         )
-          .then(r => r.json())
-          .then(obj => {
+          .then((r) => r.json())
+          .then((obj) => {
             // console.log(obj)
             //回饋訊息
             Swal.fire({
@@ -101,7 +101,7 @@ function ServiceAdminOrderDetail(props) {
               icon: 'error',
               showConfirmButton: false,
               timer: 1500,
-            }).then(result => {
+            }).then((result) => {
               window.location.reload()
             })
           })
@@ -118,22 +118,22 @@ function ServiceAdminOrderDetail(props) {
     const orderState = getDataFromServer(
       'http://localhost:6001/service/ordersts'
     )
-    Promise.resolve(orderState).then(data => {
+    Promise.resolve(orderState).then((data) => {
       setOrdersts(data)
     })
     //取得服務類型資料
     const sTypeData = getDataFromServer('http://localhost:6001/service/type')
-    Promise.resolve(sTypeData).then(data => {
+    Promise.resolve(sTypeData).then((data) => {
       setType(data)
     })
     //取得狗狗體型資料
     const dogSize = getDataFromServer('http://localhost:6001/service/size')
-    Promise.resolve(dogSize).then(data => {
+    Promise.resolve(dogSize).then((data) => {
       setSize(data)
     })
     //取得額外服務
     const sExtra = getDataFromServer('http://localhost:6001/service/extra')
-    Promise.resolve(sExtra).then(data => {
+    Promise.resolve(sExtra).then((data) => {
       //額外項目
       setExtra(data)
     })
@@ -141,18 +141,19 @@ function ServiceAdminOrderDetail(props) {
     const orderList = getDataFromServer(
       `http://localhost:6001/service/orderdetail/${props.match.params.orderId}`
     )
-    Promise.resolve(orderList).then(data => {
+    Promise.resolve(orderList).then((data) => {
       setOrder(data)
       // //取得會員
       if (data.length !== 0) {
         const memberData = getDataFromServer(
           `http://localhost:6001/service/member?mId=${data[0].mId}`
         )
-        Promise.resolve(memberData).then(data => {
+        Promise.resolve(memberData).then((data) => {
           setMember(data)
         })
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return (
     <>
@@ -174,11 +175,12 @@ function ServiceAdminOrderDetail(props) {
                     <Col
                       className={v.orderStsId === 'o05' ? 'text-danger' : ''}
                     >
-                      {ordersts.map(o => o.orderStsId).indexOf(v.orderStsId) >=
-                      0
+                      {ordersts
+                        .map((o) => o.orderStsId)
+                        .indexOf(v.orderStsId) >= 0
                         ? ordersts[
                             ordersts
-                              .map(o => o.orderStsId)
+                              .map((o) => o.orderStsId)
                               .indexOf(v.orderStsId)
                           ].stsName
                         : ''}
@@ -203,8 +205,8 @@ function ServiceAdminOrderDetail(props) {
                   <Row className="py-2 px-3">
                     <Col sm="auto">服務項目：</Col>
                     <Col>
-                      {type.map(t => t.sTypeId).indexOf(v.sTypeId) >= 0
-                        ? type[type.map(t => t.sTypeId).indexOf(v.sTypeId)]
+                      {type.map((t) => t.sTypeId).indexOf(v.sTypeId) >= 0
+                        ? type[type.map((t) => t.sTypeId).indexOf(v.sTypeId)]
                             .sTypeName
                         : ''}
                     </Col>
@@ -269,10 +271,10 @@ function ServiceAdminOrderDetail(props) {
                   <Row className="py-2 px-3">
                     <Col sm="auto">體型：</Col>
                     <Col>
-                      {v.sizeId.split(',').map(x => {
-                        return size.map(e => e.sizeId).indexOf(x) >= 0
-                          ? size[size.map(e => e.sizeId).indexOf(x)].sizeName +
-                              ' '
+                      {v.sizeId.split(',').map((x) => {
+                        return size.map((e) => e.sizeId).indexOf(x) >= 0
+                          ? size[size.map((e) => e.sizeId).indexOf(x)]
+                              .sizeName + ' '
                           : ''
                       })}
                     </Col>
@@ -284,9 +286,9 @@ function ServiceAdminOrderDetail(props) {
                   <Row className="py-2 px-3">
                     <Col sm="auto">額外需求：</Col>
                     <Col>
-                      {v.extraId.split(',').map(x => {
-                        return extra.map(e => e.extraId).indexOf(x) >= 0
-                          ? extra[extra.map(e => e.extraId).indexOf(x)]
+                      {v.extraId.split(',').map((x) => {
+                        return extra.map((e) => e.extraId).indexOf(x) >= 0
+                          ? extra[extra.map((e) => e.extraId).indexOf(x)]
                               .extraName + ' '
                           : ''
                       })}

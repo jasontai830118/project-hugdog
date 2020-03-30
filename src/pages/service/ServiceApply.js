@@ -115,64 +115,66 @@ function ServiceBooking(props) {
 
   return (
     <>
-      {!!sMemberId ? (
-        users.length === 0 ? (
-          <div className="ServiceApply">
-            <Row>
-              <Col>
-                <h4 className="my-4">申請成為保姆</h4>
-                <Card className="card-light">
-                  <Card.Body>
-                    <Form
-                      noValidate
-                      validated={validated}
-                      onSubmit={handleSubmit}
-                    >
-                      <div className="p-sm-4">
-                        <ServiceProfileForm
-                          parentUserData={callbackUserData}
-                          parentCustomValidated={callbackCustomValid}
-                          sMemberId={sMemberId}
-                          isApply={true}
-                        />
-                        <div className="pb-4 px-0">
-                          <Form.Group as={Row}>
-                            <Col className="text-center">
-                              <Form.Check
-                                custom
-                                name="admit"
-                                type="checkbox"
-                                id="admit"
-                                label="我同意HugDog保姆服務條款"
-                                feedback="您必須勾選同意才能繼續"
-                                required
-                              />
-                            </Col>
-                          </Form.Group>
+      <div className="container pt-3 pb-5">
+        {!!sMemberId ? (
+          users.length === 0 ? (
+            <div className="ServiceApply">
+              <Row>
+                <Col>
+                  <h4 className="my-4">申請成為保姆</h4>
+                  <Card className="card-light">
+                    <Card.Body>
+                      <Form
+                        noValidate
+                        validated={validated}
+                        onSubmit={handleSubmit}
+                      >
+                        <div className="p-sm-4">
+                          <ServiceProfileForm
+                            parentUserData={callbackUserData}
+                            parentCustomValidated={callbackCustomValid}
+                            sMemberId={sMemberId}
+                            isApply={true}
+                          />
+                          <div className="pb-4 px-0">
+                            <Form.Group as={Row}>
+                              <Col className="text-center">
+                                <Form.Check
+                                  custom
+                                  name="admit"
+                                  type="checkbox"
+                                  id="admit"
+                                  label="我同意HugDog保姆服務條款"
+                                  feedback="您必須勾選同意才能繼續"
+                                  required
+                                />
+                              </Col>
+                            </Form.Group>
+                          </div>
+                          <div className="pb-4 px-0">
+                            <Form.Group as={Row}>
+                              <Col className="text-center">
+                                <Button variant="info" type="submit">
+                                  <MdSend className="mr-1" />
+                                  送出申請
+                                </Button>
+                              </Col>
+                            </Form.Group>
+                          </div>
                         </div>
-                        <div className="pb-4 px-0">
-                          <Form.Group as={Row}>
-                            <Col className="text-center">
-                              <Button variant="info" type="submit">
-                                <MdSend />
-                                送出申請
-                              </Button>
-                            </Col>
-                          </Form.Group>
-                        </div>
-                      </div>
-                    </Form>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </div>
+                      </Form>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </div>
+          ) : (
+            <ServiceRegistered />
+          )
         ) : (
-          <ServiceRegistered />
-        )
-      ) : (
-        <ServiceAdminLoginChk />
-      )}
+          <ServiceAdminLoginChk />
+        )}
+      </div>
     </>
   )
 }

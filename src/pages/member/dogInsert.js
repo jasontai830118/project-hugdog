@@ -17,7 +17,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import '../../css/member/member-info.scss'
 import MemberSidebar from '../../components/member/member-sidebar'
-const DogInsert = props => {
+const DogInsert = (props) => {
   //會員註冊資訊
   const dogInfo = {
     dName: '',
@@ -98,109 +98,123 @@ const DogInsert = props => {
 
   return (
     <>
-      <div className="container dog-insert">
-        <div class="tab-content content" id="content1">
-          <div>
-            <h3>
-              狗狗登錄
-              <br />
-            </h3>
+      <div className="dogDetailContainer d-flex">
+        <div>
+          <img
+            className="side_dog"
+            src={require('../../images/member/side-dog.webp')}
+            alt="Background"
+          />
+        </div>
+        <div className="container dog-insert">
+          <div class="tab-content content" id="content1">
+            <div>
+              <h3>
+                狗狗登錄
+                <br />
+              </h3>
 
-            <div class="row">
-              <div class="col-md-8">
-                <div className="dog-confirm alert-danger disappear"></div>
-                <div class="card card-width">
-                  <div class="card-body">
-                    <form>
-                      <div class="form-group">
-                        <label>狗狗姓名</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="dName"
-                          name="dName"
-                          placeholder="請輸入姓名"
-                          onChange={e => getformInfo(e, 'dName')}
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label>性別</label>
-                        <select
-                          type="text"
-                          class="form-control"
-                          id="dGender"
-                          name="dGender"
-                          onChange={e => getformInfo(e, 'dGender')}
-                          placeholder="請選擇性別"
+              <div class="row">
+                <div class="col-md-8">
+                  <div className="dog-confirm alert-danger disappear"></div>
+                  <div class="card card-width">
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group d-flex">
+                          <label>狗狗姓名</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="dName"
+                            name="dName"
+                            placeholder="請輸入姓名"
+                            onChange={(e) => getformInfo(e, 'dName')}
+                          />
+                        </div>
+                        <div class="form-group d-flex">
+                          <label>性別</label>
+                          <select
+                            type="text"
+                            class="form-control"
+                            id="dGender"
+                            name="dGender"
+                            onChange={(e) => getformInfo(e, 'dGender')}
+                            placeholder="請選擇性別"
+                          >
+                            <option value="">請選擇</option>
+                            <option value="male">boy</option>
+                            <option value="female">girl</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group d-flex ">
+                          <label>年紀</label>
+                          <div>
+                            <div className="d-flex">
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="dYear"
+                                name="dYear"
+                                onChange={(e) => getformInfo(e, 'dYear')}
+                                placeholder="請輸入年"
+                              />
+                              年
+                              <input
+                                type="number"
+                                class="form-control"
+                                id="dMonth"
+                                name="dMonth"
+                                onChange={(e) => getformInfo(e, 'dMonth')}
+                                placeholder="請輸入月"
+                              />
+                              月
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group d-flex">
+                          <label>體重</label>
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="dWeight"
+                            name="dWeight"
+                            onChange={(e) => getformInfo(e, 'dWeight')}
+                            placeholder="請輸入體重"
+                          />
+                        </div>
+                        <div class="form-group d-flex">
+                          <label>狗狗資訊</label>
+                          <input
+                            type="textbox"
+                            class="form-control"
+                            id="dInfo"
+                            name="dInfo"
+                            onChange={(e) => getformInfo(e, 'dInfo')}
+                            placeholder="請輸入狗狗資訊"
+                          />
+                        </div>
+
+                        <div
+                          type="submit"
+                          class="btn btn-primary"
+                          onClick={() => {
+                            insertDog(dogInfo)
+                          }}
                         >
-                          <option value="">請選擇</option>
-                          <option value="male">boy</option>
-                          <option value="female">girl</option>
-                        </select>
-                      </div>
-                      <label>年紀</label>
-                      <div class="form-group d-flex">
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="dYear"
-                          name="dYear"
-                          onChange={e => getformInfo(e, 'dYear')}
-                          placeholder="請輸入年"
-                        />
-                        年
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="dMonth"
-                          name="dMonth"
-                          onChange={e => getformInfo(e, 'dMonth')}
-                          placeholder="請輸入月"
-                        />
-                        月
-                      </div>
-                      <div class="form-group">
-                        <label>體重</label>
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="dWeight"
-                          name="dWeight"
-                          onChange={e => getformInfo(e, 'dWeight')}
-                          placeholder="請輸入體重"
-                        />
-                      </div>
-                      <div class="form-group">
-                        <label>狗狗資訊</label>
-                        <input
-                          type="textbox"
-                          class="form-control"
-                          id="dInfo"
-                          name="dInfo"
-                          onChange={e => getformInfo(e, 'dInfo')}
-                          placeholder="請輸入狗狗資訊"
-                        />
-                      </div>
-
-                      <div
-                        type="submit"
-                        class="btn btn-primary"
-                        onClick={() => {
-                          insertDog(dogInfo)
-                        }}
-                      >
-                        送出
-                      </div>
-                    </form>
+                          送出
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
+              <br />
+              <br />
             </div>
-            <br />
-            <br />
-          </div>
-          <div>
-            <img src="images/001.png" alt="" />
+            <div>
+              <img src="images/001.png" alt="" />
+            </div>
           </div>
         </div>
       </div>

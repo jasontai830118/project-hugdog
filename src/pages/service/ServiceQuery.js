@@ -10,6 +10,7 @@ import {
   getDataFromServer,
   linkTo,
 } from '../../utils/service/ServiceFunction'
+import $ from 'jquery'
 //引入自己的scss
 import '../../css/service/style.scss'
 
@@ -74,6 +75,25 @@ function ServiceQuery(props) {
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowPage])
+  //鼠標hover效果
+  useEffect(() => {
+    $('body').on('mouseenter', '.col-list .sUser', function () {
+      let index = $(this).index()
+      $('.col-map').find('.google-map-maker').eq(index).addClass('active')
+    })
+    $('body').on('mouseleave', '.col-list .sUser', function () {
+      let index = $(this).index()
+      $('.col-map').find('.google-map-maker').eq(index).removeClass('active')
+    })
+    $('body').on('mouseenter', '.col-map .google-map-maker', function () {
+      let index = $(this).parent().index()
+      $('.col-list').find('.sUser').eq(index).addClass('active')
+    })
+    $('body').on('mouseleave', '.col-map .google-map-maker', function () {
+      let index = $(this).parent().index()
+      $('.col-list').find('.sUser').eq(index).removeClass('active')
+    })
+  }, [])
   //子元件回傳資料
   const callbackUserData = (child) => {
     setUsers(child)
@@ -83,70 +103,72 @@ function ServiceQuery(props) {
   //以下為子元件回傳篩選的值
   return (
     <>
-      <div className="ServiceQuery">
-        <Row>
-          <Col className="mb-4">
-            <ServiceQuerySearch
-              sUsers={users}
-              sType={type}
-              sSize={size}
-              sExtra={extra}
-              sCity={city}
-              sPage={nowPage}
-              parentUserData={callbackUserData}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col lg={6}>
-            {users.map((v, i) => (
-              <ServiceQueryList
-                sUsers={v}
+      <div className="container pt-3 pb-5">
+        <div className="ServiceQuery">
+          <Row>
+            <Col className="mb-4">
+              <ServiceQuerySearch
+                sUsers={users}
                 sType={type}
-                onChangeChk={onChangeChk}
-                sTypePrice={JSON.parse(v.sTypePrice)}
-                key={i}
+                sSize={size}
+                sExtra={extra}
+                sCity={city}
+                sPage={nowPage}
+                parentUserData={callbackUserData}
               />
-            ))}
-            {totalPage.length > 1 ? (
-              <Pagination>
-                <Pagination.Prev
-                  onClick={() => {
-                    SetNowPage(nowPage - 1)
-                    linkTo('/service/query/' + (nowPage - 1))
-                  }}
-                  disabled={nowPage === 1}
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={6} className="col-list">
+              {users.map((v, i) => (
+                <ServiceQueryList
+                  sUsers={v}
+                  sType={type}
+                  onChangeChk={onChangeChk}
+                  sTypePrice={JSON.parse(v.sTypePrice)}
+                  key={i}
                 />
-                {totalPage.map((v, i) => {
-                  return (
-                    <Pagination.Item
-                      key={i}
-                      onClick={() => {
-                        SetNowPage(i + 1)
-                        linkTo('/service/query/' + (i + 1))
-                      }}
-                      active={currentPage === i + 1}
-                    >
-                      {v}
-                    </Pagination.Item>
-                  )
-                })}
-                <Pagination.Next
-                  onClick={() => {
-                    SetNowPage(nowPage + 1)
-                    linkTo('/service/query/' + (nowPage + 1))
-                  }}
-                  disabled={nowPage === totalPage.length}
-                />
-              </Pagination>
-            ) : (
-              ''
-            )}
-          </Col>
-          <Col lg={6} className="d-none d-lg-block">
-            <ServiceQueryMap sUsers={users} />
-          </Col>
-        </Row>
+              ))}
+              {totalPage.length > 1 ? (
+                <Pagination>
+                  <Pagination.Prev
+                    onClick={() => {
+                      SetNowPage(nowPage - 1)
+                      linkTo('/service/query/' + (nowPage - 1))
+                    }}
+                    disabled={nowPage === 1}
+                  />
+                  {totalPage.map((v, i) => {
+                    return (
+                      <Pagination.Item
+                        key={i}
+                        onClick={() => {
+                          SetNowPage(i + 1)
+                          linkTo('/service/query/' + (i + 1))
+                        }}
+                        active={currentPage === i + 1}
+                      >
+                        {v}
+                      </Pagination.Item>
+                    )
+                  })}
+                  <Pagination.Next
+                    onClick={() => {
+                      SetNowPage(nowPage + 1)
+                      linkTo('/service/query/' + (nowPage + 1))
+                    }}
+                    disabled={nowPage === totalPage.length}
+                  />
+                </Pagination>
+              ) : (
+                ''
+              )}
+            </Col>
+            <Col lg={6} className="d-none d-lg-block col-map">
+              <ServiceQueryMap sUsers={users} />
+            </Col>
+          </Row>
+        </div>
       </div>
     </>
   )

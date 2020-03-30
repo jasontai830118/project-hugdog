@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import ServiceCommentForm from '../../components/service/ServiceCommentForm'
 import ServiceGoBack from '../../components/service/ServiceGoBack'
 import { getDataFromServer, linkTo } from '../../utils/service/ServiceFunction'
+import ServiceAdminLoginChk from '../../components/service/redirect/ServiceAdminLoginChk'
 import ServiceNoOrder from '../../components/service/redirect/ServiceNoOrder'
 import Swal from 'sweetalert2'
 import $ from 'jquery'
@@ -74,7 +75,7 @@ function ServiceBooking(props) {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
-                    ordersts: 'o06',
+                    ordersts: 'o04',
                   }),
                 }
               )
@@ -123,50 +124,56 @@ function ServiceBooking(props) {
 
   return (
     <>
-      {order.length !== 0 && sMemberId === order[0].mId ? (
-        order.map((v, i) => {
-          return (
-            <div className="ServiceComment" key={i}>
-              <ServiceGoBack prevUrl={'/member/member-service'} />
-              <Row>
-                <Col>
-                  <h4 className="my-4">
-                    給 {users.map((v, i) => v.sName)} 評價
-                  </h4>
-                  <Card className="card-light">
-                    <Card.Body>
-                      <Form
-                        noValidate
-                        validated={validated}
-                        onSubmit={handleSubmit}
-                      >
-                        <div className="p-sm-4">
-                          <ServiceCommentForm
-                            sMemberId={sMemberId}
-                            sOrder={order}
-                            parentCommentData={callbackCommentData}
-                          />
-                          <div className="pb-4 px-0">
-                            <Form.Group as={Row}>
-                              <Col className="text-center">
-                                <Button variant="success" type="submit">
-                                  送出評論
-                                </Button>
-                              </Col>
-                            </Form.Group>
-                          </div>
-                        </div>
-                      </Form>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
-            </div>
+      <div className="container pt-3 pb-5">
+        {!!props.sMemberId ? (
+          order.length !== 0 && sMemberId === order[0].mId ? (
+            order.map((v, i) => {
+              return (
+                <div className="ServiceComment" key={i}>
+                  <ServiceGoBack prevUrl={'/member/member-service'} />
+                  <Row>
+                    <Col>
+                      <h4 className="my-4">
+                        給 {users.map((v, i) => v.sName)} 評價
+                      </h4>
+                      <Card className="card-light">
+                        <Card.Body>
+                          <Form
+                            noValidate
+                            validated={validated}
+                            onSubmit={handleSubmit}
+                          >
+                            <div className="p-sm-4">
+                              <ServiceCommentForm
+                                sMemberId={sMemberId}
+                                sOrder={order}
+                                parentCommentData={callbackCommentData}
+                              />
+                              <div className="pb-4 px-0">
+                                <Form.Group as={Row}>
+                                  <Col className="text-center">
+                                    <Button variant="success" type="submit">
+                                      送出評論
+                                    </Button>
+                                  </Col>
+                                </Form.Group>
+                              </div>
+                            </div>
+                          </Form>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </div>
+              )
+            })
+          ) : (
+            <ServiceNoOrder />
           )
-        })
-      ) : (
-        <ServiceNoOrder />
-      )}
+        ) : (
+          <ServiceAdminLoginChk />
+        )}
+      </div>
     </>
   )
 }

@@ -114,7 +114,7 @@ function ServiceAdminProfile(props) {
                   <Form.Group as={Row}>
                     <Col className="text-center">
                       <Button variant="primary" type="submit">
-                        <MdEdit />
+                        <MdEdit className="mr-1" />
                         送出修改
                       </Button>
                     </Col>

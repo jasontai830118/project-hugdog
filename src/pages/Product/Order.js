@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import { MdShoppingCart, MdBookmarkBorder } from 'react-icons/md'
+//redux
+import { connect } from 'react-redux'
+
 const Order = (props) => {
   //設定訂單狀態
   const [order, setOrder] = useState([])
@@ -89,7 +92,7 @@ const Order = (props) => {
               付款資料
             </div>
             <div
-              className="position-absolute "
+              className="position-absolute font-weight-bold"
               style={{
                 right: (-28.805 / 647.484) * 100 + '%',
                 top: 10,
@@ -201,7 +204,7 @@ const Order = (props) => {
           </p>
           <p className="font-weight-bold">
             {order[0] ? order[0].card : ''}{' '}
-            {order[0] ? order[0].cardNumber : ''}
+            {order[0] ? '****' + order[0].cardNumber.slice(12, 16) : ''}
           </p>
         </Col>
       </Row>
@@ -214,6 +217,17 @@ const Order = (props) => {
         >
           <span>小計</span>
           <span>NT${sum(order[0] ? JSON.parse(order[0].cart) : 0)}</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          xs={12}
+          sm={12}
+          md={5}
+          className="mt-3 d-flex justify-content-between"
+        >
+          <span>{props.discount ? '使用優惠' : '未用優惠'}</span>
+          <span>NT${props.discount}</span>
         </Col>
       </Row>
       <Row>
@@ -230,13 +244,23 @@ const Order = (props) => {
         >
           <p className="font-weight-bold">總計</p>
           <p className="font-weight-bold">
-            NT${sum(order[0] ? JSON.parse(order[0].cart) : 0)}
+            NT$
+            {props.discount
+              ? sum(order[0] ? JSON.parse(order[0].cart) : 0) - props.discount
+              : sum(order[0] ? JSON.parse(order[0].cart) : 0)}
           </p>
         </Col>
       </Row>
       <Row>
         <Col className="my-5 d-flex justify-content-around">
-          <Button className="mb-md-2" variant="primary" size="lg" href="#">
+          <Button
+            className="mb-md-2"
+            variant="primary"
+            size="lg"
+            onClick={() => {
+              props.history.push('/member/member-item')
+            }}
+          >
             <MdBookmarkBorder className="mb-md-1" />
             檢視訂單
           </Button>
@@ -244,7 +268,9 @@ const Order = (props) => {
             className="mb-md-2"
             variant="primary"
             size="lg"
-            href="/products"
+            onClick={() => {
+              props.history.push('/products')
+            }}
           >
             <MdShoppingCart className="mb-md-1" />
             繼續選購
@@ -254,5 +280,7 @@ const Order = (props) => {
     </Container>
   )
 }
-
-export default withRouter(Order)
+const mapStateToProps = (store) => {
+  return { discount: store.useCoupon }
+}
+export default withRouter(connect(mapStateToProps, null)(Order))

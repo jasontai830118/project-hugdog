@@ -38,11 +38,24 @@
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.175);
   }
 
+  //google-map
+  .google-map {
+    -webkit-position: sticky;
+    position: sticky;
+    top: 80px;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
+  }
   .google-map-maker {
     font-size: 1rem;
     transform: translate(-50%, -100%);
     position: relative;
     color: $info;
+  }
+  .google-map-maker.active {
+    transform: scale(1.1) translate(-50%, -100%);
+    transition: 0.5s;
   }
   .google-map-maker > .icon {
     font-size: 2rem;
@@ -75,7 +88,6 @@
   .google-map-maker.my {
     color: $danger;
   }
-
   .fadeOut {
     opacity: 0%;
     transition: 3s;
@@ -113,6 +125,27 @@
   ul.user-data li:last-child {
     margin-bottom: 0;
   }
+  ul.user-data li .inline-block-icon {
+    position: absolute;
+    transform: translateY(-2px);
+  }
+  //按鈕滑入效果
+  button.btn:hover svg,
+  a.btn:hover svg {
+    animation: icon-bounce 0.5s 1 forwards;
+    transition: 0.5s;
+  }
+  @keyframes icon-bounce {
+    0% {
+      transform: scale(1);
+    }
+    70% {
+      transform: scale(1.4);
+    }
+    100% {
+      transform: scale(1.2);
+    }
+  }
   // icon
   .mdStar {
     color: $primary;
@@ -133,7 +166,6 @@
       display: flex;
     }
   }
-
   .react-datepicker-wrapper {
     width: 100%;
   }
@@ -211,18 +243,19 @@
       }
     }
   }
-  .sticky-map {
-    -webkit-position: sticky;
-    position: sticky;
-    top: 0px;
-  }
   .gobackLink {
     font-size: 2rem;
     color: $secondary;
     padding: 1rem;
+    display: flex;
+    max-width: 120px;
     align-items: center;
     span.linkTxt {
       font-size: 1rem;
+    }
+    &:hover {
+      transform: translateX(-5px);
+      color: $dark;
     }
   }
   //上傳圖片
@@ -316,6 +349,85 @@
       object-fit: cover;
     }
   }
+  //首頁
+  .ServiceHome {
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      &.banner {
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+          url(../../images/service/pic/banner.jpg) center bottom;
+        background-size: cover;
+        height: 500px;
+      }
+      &.process {
+        .stepwizard-step p {
+          margin-top: 10px;
+        }
+        .stepwizard-row {
+          display: table-row;
+        }
+        .stepwizard {
+          display: table;
+          width: 100%;
+          position: relative;
+        }
+        .stepwizard-step button[disabled] {
+          opacity: 1 !important;
+          filter: alpha(opacity=100) !important;
+        }
+        .stepwizard-row:before {
+          top: 14px;
+          bottom: 0;
+          position: absolute;
+          content: ' ';
+          width: 100%;
+          height: 1px;
+          background-color: rgba(255, 255, 255, 0.6);
+          z-index: 0;
+        }
+        .stepwizard-step {
+          display: table-cell;
+          text-align: center;
+          position: relative;
+        }
+        .btn-circle {
+          width: 30px;
+          height: 30px;
+          text-align: center;
+          padding: 6px 0;
+          font-size: 12px;
+          line-height: 1.428571429;
+          border-radius: 15px;
+        }
+        img {
+          width: 100%;
+          max-width: 100px;
+          margin-bottom: 2rem;
+        }
+      }
+      &.story {
+        .row.reverse {
+          .col {
+            padding: 100px;
+          }
+        }
+      }
+      &.promise {
+        img {
+          width: 100%;
+          max-width: 80px;
+          margin-bottom: 2rem;
+        }
+      }
+      &.apply {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+          url(../../images/service/pic/apply.jpg) center center;
+        background-size: cover;
+        height: 500px;
+      }
+    }
+  }
   // 保姆列表
   .ServiceQuery {
     a .card-list {
@@ -331,6 +443,14 @@
       width: 100px;
       height: 100px;
       flex: 0 0 100px;
+    }
+    .col-list .sUser .card {
+      transition: 0.5s;
+    }
+    .col-list .sUser.active .card {
+      transform: translateX(-10px);
+      transition: 0.5s;
+      box-shadow: 5px 2px 8px rgba(0, 0, 0, 0.3);
     }
     @media (min-width: 768px) {
       .search-col select {
@@ -352,6 +472,10 @@
     .avatar {
       width: 160px;
       height: 160px;
+    }
+    .user-info {
+      line-height: 1.6rem;
+      text-indent: 2rem;
     }
     ul.comment li {
       border-bottom: 1px solid #cccccc;
@@ -452,7 +576,8 @@
     }
     .starrating > input {
       display: none;
-    } /* Remove radio buttons */
+    }
+    /* Remove radio buttons */
     .starrating > label:before {
       content: '\f005'; /* Star */
       margin: 0.2rem;
@@ -467,10 +592,12 @@
     }
     .starrating > input:checked ~ label {
       color: $primary;
-    } /* Set yellow color when star checked */
+    }
+    /* Set yellow color when star checked */
     .starrating > input:hover ~ label {
       color: $primary;
-    } /* Set yellow color when star hover */
+    }
+    /* Set yellow color when star hover */
     .starrating > .rating-title {
       margin-left: 1rem;
     }
@@ -518,6 +645,11 @@
       ul.sidebar-list > li a:hover {
         color: $primary;
         transform: translateX(0.3rem);
+      }
+    }
+    //首頁
+    .ServiceAdminHome {
+      .chart {
       }
     }
     //訂單

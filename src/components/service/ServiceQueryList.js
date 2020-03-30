@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { starRating, checkIcon } from '../../utils/service/ServiceFunction'
 import { getDataFromServer } from '../../utils/service/ServiceFunction'
-import $ from 'jquery'
 
 function ServiceQueryList(props) {
   //保姆提供的服務類型
@@ -48,7 +47,7 @@ function ServiceQueryList(props) {
 
   return (
     <>
-      <Link to={`/service/detail/${props.sUsers.id}`}>
+      <Link to={`/service/detail/${props.sUsers.id}`} className="sUser">
         <Card className="card-light card-list mb-3">
           <Card.Body className="p-3">
             <div className="d-flex">

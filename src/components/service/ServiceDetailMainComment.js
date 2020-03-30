@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { starRating } from '../../utils/service/ServiceFunction'
 import moment from 'moment'
 import 'moment/locale/zh-tw'

@@ -48,12 +48,12 @@ const DogInfo = (props) => {
     }
   }
   return (
-    <div class="tab-content content" id="content2">
+    <div class="tab-content content dogListContainer" id="content2">
       <div>
         <h3>
           狗狗資訊{' '}
           <Link to="/dog-insert">
-            <button className="btn btn-info">新增狗狗</button>
+            <button className="btn btn-info ">新增狗狗</button>
           </Link>
           <br />
         </h3>

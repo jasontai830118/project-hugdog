@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import ServiceBookingForm from '../../components/service/ServiceBookingForm'
 import ServiceGoBack from '../../components/service/ServiceGoBack'
 import { getDataFromServer, linkTo } from '../../utils/service/ServiceFunction'
+import ServiceAdminLoginChk from '../../components/service/redirect/ServiceAdminLoginChk'
 import ServiceNoUser from '../../components/service/redirect/ServiceNoUser'
 import { MdSend } from 'react-icons/md'
 import Swal from 'sweetalert2'
@@ -104,62 +105,68 @@ function ServiceBooking(props) {
 
   return (
     <>
-      {users.length !== 0 ? (
-        <div className="ServiceBooking">
-          <ServiceGoBack
-            prevUrl={'/service/detail/' + props.match.params.userId}
-          />
-          <Row>
-            <Col>
-              <h4 className="my-4">聯絡 {users[0].sName}</h4>
-              <Card className="card-light">
-                <Card.Body>
-                  <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={handleSubmit}
-                  >
-                    <div className="p-sm-4">
-                      <ServiceBookingForm
-                        parentOrderData={callbackOrderData}
-                        // parentCustomValidated={callbackCustomValid}
-                        sMemberId={sMemberId}
-                      />
-                      <div className="pb-4 px-0">
-                        <Form.Group as={Row}>
-                          <Col className="text-center">
-                            <Form.Check
-                              custom
-                              name="admit"
-                              type="checkbox"
-                              id="admit"
-                              label="我同意HugDog預約服務條款"
-                              feedback="您必須勾選同意才能繼續"
-                              required
-                            />
-                          </Col>
-                        </Form.Group>
-                      </div>
-                      <div className="pb-4 px-0">
-                        <Form.Group as={Row}>
-                          <Col className="text-center">
-                            <Button variant="success" type="submit">
-                              <MdSend />
-                              送出預約
-                            </Button>
-                          </Col>
-                        </Form.Group>
-                      </div>
-                    </div>
-                  </Form>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </div>
-      ) : (
-        <ServiceNoUser />
-      )}
+      <div className="container pt-3 pb-5">
+        {!!props.sMemberId ? (
+          users.length !== 0 ? (
+            <div className="ServiceBooking">
+              <ServiceGoBack
+                prevUrl={'/service/detail/' + props.match.params.userId}
+              />
+              <Row>
+                <Col>
+                  <h4 className="my-4">聯絡 {users[0].sName}</h4>
+                  <Card className="card-light">
+                    <Card.Body>
+                      <Form
+                        noValidate
+                        validated={validated}
+                        onSubmit={handleSubmit}
+                      >
+                        <div className="p-sm-4">
+                          <ServiceBookingForm
+                            parentOrderData={callbackOrderData}
+                            // parentCustomValidated={callbackCustomValid}
+                            sMemberId={sMemberId}
+                          />
+                          <div className="pb-4 px-0">
+                            <Form.Group as={Row}>
+                              <Col className="text-center">
+                                <Form.Check
+                                  custom
+                                  name="admit"
+                                  type="checkbox"
+                                  id="admit"
+                                  label="我同意HugDog預約服務條款"
+                                  feedback="您必須勾選同意才能繼續"
+                                  required
+                                />
+                              </Col>
+                            </Form.Group>
+                          </div>
+                          <div className="pb-4 px-0">
+                            <Form.Group as={Row}>
+                              <Col className="text-center">
+                                <Button variant="success" type="submit">
+                                  <MdSend className="mr-1" />
+                                  送出預約
+                                </Button>
+                              </Col>
+                            </Form.Group>
+                          </div>
+                        </div>
+                      </Form>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            </div>
+          ) : (
+            <ServiceNoUser />
+          )
+        ) : (
+          <ServiceAdminLoginChk />
+        )}
+      </div>
     </>
   )
 }

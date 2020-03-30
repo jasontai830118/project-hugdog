@@ -159,7 +159,7 @@ const MemberInfo = (props) => {
   }, [])
 
   return (
-    <div class="tab-content content" id="content1">
+    <div class="tab-content content memberInfo" id="content1">
       <div>
         <h3>
           個人資訊

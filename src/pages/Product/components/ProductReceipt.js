@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import { ReactComponent as Logo } from '../../../images/logo-dark.svg'
+//redux
+import { connect } from 'react-redux'
 
-function ProductReceipt() {
+function ProductReceipt(props) {
   const [show, setShow] = useState(false)
   const [mycart, setMycart] = useState([])
 
@@ -44,7 +46,8 @@ function ProductReceipt() {
             size="lg"
             onClick={() => setShow(true)}
           >
-            檢視訂單摘要：NT${sum(mycart)}
+            檢視訂單摘要：NT$
+            {props.discount ? sum(mycart) - props.discount : sum(mycart)}
           </Button>
           <Modal centered size="md" show={show} onHide={() => setShow(false)}>
             <Modal.Header className="d-flex justify-content-center">
@@ -90,8 +93,10 @@ function ProductReceipt() {
                 <Row className="show-grid">
                   <Col>
                     <div className="d-flex justify-content-between">
-                      <div>是否使用優惠</div>
-                      <div>優惠:100</div>
+                      <div>
+                        {props.discount ? '使用優惠券' : '未使用優惠券'}
+                      </div>
+                      <div>優惠:{props.discount}</div>
                     </div>
                   </Col>
                 </Row>
@@ -100,7 +105,12 @@ function ProductReceipt() {
                   <Col>
                     <div className="d-flex justify-content-between">
                       <div>合計</div>
-                      <div>總計:{sum(mycart)}</div>
+                      <div>
+                        總計:
+                        {props.discount
+                          ? sum(mycart) - props.discount
+                          : sum(mycart)}
+                      </div>
                     </div>
                   </Col>
                 </Row>
@@ -125,5 +135,7 @@ function ProductReceipt() {
     </>
   )
 }
-
-export default withRouter(ProductReceipt)
+const mapStateToProps = (store) => {
+  return { discount: store.useCoupon }
+}
+export default withRouter(connect(mapStateToProps, null)(ProductReceipt))

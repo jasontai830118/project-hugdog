@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProducts, getProductDetail, count } from './actions/index'
+import {
+  getProducts,
+  getProductDetail,
+  count,
+  getComments,
+} from './actions/index'
 import {
   Container,
   Row,
@@ -22,6 +27,10 @@ import {
 import Breadcrumb from '../../components/Breadcrumbs'
 import ProductSidebar from './components/ProductSidebar'
 import ProductCardSmall from './components/ProductCardSmall'
+import Swal from 'sweetalert2/src/sweetalert2.js'
+import PrdouctComment from './components/ProductComment'
+import { AiFillLike, AiFillDislike } from 'react-icons/ai'
+import $ from 'jquery'
 
 const ProductDetail = (props) => {
   const [total, setTotal] = useState(1)
@@ -35,17 +44,36 @@ const ProductDetail = (props) => {
   function updateCartToLocalStorage(item) {
     const currentCart = JSON.parse(localStorage.getItem('cart')) || []
     if ([...currentCart].find((value) => value.pId === item.pId)) {
-      alert('已加入購物車')
+      Swal.fire({
+        title: '已加入購物車',
+        text: '前往購物車結帳?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+      }).then((result) => {
+        if (result.value) {
+          props.history.push('/cart')
+        }
+      })
     } else {
       const newCart = [...currentCart, item]
       localStorage.setItem('cart', JSON.stringify(newCart))
       setMycart(newCart)
+      Swal.fire({
+        icon: 'success',
+        title: '加入成功',
+        showConfirmButton: false,
+      })
     }
   }
   //即時更新商品數量
   useEffect(() => {
     props.getProductDetail(pId)
     props.getProducts()
+    props.getComments(pId)
   }, [props.match.params.pId])
 
   //設定猜你喜歡只列出4項
@@ -66,22 +94,39 @@ const ProductDetail = (props) => {
     const listContent = await res.json()
     await console.log(listContent)
     if (listContent.success) {
-      alert('收藏成功')
+      Swal.fire({
+        icon: 'success',
+        title: '收藏成功',
+        showConfirmButton: false,
+      })
     } else {
-      alert('已加入清單')
+      Swal.fire({
+        title: '已加入清單',
+        text: '前往清單查看?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定',
+        cancelButtonText: '取消',
+      }).then((result) => {
+        if (result.value) {
+          props.history.push('/list/' + localStorage.getItem('mId'))
+        }
+      })
     }
   }
-
+  console.log('評論', props.comments)
   return (
     <Container className="detail">
       <Row className="my-5">
         <ProductSidebar />
         <Col md={10}>
-          <Row className="m-2">
+          {/* <Row className="m-2">
             <Breadcrumb />
-          </Row>
+          </Row> */}
           <Row className="mb-5">
-            <Col md={5} className="text-center">
+            <Col md={12} lg={5} className="text-center">
               {props.detail[0] ? (
                 <>
                   <Image
@@ -111,7 +156,7 @@ const ProductDetail = (props) => {
                 ''
               )}
             </Col>
-            <Col md={4}>
+            <Col md={12} lg={4}>
               <h3>{props.detail[0] ? props.detail[0].pName : ''}</h3>
               <br />
               <h6>{props.detail[0] ? props.detail[0].pInfo : ''}</h6>
@@ -126,8 +171,8 @@ const ProductDetail = (props) => {
               <br />
               <div className="mt-3 d-flex justify-content-between">
                 <Button
-                  className="mb-md-2 "
-                  variant="primary "
+                  className="mb-md-2"
+                  variant="primary"
                   size="md"
                   onClick={() => {
                     if (
@@ -143,7 +188,20 @@ const ProductDetail = (props) => {
                         pImg: props.detail[0].pImg,
                       })
                     } else {
-                      return alert('尚未登入')
+                      Swal.fire({
+                        title: '尚未登入',
+                        text: '前往登入頁面?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                      }).then((result) => {
+                        if (result.value) {
+                          props.history.push('/login')
+                        }
+                      })
                     }
                   }}
                 >
@@ -178,7 +236,7 @@ const ProductDetail = (props) => {
               </div>
               <div className="my-3 d-flex justify-content-between">
                 <Button
-                  className="mb-md-2 btn-padding-x btn-padding-y"
+                  className="mb-md-2"
                   variant="primary"
                   size="md"
                   onClick={() => {
@@ -191,7 +249,20 @@ const ProductDetail = (props) => {
                       let list = { item: item, mId: mId }
                       postList(list)
                     } else {
-                      return alert('尚未登入')
+                      Swal.fire({
+                        title: '尚未登入',
+                        text: '前往登入頁面?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                      }).then((result) => {
+                        if (result.value) {
+                          props.history.push('/login')
+                        }
+                      })
                     }
                   }}
                 >
@@ -199,7 +270,7 @@ const ProductDetail = (props) => {
                   加入清單
                 </Button>
                 <Button
-                  className="mb-md-2 btn-padding-x btn-padding-y"
+                  className="mb-md-2"
                   variant="primary"
                   size="md"
                   onClick={() => {
@@ -228,16 +299,55 @@ const ProductDetail = (props) => {
                             (value) => value.pId === props.detail[0].pId
                           )
                         ) {
-                          alert('已加入購物車')
+                          Swal.fire({
+                            title: '已加入購物車',
+                            text: '前往購物車結帳?',
+                            icon: 'info',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '確定',
+                            cancelButtonText: '取消',
+                          }).then((result) => {
+                            if (result.value) {
+                              props.history.push('/cart')
+                            }
+                          })
                         } else {
                           props.count(mycart)
                           const newCart = [...currentCart, item]
                           localStorage.setItem('cart', JSON.stringify(newCart))
+                          Swal.fire({
+                            title: '加入成功',
+                            text: '前往購物車結帳?',
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: '確定',
+                            cancelButtonText: '取消',
+                          }).then((result) => {
+                            if (result.value) {
+                              props.history.push('/cart')
+                            }
+                          })
                         }
                       }
-                      props.history.push('/cart')
                     } else {
-                      return alert('尚未登入')
+                      Swal.fire({
+                        title: '尚未登入',
+                        text: '前往登入頁面?',
+                        icon: 'info',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: '確定',
+                        cancelButtonText: '取消',
+                      }).then((result) => {
+                        if (result.value) {
+                          props.history.push('/login')
+                        }
+                      })
                     }
                   }}
                 >
@@ -246,7 +356,11 @@ const ProductDetail = (props) => {
                 </Button>
               </div>
             </Col>
-            <Col className="d-md-flex flex-column justify-content-around ">
+            <Col
+              md={12}
+              lg={3}
+              className="d-flex flex-lg-column justify-content-around "
+            >
               <div
                 className="mb-3 border p-3"
                 style={{
@@ -256,7 +370,7 @@ const ProductDetail = (props) => {
                 }}
               >
                 <h6 className="text-center border-bottom">為何選擇我們?</h6>
-                <div>為何是我為何是我為何是我為何是我為何是我為何是我</div>
+                <div>我們秉持著給消費者最好，提供最優質的商品</div>
               </div>
               <div
                 className="mb-3 border p-3"
@@ -266,19 +380,19 @@ const ProductDetail = (props) => {
                   overflow: 'hidden',
                 }}
               >
-                <h6 className="text-center border-bottom">為何選擇我們?</h6>
-                <div>為何是我為何是我為何是我為何是我為何是我為何是我</div>
+                <h6 className="text-center border-bottom">為何選擇此產品?</h6>
+                <div>在各項評比獲得最高分，並廣受消費者好評</div>
               </div>
               <div
                 className="mb-3 border p-3"
                 style={{
                   width: 100 + '%',
                   height: 100 + 'px',
-                  overflow: 'hidden',
+                  overflow: 'scroll',
                 }}
               >
-                <h6 className="text-center border-bottom">為何選擇我們?</h6>
-                <div>為何是我為何是我為何是我為何是我為何是我為何是我</div>
+                <h6 className="text-center border-bottom">運貨與退貨通知</h6>
+                <div>只須登入帳戶，或撥電話聯絡我們，即有專人服務</div>
               </div>
             </Col>
           </Row>
@@ -295,18 +409,120 @@ const ProductDetail = (props) => {
                     </Card.Body>
                   </Accordion.Collapse>
                 </Card>
-              </Accordion>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="mt-md-3" md={12}>
-              <Accordion defaultActiveKey="1">
                 <Card>
                   <Accordion.Toggle as={Card.Header} eventKey="1" type="button">
                     商品評論
+                    {
+                      <>
+                        <AiFillLike
+                          className="mx-2"
+                          style={{ color: 'rgb(32, 120, 244)' }}
+                        />
+                        {props.comments.likes}
+                        <AiFillDislike
+                          className="mx-2"
+                          style={{ color: 'rgb(243, 62, 88)' }}
+                        />
+                        {props.comments.dislikes}
+                      </>
+                    }
                   </Accordion.Toggle>
                   <Accordion.Collapse eventKey="1">
-                    <Card.Body>Hello! I'm another body</Card.Body>
+                    <Card.Body>
+                      {props.comments.rows &&
+                        props.comments.rows.map((value, index) => {
+                          return (
+                            <>
+                              <div className="d-flex justify-content-between">
+                                <Image
+                                  roundedCircle
+                                  width="50"
+                                  src={
+                                    require('../../images/member/member-img/m' +
+                                      value.mImg.slice(1) +
+                                      '.jpg')
+                                      ? require('../../images/member/member-img/m' +
+                                          value.mImg.slice(1) +
+                                          '.jpg')
+                                      : 'https://via.placeholder.com/50'
+                                  }
+                                />
+                                <span>{index + 1 + 'F'}</span>
+                              </div>
+                              <p>
+                                {'***' + value.mAccount.slice(0, 3) + '***'}
+                              </p>
+                              <p id="rating">
+                                {value.rating === 1 ? (
+                                  <AiFillLike />
+                                ) : (
+                                  <AiFillDislike />
+                                )}
+                              </p>
+                              <textarea
+                                readOnly="readOnly"
+                                className="border-0"
+                                style={{ resize: 'none' }}
+                                defaultValue={value.comment}
+                              />
+                              <div className="d-flex justify-content-between">
+                                <span>{value.updated_at}</span>
+                                {value.mId == localStorage.getItem('mId') ? (
+                                  <div>
+                                    <Button
+                                      variant="link"
+                                      className="p-0 text-decoration-none"
+                                      onClick={(e) => {
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .removeAttr('readOnly')
+                                          .attr('class', 'border')
+                                        $(e.currentTarget)
+                                          .next()
+                                          .attr(
+                                            'class',
+                                            'p-0 text-decoration-none btn btn-link'
+                                          )
+                                      }}
+                                    >
+                                      編輯評論
+                                    </Button>
+                                    <Button
+                                      variant="link"
+                                      className="p-0 text-decoration-none d-none"
+                                      onClick={(e) => {
+                                        $(e.currentTarget).attr(
+                                          'class',
+                                          'd-none'
+                                        )
+                                        $(e.currentTarget)
+                                          .parents('.d-flex')
+                                          .prev()
+                                          .attr('readOnly', 'readOnly')
+                                          .attr('class', 'border-0')
+                                      }}
+                                    >
+                                      esc
+                                    </Button>
+                                    <Button
+                                      variant="link"
+                                      className="p-0 text-decoration-none"
+                                      onClick={() => {}}
+                                    >
+                                      刪除評論
+                                    </Button>
+                                  </div>
+                                ) : (
+                                  ''
+                                )}
+                              </div>
+                              <hr />
+                            </>
+                          )
+                        })}
+                      <PrdouctComment />
+                    </Card.Body>
                   </Accordion.Collapse>
                 </Card>
               </Accordion>
@@ -314,7 +530,7 @@ const ProductDetail = (props) => {
           </Row>
           <Row>
             <Col>
-              <div className="mt-5 d-md-flex justify-content-between">
+              <div className="mt-5 d-flex justify-content-between">
                 <p>猜你喜歡</p>
                 <Link
                   to={
@@ -346,11 +562,15 @@ const mapStateToProps = (store) => {
   return {
     list: store.getProducts,
     detail: store.getProductDetail,
+    comments: store.showComments,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getProducts, getProductDetail, count }, dispatch)
+  return bindActionCreators(
+    { getProducts, getProductDetail, count, getComments },
+    dispatch
+  )
 }
 
 export default withRouter(

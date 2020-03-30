@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Card, Row, Col, Button, Modal, Table } from 'react-bootstrap'
 import { withRouter } from 'react-router'
 import { starRating, checkIcon } from '../../utils/service/ServiceFunction'
-import { FaRegCalendarCheck, FaRegHeart, FaUserAlt } from 'react-icons/fa'
+import { FaRegCalendarCheck, FaRegHeart } from 'react-icons/fa'
 import { getDataFromServer } from '../../utils/service/ServiceFunction'
 import Swal from 'sweetalert2'
 
@@ -55,6 +55,7 @@ function ServiceDetailSidebar(props) {
         timer: 1500,
       })
     }
+    return
   }
   //是否加入收藏判斷
   const chkLike = () => {
@@ -202,7 +203,9 @@ function ServiceDetailSidebar(props) {
                     <Row className="p-2 dog-size">
                       {sSize.map((v, i) => (
                         <Col
-                          className={`dog-size-${v.sizeId}  ${
+                          className={`d-flex flex-column justify-content-center dog-size-${
+                            v.sizeId
+                          }  ${
                             props.sUsers.sSizeId.split(',').indexOf(v.sizeId) <
                             0
                               ? 'muted'
@@ -219,7 +222,9 @@ function ServiceDetailSidebar(props) {
                             />
                           </div>
                           <h6 className={`my-2 text-center`}>{v.sizeName}</h6>
-                          <h6 className={`my-2 text-center`}>{v.sizeWeight}</h6>
+                          <div className={`my-2 text-center`}>
+                            {v.sizeWeight}
+                          </div>
                         </Col>
                       ))}
                     </Row>

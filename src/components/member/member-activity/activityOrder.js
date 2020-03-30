@@ -46,7 +46,7 @@ const ActivityOrder = (props) => {
     }
   }
   return (
-    <div class="tab-content content" id="content1">
+    <div class="tab-content content activityOrderListContainer" id="content1">
       <div>
         <h3>
           已報名活動

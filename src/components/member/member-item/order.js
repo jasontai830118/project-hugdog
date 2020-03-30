@@ -304,7 +304,7 @@ const MemberOrderInfo = (props) => {
     // $('footer').removeClass('tr400')
   }
   return (
-    <div class="tab-content content" id="content2">
+    <div class="tab-content content orderListContainer" id="content2">
       <div>
         <h3>
           訂單查詢

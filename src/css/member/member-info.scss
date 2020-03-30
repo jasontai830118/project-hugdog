@@ -156,3 +156,63 @@
   //   width: 200px;
   // }
 }
+.memberInfo {
+  .card-body {
+    // background: #ffffff;
+  }
+}
+
+.favoriteActivityContainer,
+.activityOrderListContainer,
+.orderListContainer,
+.couponListContainer,
+.serviceOrderListContainer,
+.dogListContainer {
+  .card-body {
+    background: #ffffff;
+    border: none;
+  }
+  .card-width {
+    border: none;
+  }
+}
+.dogDetailContainer {
+  // margin-bottom: -70px;
+  transform: translate(0px, 0px);
+  .side_dog {
+    height: 1000px;
+    // opacity: 80%;
+  }
+  .card-body,
+  .card-width {
+    border: none;
+  }
+  .dog-insert {
+    transform: translate(300px, 50px);
+  }
+  .form-group {
+    label {
+      width: 120px;
+      transform: translateY(14px);
+      font-size: 20px;
+    }
+    input,
+    select {
+      height: 60px;
+      // background: #ebebeb9a;
+      border: none;
+      border-bottom: solid 2px #e2e2e2;
+      // border-radius: 6px;
+    }
+  }
+  .text-container {
+    margin-bottom: 30px;
+  }
+
+  .register_submit {
+    border-radius: 6px;
+  }
+  .form {
+    // border: none;
+  }
+}

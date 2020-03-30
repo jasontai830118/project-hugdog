@@ -7,20 +7,18 @@ import $ from 'jquery'
 function ServiceBookingForm(props) {
   const [comment, setComment] = useState({})
   //備註最大字數限制
-  const remarkMaxLengthLimit = 500
+  const remarkMaxLengthLimit = 300
   const [remarkLength, setRemarkLength] = useState(0)
   useEffect(() => {
     //顯示評論項目文字
-    $('.starrating').on('click', 'input', function(e) {
-      let title = $(e.target)
-        .next('label')
-        .attr('title')
+    $('.starrating').on('click', 'input', function (e) {
+      let title = $(e.target).next('label').attr('title')
       $('.rating-title').text(title)
     })
     //初始化訂單資料
     setComment({
       orderId: props.sOrder[0].orderId,
-      orderStsId: 'o06',
+      orderStsId: 'o04',
       mId: props.sOrder[0].mId,
       sId: props.sOrder[0].sId,
     })
@@ -46,7 +44,7 @@ function ServiceBookingForm(props) {
               name="rating"
               value="5"
               required
-              onClick={e => handleFormValue(e, comment)}
+              onClick={(e) => handleFormValue(e, comment)}
             />
             <label htmlFor="star5" title="非常滿意"></label>
             <input
@@ -55,7 +53,7 @@ function ServiceBookingForm(props) {
               name="rating"
               value="4"
               required
-              onClick={e => handleFormValue(e, comment)}
+              onClick={(e) => handleFormValue(e, comment)}
             />
             <label htmlFor="star4" title="滿意"></label>
             <input
@@ -64,7 +62,7 @@ function ServiceBookingForm(props) {
               name="rating"
               value="3"
               required
-              onClick={e => handleFormValue(e, comment)}
+              onClick={(e) => handleFormValue(e, comment)}
             />
             <label htmlFor="star3" title="普通"></label>
             <input
@@ -73,7 +71,7 @@ function ServiceBookingForm(props) {
               name="rating"
               value="2"
               required
-              onClick={e => handleFormValue(e, comment)}
+              onClick={(e) => handleFormValue(e, comment)}
             />
             <label htmlFor="star2" title="不滿意"></label>
             <input
@@ -82,7 +80,7 @@ function ServiceBookingForm(props) {
               name="rating"
               value="1"
               required
-              onClick={e => handleFormValue(e, comment)}
+              onClick={(e) => handleFormValue(e, comment)}
             />
             <label htmlFor="star1" title="非常不滿意"></label>
             <Form.Control.Feedback type="invalid">
@@ -101,7 +99,7 @@ function ServiceBookingForm(props) {
               required
               maxLength={remarkMaxLengthLimit}
               placeholder={`最多${remarkMaxLengthLimit}個字`}
-              onChange={e => {
+              onChange={(e) => {
                 setRemarkLength(e.target.value.length)
                 handleFormValue(e, comment)
               }}

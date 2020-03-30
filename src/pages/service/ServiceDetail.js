@@ -19,7 +19,7 @@ function ServiceDetail(props) {
   const [rating, setRating] = useState(0) //評價分數
   const [comment, setComment] = useState([]) //狗狗體型(service_comment的資料)
   const [commentTotal, setCommentTotal] = useState(0) //評論數量
-  const [photo, setPhoto] = useState([]) //照片(service_photo的資料)
+  // const [photo, setPhoto] = useState([]) //照片(service_photo的資料)
   const [extra, setExtra] = useState([]) //額外服務(service_extra的資料)
   const [member, setMember] = useState([]) //額外服務(member的資料)
   // const [like, setLike] = useState([]) //收藏資料
@@ -82,49 +82,51 @@ function ServiceDetail(props) {
   }, [])
   return (
     <>
-      {users.length !== 0 ? (
-        <div className="ServiceDetail">
-          <ServiceGoBack prevUrl={`/service/query`} />
-          <Row>
-            <Col lg={4} className="mb-5">
-              {users.map((v, i) => (
-                <ServiceDetailSidebar
-                  sUsers={v}
-                  sUserId={v.id}
-                  sMemberId={props.sMemberId}
-                  sMId={v.mId}
-                  sType={type}
-                  sSize={size}
-                  sExtra={extra}
-                  sRating={rating}
-                  // sLike={like}
-                  sComment={comment}
-                  sCommentTotal={commentTotal}
-                  key={i}
-                />
-              ))}
-            </Col>
-            <Col lg={8}>
-              {users.map((v, i) => (
-                <ServiceDetailMain
-                  sUsers={v}
-                  sMemberId={props.sMemberId}
-                  sMId={v.mId}
-                  // sPhoto={photo}
-                  sExtra={extra}
-                  sRating={rating}
-                  sComment={comment}
-                  sCommentTotal={commentTotal}
-                  sMember={member}
-                  key={i}
-                />
-              ))}
-            </Col>
-          </Row>
-        </div>
-      ) : (
-        <ServiceNoUser />
-      )}
+      <div className="container pt-3 pb-5">
+        {users.length !== 0 ? (
+          <div className="ServiceDetail">
+            <ServiceGoBack prevUrl={`/service/query`} />
+            <Row>
+              <Col lg={4} className="mb-5">
+                {users.map((v, i) => (
+                  <ServiceDetailSidebar
+                    sUsers={v}
+                    sUserId={v.id}
+                    sMemberId={props.sMemberId}
+                    sMId={v.mId}
+                    sType={type}
+                    sSize={size}
+                    sExtra={extra}
+                    sRating={rating}
+                    // sLike={like}
+                    sComment={comment}
+                    sCommentTotal={commentTotal}
+                    key={i}
+                  />
+                ))}
+              </Col>
+              <Col lg={8}>
+                {users.map((v, i) => (
+                  <ServiceDetailMain
+                    sUsers={v}
+                    sMemberId={props.sMemberId}
+                    sMId={v.mId}
+                    // sPhoto={photo}
+                    sExtra={extra}
+                    sRating={rating}
+                    sComment={comment}
+                    sCommentTotal={commentTotal}
+                    sMember={member}
+                    key={i}
+                  />
+                ))}
+              </Col>
+            </Row>
+          </div>
+        ) : (
+          <ServiceNoUser />
+        )}
+      </div>
     </>
   )
 }

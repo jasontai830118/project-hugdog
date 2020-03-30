@@ -121,7 +121,7 @@ const MemberLogin = (props) => {
   return (
     <>
       {localStorage.getItem('mId') === '0' ? (
-        <div className="container">
+        <div className="container Member">
           <div className=" login-container">
             <div className="login">
               <div
@@ -133,7 +133,7 @@ const MemberLogin = (props) => {
                 alt="Background"
                 className="text-center"
               />
-              <hr />
+              <hr className="hrhr" />
               <form>
                 <div class="form-group">
                   <input
@@ -162,24 +162,22 @@ const MemberLogin = (props) => {
                     className="hide active"
                   />
                 </div>
-                <Link class="form-group text-left">
-                  <p>忘記密碼?</p>
-                </Link>
+
                 <br />
                 <Link
                   type="submit"
-                  class="btn btn-primary btn-block login-btn"
+                  class="btn  btn-block login-btn"
                   // to={'/member/'}
                 >
                   登入
                 </Link>
-                <div class="form-group d-flex justify-content-between register">
-                  <div>
-                    <p>還沒有註冊帳號?</p>
-                  </div>
+                <Link class="form-group text-left">
+                  <p className="text-center">忘記密碼??</p>
+                </Link>
+                <div class="form-group d-flex justify-content-center register">
                   <div>
                     <Link class="" to="/register">
-                      <p>立即註冊→</p>
+                      <p>還沒有註冊帳號? 立即註冊→</p>
                     </Link>
                   </div>
                 </div>

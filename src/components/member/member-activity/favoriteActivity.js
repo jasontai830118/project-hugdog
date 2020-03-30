@@ -56,7 +56,7 @@ const ServiceOrder = (props) => {
     }
   }
   return (
-    <div class="tab-content content" id="content2">
+    <div class="tab-content content favoriteActivityContainer" id="content2">
       <div>
         <h3>
           最愛活動

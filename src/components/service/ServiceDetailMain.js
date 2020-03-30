@@ -45,11 +45,11 @@ function ServiceDetailMain(props) {
                   </h4>
                   <hr className="title" />
                   <div className="mb-4">
-                    <h6>
+                    <h6 className="mb-3">
                       {props.sUsers.sYear ? props.sUsers.sYear + '年經驗' : ''}
                     </h6>
-                    <h5>{props.sUsers.sTitle}</h5>
-                    <div>{props.sUsers.sInfo}</div>
+                    <h5 className="mb-3">{props.sUsers.sTitle}</h5>
+                    <div className="user-info">{props.sUsers.sInfo}</div>
                   </div>
                   <div className="mb-4">
                     <h5>額外服務</h5>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router'
-import { Form, Row, Col, Button } from 'react-bootstrap'
+import { Form, Row, Col } from 'react-bootstrap'
 import { AiOutlineExclamationCircle } from 'react-icons/ai'
 import { MdFileUpload } from 'react-icons/md'
 import {
@@ -244,7 +244,7 @@ function ServiceProfileForm(props) {
         reader.readAsDataURL(event.target.files[0])
         $('.avatar-preview .text').hide()
       } else {
-        $('.avatar-preview .text').hide()
+        $('.avatar-preview .text').show()
         SetSelectedSingleFile(null)
       }
     }
