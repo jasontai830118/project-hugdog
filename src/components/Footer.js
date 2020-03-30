@@ -2,10 +2,14 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../images/logo-dark.svg'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
+import { SctollToTop } from '../utils/service/ServiceFunction'
 import $ from 'jquery'
 
 function Footer(props) {
   useEffect(() => {
+    $('body').on('click', '#footerMenu .list-item a', function () {
+      SctollToTop()
+    })
     $('body').on('click', '#footerMenu .header', function () {
       let listItem = $(this).next('.list-item')
       let icon = $(this).find('.icon')
@@ -61,19 +65,16 @@ function Footer(props) {
               </div>
               <ul className="list-item expanded">
                 <li>
-                  <Link to="#">項目1</Link>
+                  <Link to="/service">保姆照顧服務</Link>
                 </li>
                 <li>
-                  <Link to="#">項目2</Link>
+                  <Link to="/service/query">尋找狗狗保姆</Link>
                 </li>
                 <li>
-                  <Link to="#">項目3</Link>
+                  <Link to="/service/apply">成為狗狗保姆</Link>
                 </li>
                 <li>
-                  <Link to="#">項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
+                  <Link to="/service/terms">保姆服務條款</Link>
                 </li>
               </ul>
             </li>

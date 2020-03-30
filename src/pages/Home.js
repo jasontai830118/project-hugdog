@@ -49,9 +49,9 @@ function Home(props) {
   }, [])
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         登入跳出測試
-      </Button>
+      </Button> */}
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Body>
           <ModalHeader></ModalHeader>
