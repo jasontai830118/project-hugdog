@@ -182,24 +182,24 @@ function ActivityMain(props) {
           <div className="col-6 icon_dropdown-menu icon_dropdown-menu2 px-4 pb-4">
             <div className="d-flex justify-content-around">
               <div>
-                <a type="button" onClick={() => handleSearchType('優惠')}>
+                <Link type="button" onClick={() => handleSearchType('優惠')}>
                   優惠活動
-                </a>
+                </Link>
               </div>
               <div className="">
-                <a type="button" onClick={() => handleSearchType('講座')}>
+                <Link type="button" onClick={() => handleSearchType('講座')}>
                   講座活動
-                </a>
+                </Link>
               </div>
               <div className="">
-                <a type="button" onClick={() => handleSearchType('課程')}>
+                <Link type="button" onClick={() => handleSearchType('課程')}>
                   課程活動
-                </a>
+                </Link>
               </div>
               <div className="">
-                <a type="button" onClick={() => handleSearchType('活動')}>
+                <Link type="button" onClick={() => handleSearchType('活動')}>
                   所有活動
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -207,26 +207,15 @@ function ActivityMain(props) {
         <div className="dropdown_menu menu3 row">
           <div className="col-6 icon_dropdown-menu icon_dropdown-menu3 px-4 pb-4">
             <div className="d-flex justify-content-around">
-              <div>
-                <a type="button" onClick={() => handleSearchType('優惠')}>
-                  優惠活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('講座')}>
-                  講座活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('課程')}>
-                  課程活動
-                </a>
-              </div>
-              <div className="">
-                <a type="button" onClick={() => handleSearchType('活動')}>
-                  所有活動
-                </a>
-              </div>
+              <Link>
+                <div className="">台北市</div>
+              </Link>
+              <Link>
+                <div className="">新北市</div>
+              </Link>
+              <Link>
+                <div className="">其他縣市</div>
+              </Link>
             </div>
           </div>
         </div>
