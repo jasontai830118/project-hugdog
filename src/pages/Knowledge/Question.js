@@ -250,7 +250,7 @@ function Question(props) {
                     {props.dogPost &&
                       props.dogPost.map((value, index) => {
                         return (
-                          <option value={value.dId} key={index}>
+                          <option value={value.dYear} key={index}>
                             {value.dName} ／ {value.dYear}歲
                           </option>
                         )

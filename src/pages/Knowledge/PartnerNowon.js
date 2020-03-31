@@ -191,7 +191,7 @@ function PartnerNowon(props) {
                       postPlus()
                       setTimeout(() => {
                         window.location.reload()
-                      }, 900)
+                      }, 1500)
                     }}
                   >
                     我要參加
