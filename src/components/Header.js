@@ -182,12 +182,7 @@ function Header(props) {
                 <FiHeart />
               </IconContext.Provider>
             </Nav.Link>
-            <Nav
-              className="nav-icon order-3 order-md-4"
-              onClick={() => {
-                props.history.push('/cart')
-              }}
-            >
+            <Nav className="nav-icon order-3 order-md-4">
               <div className="nav-link">
                 {JSON.parse(localStorage.getItem('cart')) === null ||
                 JSON.parse(localStorage.getItem('cart')).length === 0 ||
