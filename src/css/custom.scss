@@ -445,40 +445,68 @@ section.body {
           position: relative;
           .title {
             position: absolute;
-            top: 50%;
             display: flex;
             flex-direction: column;
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: bold;
             color: #000000;
             transform: translateY(-50%);
             width: 100%;
-            padding: 0 4rem;
+            padding: 0 3rem;
             .btn {
               align-self: flex-start;
+            }
+          }
+          @media (min-width: 768px) {
+            .title {
+              font-size: 4rem;
             }
           }
         }
         div:nth-child(1) {
           .title {
+            top: 65%;
             .btn {
               align-self: flex-start;
             }
           }
+
+          @media (min-width: 768px) {
+            .title {
+              top: 50%;
+              padding: 0 10rem;
+            }
+          }
         }
+
         div:nth-child(2) {
           .title {
             text-align: right;
+            top: 30%;
             .btn {
               align-self: flex-end;
             }
           }
+
+          @media (min-width: 768px) {
+            .title {
+              top: 50%;
+            }
+          }
         }
+
         div:nth-child(3) {
           .title {
             text-align: right;
+            top: 20%;
             .btn {
               align-self: flex-end;
+            }
+          }
+
+          @media (min-width: 768px) {
+            .title {
+              top: 50%;
             }
           }
         }

@@ -35,25 +35,13 @@ function Footer(props) {
               </div>
               <ul className="list-item expanded">
                 <li>
-                  <Link to="#">項目項目1</Link>
+                  <Link to="#">配送方式</Link>
                 </li>
                 <li>
-                  <Link to="#">項目2</Link>
+                  <Link to="#">退換貨說明</Link>
                 </li>
                 <li>
-                  <Link to="#">項目項目項目3</Link>
-                </li>
-                <li>
-                  <Link to="#">項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
-                </li>
-                <li>
-                  <Link to="#">項目項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
+                  <Link to="#">電子發票託管聲明</Link>
                 </li>
               </ul>
             </li>
@@ -110,34 +98,13 @@ function Footer(props) {
               </div>
               <ul className="list-item expanded">
                 <li>
-                  <Link to="#">項目1</Link>
+                  <Link to="#">網站公告</Link>
                 </li>
                 <li>
-                  <Link to="#">項目2</Link>
+                  <Link to="#">最新優惠活動</Link>
                 </li>
                 <li>
-                  <Link to="#">項目3</Link>
-                </li>
-                <li>
-                  <Link to="#">項目項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目項目5</Link>
-                </li>
-                <li>
-                  <Link to="#">項目1</Link>
-                </li>
-                <li>
-                  <Link to="#">項目2</Link>
-                </li>
-                <li>
-                  <Link to="#">項目項目項目項目項目3</Link>
-                </li>
-                <li>
-                  <Link to="#">項目4</Link>
-                </li>
-                <li>
-                  <Link to="#">項目5</Link>
+                  <Link to="#">當月促銷活動</Link>
                 </li>
               </ul>
             </li>
@@ -149,25 +116,19 @@ function Footer(props) {
               </div>
               <ul className="list-item expanded">
                 <li>
-                  <Link to="#">項目1</Link>
+                  <Link to="#">Blog</Link>
                 </li>
                 <li>
-                  <Link to="#">項目2</Link>
+                  <Link to="#">粉絲專頁</Link>
                 </li>
                 <li>
-                  <Link to="#">項目3</Link>
+                  <Link to="#">服務條款</Link>
                 </li>
                 <li>
-                  <Link to="#">項目項目4</Link>
+                  <Link to="#">隱私權政策</Link>
                 </li>
                 <li>
-                  <Link to="#">項目項目5</Link>
-                </li>
-                <li>
-                  <Link to="#">項目1</Link>
-                </li>
-                <li>
-                  <Link to="#">項目2</Link>
+                  <Link to="#">常見問題</Link>
                 </li>
               </ul>
             </li>
