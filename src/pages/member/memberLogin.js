@@ -121,19 +121,19 @@ const MemberLogin = (props) => {
                   />
                 </figure>
                 <form>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="text"
-                      class="form-control account"
+                      className="form-control account"
                       id="exampleInputAccount1"
                       aria-describedby="accountHelp"
                       placeholder="帳號"
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="password"
-                      class="form-control password"
+                      className="form-control password"
                       id="exampleInputPassword1"
                       placeholder="密碼"
                     />
@@ -158,10 +158,10 @@ const MemberLogin = (props) => {
                   >
                     登入
                   </Button>
-                  <Link class="form-group text-left">
+                  <Link className="form-group text-left">
                     <p className="text-center">忘記密碼??</p>
                   </Link>
-                  <div class="form-group d-flex justify-content-center register">
+                  <div className="form-group d-flex justify-content-center register">
                     <Link className="btn btn-theme btn-block" to="/register">
                       還沒有註冊帳號? 立即註冊
                     </Link>

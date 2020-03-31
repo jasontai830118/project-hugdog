@@ -36,6 +36,12 @@ function ServiceDetailSidebar(props) {
           )
         ).then(() => {
           setLikeSts(0)
+          Swal.fire({
+            title: '已移除收藏',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+          })
         })
       } else {
         //如果尚未加入收藏
@@ -45,6 +51,12 @@ function ServiceDetailSidebar(props) {
           )
         ).then(() => {
           setLikeSts(1)
+          Swal.fire({
+            title: '已加入收藏',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500,
+          })
         })
       }
     } else {

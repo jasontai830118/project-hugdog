@@ -198,15 +198,15 @@ const MemberInfo = (props) => {
                     </button>
                   </Nav>
                 </div>
-                <div class=" wrapper">
-                  <ul class="nav nav-tabs">
-                    <li class="nav-item" id="pokemon1" data-effect="show1">
-                      <Link class="nav-link active" to="#">
+                <div className=" wrapper">
+                  <ul className="nav nav-tabs">
+                    <li className="nav-item" id="pokemon1" data-effect="show1">
+                      <Link className="nav-link active" to="#">
                         個人資訊
                       </Link>
                     </li>
-                    <li class="nav-item" id="pokemon2" data-effect="show2">
-                      <Link class="nav-link" to="#">
+                    <li className="nav-item" id="pokemon2" data-effect="show2">
+                      <Link className="nav-link" to="#">
                         狗狗資訊
                       </Link>
                     </li>

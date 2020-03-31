@@ -104,16 +104,16 @@ function Coupon(props) {
   // if (props.data) console.log(props.data)
   return (
     <>
-      <div class="tab-content content couponListContainer" id="content1">
+      <div className="tab-content content couponListContainer" id="content1">
         <div>
           <h3>
             個人資訊
             <br />
           </h3>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card card-width">
-                <div class="card-body">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="card card-width">
+                <div className="card-body">
                   <form
                     name="myForm"
                     method="POST"

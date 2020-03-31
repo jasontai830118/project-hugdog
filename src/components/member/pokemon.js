@@ -14,30 +14,22 @@ import '../../css/member/pokemon.scss'
 class App extends React.Component {
   componentDidMount() {
     //需要搭配箭頭函式才能使用list
-    $('#close').click(function() {
-      $('.robot-container')
-        .removeClass('appear')
-        .addClass('disappear')
-      $('.check')
-        .removeClass('disappear')
-        .addClass('appear')
+    $('#close').click(function () {
+      $('.robot-container').removeClass('appear').addClass('disappear')
+      $('.check').removeClass('disappear').addClass('appear')
       $('.coupon').css('display', 'none')
       const $src = $('#close').attr('src')
     })
-    $('.check').click(function() {
-      $('.robot-container')
-        .removeClass('disappear')
-        .addClass('appear')
-      $('.check')
-        .removeClass('appear')
-        .addClass('disappear')
+    $('.check').click(function () {
+      $('.robot-container').removeClass('disappear').addClass('appear')
+      $('.check').removeClass('appear').addClass('disappear')
       // $(".coupon").css("display","block")
     })
     // $(function() {
     //   $('.draggable').draggable()
     // })
 
-    $('.robot').click(function() {
+    $('.robot').click(function () {
       // $(".help").toggle("appear")
       $('.coupon').toggle('disappear')
     })
@@ -50,10 +42,10 @@ class App extends React.Component {
     //     $('.box').css('left') +
     //     ')'
     // )
-    $(document).ready(function() {
+    $(document).ready(function () {
       animateDiv()
     })
-    $(document).ready(function() {
+    $(document).ready(function () {
       animateDiv()
     })
 
@@ -81,7 +73,7 @@ class App extends React.Component {
           left: newq[1],
         },
         speed,
-        function() {
+        function () {
           animateDiv()
         }
       )
@@ -135,7 +127,7 @@ class App extends React.Component {
                 <div className="robot" id="robot">
                   <ul className="list-group help">
                     <a href="https://www.google.com.tw/">
-                      <li class="list-group-item active">
+                      <li className="list-group-item active">
                         請問我有什麼可以幫您的嗎?
                       </li>
                     </a>

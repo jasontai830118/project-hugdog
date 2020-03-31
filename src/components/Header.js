@@ -10,7 +10,6 @@ import { IconContext } from 'react-icons'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getDataFromServer, linkTo } from '../utils/service/ServiceFunction'
-var i = parseInt(localStorage.getItem('mId') - 1)
 function Header(props) {
   $('#logout').click(function () {
     // clearAllCookie()

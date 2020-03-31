@@ -304,7 +304,7 @@ const MemberOrderInfo = (props) => {
     // $('footer').removeClass('tr400')
   }
   return (
-    <div class="tab-content content orderListContainer" id="content2">
+    <div className="tab-content content orderListContainer" id="content2">
       <div>
         <h3>
           訂單查詢
@@ -312,11 +312,11 @@ const MemberOrderInfo = (props) => {
         </h3>
         {orderListDetail}
 
-        <div class="row list-container">
-          <div class="col-md-8">
-            <div class="card card-width">
-              <div class="card-body">
-                <table class="table table-striped">
+        <div className="row list-container">
+          <div className="col-md-8">
+            <div className="card card-width">
+              <div className="card-body">
+                <table className="table table-striped">
                   <thead>
                     <tr>
                       <th scope="col">#</th>

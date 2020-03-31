@@ -25,7 +25,7 @@ function ServiceDetailMainComment(props) {
             <div>{moment(props.sComment.created_at).fromNow()}</div>
             <div>{starRating(props.sComment.rating)}</div>
           </div>
-          <div class="text-break">{props.sComment.commentTxt}</div>
+          <div className="text-break">{props.sComment.commentTxt}</div>
         </div>
       </div>
     </li>

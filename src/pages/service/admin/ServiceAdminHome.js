@@ -53,21 +53,21 @@ function ServiceAdminHome(props) {
               <Card.Body>
                 <Row className="mb-3">
                   <Col md="4" className="d-flex align-items-center mb-3">
-                    <div class="bg-danger text-white rounded-circle icon p-3">
+                    <div className="bg-danger text-white rounded-circle icon p-3">
                       <MdLibraryBooks size={24} />
                     </div>
                     <h6 className="ml-2 mb-0">待處理訂單</h6>
                     <h1 className="ml-auto mb-0">{orderO01.length}</h1>
                   </Col>
                   <Col md="4" className="d-flex align-items-center mb-3">
-                    <div class="bg-warning text-white rounded-circle icon p-3">
+                    <div className="bg-warning text-white rounded-circle icon p-3">
                       <MdAttachMoney size={24} />
                     </div>
                     <h6 className="ml-2 mb-0">總收入</h6>
                     <h1 className="ml-auto mb-0">${amt}</h1>
                   </Col>
                   <Col md="4" className="d-flex align-items-center mb-3">
-                    <div class="bg-success text-white rounded-circle icon p-3">
+                    <div className="bg-success text-white rounded-circle icon p-3">
                       <MdComment size={24} />
                     </div>
                     <h6 className="ml-2 mb-0">評論數</h6>

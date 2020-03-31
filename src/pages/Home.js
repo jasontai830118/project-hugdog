@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Card, Modal, Button } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import ModalHeader from 'react-bootstrap/ModalHeader'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import $ from 'jquery'
@@ -211,13 +211,13 @@ function Home(props) {
               <Link type="submit" className="btn btn-theme btn-block login-btn">
                 註冊
               </Link>
-              <Link
+              <button
                 type="button"
                 className="btn btn-light btn-block login-btn"
                 onClick={handleShow}
               >
                 <span className="">返回登入頁</span>
-              </Link>
+              </button>
             </form>
           </div>
         </Modal.Body>
@@ -228,8 +228,8 @@ function Home(props) {
         <div className="js-minicart minicart">
           <div className="position-relative" style={{ height: '100%' }}>
             <div className="mini-content">
-              <div class="mini-cart-head">
-                <Link class="mini-cart-undo close-mini-cart">
+              <div className="mini-cart-head">
+                <Link className="mini-cart-undo close-mini-cart">
                   <IconContext.Provider
                     value={{
                       color: 'black',
@@ -239,18 +239,18 @@ function Home(props) {
                     <IoIosClose />
                   </IconContext.Provider>
                 </Link>
-                <h3 class="title">購物車</h3>
-                <div class="mini-cart-counter">
-                  <span class="cart-counter enj-cartcount">
+                <h3 className="title">購物車</h3>
+                <div className="mini-cart-counter">
+                  <span className="cart-counter enj-cartcount">
                     {JSON.parse(localStorage.getItem('cart')).length}
                   </span>
                 </div>
               </div>
-              <div class="mini-cart-bottom enj-minicart-ajax">
-                <div class="list_product_minicart empty">
-                  <div class="empty-product_minicart">
-                    <p class="mb-0">購物車沒有商品</p>
-                    <Link to="" class="to-cart">
+              <div className="mini-cart-bottom enj-minicart-ajax">
+                <div className="list_product_minicart empty">
+                  <div className="empty-product_minicart">
+                    <p className="mb-0">購物車沒有商品</p>
+                    <Link to="" className="to-cart">
                       <Button variant="theme">前往選購商品</Button>
                     </Link>
                   </div>
@@ -263,8 +263,8 @@ function Home(props) {
         <div className="js-minicart minicart">
           <div className="position-relative" style={{ height: '100%' }}>
             <div className="mini-content">
-              <div class="mini-cart-head">
-                <Link class="mini-cart-undo close-mini-cart">
+              <div className="mini-cart-head">
+                <Link className="mini-cart-undo close-mini-cart">
                   <IconContext.Provider
                     value={{
                       color: 'black',
@@ -274,9 +274,9 @@ function Home(props) {
                     <IoIosClose />
                   </IconContext.Provider>
                 </Link>
-                <h3 class="title">購物車</h3>
-                <div class="mini-cart-counter">
-                  <span class="cart-counter enj-cartcount">
+                <h3 className="title">購物車</h3>
+                <div className="mini-cart-counter">
+                  <span className="cart-counter enj-cartcount">
                     {JSON.parse(localStorage.getItem('cart')).length}
                   </span>
                 </div>
@@ -528,8 +528,8 @@ function Home(props) {
       <div className="js-minicart minicart">
         <div className="position-relative" style={{ height: '100%' }}>
           <div className="mini-content">
-            <div class="mini-cart-head">
-              <Link class="mini-cart-undo close-mini-cart">
+            <div className="mini-cart-head">
+              <Link className="mini-cart-undo close-mini-cart">
                 <IconContext.Provider
                   value={{
                     color: 'black',
@@ -539,9 +539,9 @@ function Home(props) {
                   <IoIosClose />
                 </IconContext.Provider>
               </Link>
-              <h3 class="title">購物車</h3>
-              <div class="mini-cart-counter">
-                <span class="cart-counter enj-cartcount">
+              <h3 className="title">購物車</h3>
+              <div className="mini-cart-counter">
+                <span className="cart-counter enj-cartcount">
                   {/* {JSON.parse(localStorage.getItem('cart')).length} */}5
                 </span>
               </div>
@@ -789,12 +789,12 @@ function Home(props) {
           </div>
         </div>
       </div>
-      <Button variant="primary" onClick={handleShow}>
+      {/* <Button variant="primary" onClick={handleShow}>
         登入跳出測試
       </Button>
       <Button variant="secondary" onClick={handleCartShow}>
         開啟購物車測試
-      </Button>
+      </Button> */}
       <div className="home">
         <div className="carousel">
           <CarouselPage />

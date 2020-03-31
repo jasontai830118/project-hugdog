@@ -63,18 +63,18 @@ const NannyList = (props) => {
     }
   }
   return (
-    <div class="tab-content content LoveNannyList" id="content2">
+    <div className="tab-content content LoveNannyList" id="content2">
       <div>
         <h3>
           保姆訂單查詢
           <br />
         </h3>
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card card-width">
-              <div class="card-body">
+        <div className="row">
+          <div className="col-md-8">
+            <div className="card card-width">
+              <div className="card-body">
                 <form name="myForm" method="POST" enctype="multipart/form-data">
-                  <table class="table table-striped">
+                  <table className="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>

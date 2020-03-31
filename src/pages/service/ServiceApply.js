@@ -52,6 +52,7 @@ function ServiceBooking(props) {
         const location = data
         userData.lat = location.lat
         userData.lng = location.lng
+        console.log(location)
       })
       //完成驗證
       Swal.fire({

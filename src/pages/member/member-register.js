@@ -120,15 +120,15 @@ const MemberRegister = (props) => {
             會員註冊
             <br />
           </h3>
-          <div class="row">
-            <div class="col-md-8">
+          <div className="row">
+            <div className="col-md-8">
               <form>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>姓名</label>
 
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mName"
                     name="mName"
                     // disabled
@@ -136,33 +136,33 @@ const MemberRegister = (props) => {
                     onChange={(e) => getformInfo(e, 'mName')}
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>帳號</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mAccount"
                     name="mAccount"
                     onChange={(e) => getformInfo(e, 'mAccount')}
                     placeholder="請輸入帳號"
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>密碼</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mPassword"
                     name="mPassword"
                     onChange={(e) => getformInfo(e, 'mPassword')}
                     placeholder="請輸入密碼"
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>性別</label>
                   <select
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mGender"
                     name="mGender"
                     onChange={(e) => getformInfo(e, 'mGender')}
@@ -175,7 +175,7 @@ const MemberRegister = (props) => {
 
                   {/* <input
                   type="checkbox"
-                  class="form-control"
+                  className="form-control"
                   id="mGender"
                   name="mGender"
                   onChange={(e) => getformInfo(e, 'mGender')}
@@ -188,44 +188,44 @@ const MemberRegister = (props) => {
                   female
                 </label> */}
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>生日</label>
                   <input
                     type="date"
-                    class="form-control"
+                    className="form-control"
                     id="mBday"
                     name="mBday"
                     onChange={(e) => getformInfo(e, 'mBday')}
                     placeholder="請輸入生日"
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>電話</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mPhone"
                     name="mPhone"
                     onChange={(e) => getformInfo(e, 'mPhone')}
                     placeholder="請輸入電話"
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>信箱</label>
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="mEmail"
                     name="mEmail"
                     onChange={(e) => getformInfo(e, 'mEmail')}
                     placeholder="請輸入信箱"
                   />
                 </div>
-                <div class="form-group d-flex text-container">
+                <div className="form-group d-flex text-container">
                   <label>地址</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="mAddress"
                     name="mAddress"
                     onChange={(e) => getformInfo(e, 'mAddress')}
@@ -235,7 +235,7 @@ const MemberRegister = (props) => {
 
                 <div
                   type="submit"
-                  class="btn btn-primary register_submit pull-right"
+                  className="btn btn-primary register_submit pull-right"
                   onClick={() => {
                     insertMember(memberInfo)
                   }}

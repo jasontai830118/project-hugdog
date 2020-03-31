@@ -70,19 +70,19 @@ function Home(props) {
             </figure>
             <hr />
             <form>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputAccount1"
                   aria-describedby="accountHelp"
                   placeholder="帳號"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="password"
-                  class="form-control position-relative"
+                  className="form-control position-relative"
                   id="exampleInputPassword1"
                   placeholder="密碼"
                 />
@@ -97,15 +97,15 @@ function Home(props) {
                   <AiOutlineEyeInvisible />
                 </IconContext.Provider>
               </div>
-              <Link class="form-group text-left">
+              <Link className="form-group text-left">
                 <p>忘記密碼?</p>
               </Link>
-              <Link type="submit" class="btn btn-theme btn-block login-btn">
+              <Link type="submit" className="btn btn-theme btn-block login-btn">
                 登入
               </Link>
               <Link
                 type="button"
-                class="btn btn-light btn-block login-btn"
+                className="btn btn-light btn-block login-btn"
                 onClick={(handleClose, handleShow2)}
                 // to="/register"
               >
@@ -138,19 +138,19 @@ function Home(props) {
 
             <hr />
             <form>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   id="exampleInputAccount1"
                   aria-describedby="accountHelp"
                   placeholder="信箱"
                 />
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="password"
-                  class="form-control position-relative"
+                  className="form-control position-relative"
                   id="exampleInputPassword1"
                   placeholder="密碼"
                 />
@@ -165,10 +165,10 @@ function Home(props) {
                   <AiOutlineEyeInvisible />
                 </IconContext.Provider>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <input
                   type="password"
-                  class="form-control position-relative"
+                  className="form-control position-relative"
                   id="exampleInputPassword2"
                   placeholder="再次確認密碼"
                 />
@@ -183,15 +183,15 @@ function Home(props) {
                   <AiOutlineEyeInvisible />
                 </IconContext.Provider>
               </div>
-              <Link class="form-group text-left" to="/register">
+              <Link className="form-group text-left" to="/register">
                 <p>前往完整註冊</p>
               </Link>
-              <Link type="submit" class="btn btn-theme btn-block login-btn">
+              <Link type="submit" className="btn btn-theme btn-block login-btn">
                 註冊
               </Link>
               <Link
                 type="button"
-                class="btn btn-light btn-block login-btn"
+                className="btn btn-light btn-block login-btn"
                 onClick={handleShow}
               >
                 <span className="">返回登入頁</span>
