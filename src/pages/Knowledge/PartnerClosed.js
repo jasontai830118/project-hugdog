@@ -59,7 +59,7 @@ function PartnerClosed(props) {
       sAlert()
       setTimeout(() => {
         window.location.reload()
-      }, 1500)
+      }, 2000)
     } else {
       alert('刪除失敗')
     }
