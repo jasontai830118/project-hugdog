@@ -214,22 +214,40 @@ const Checkout = (props) => {
                 id="auto"
                 type="checkbox"
                 label="同會員資訊"
-                onClick={() => {
-                  buyerInfo.lastName = props.detail[0].mName.slice(0, 1)
-                  $('[name=lastName]').val(props.detail[0].mName.slice(0, 1))
-                  buyerInfo.firstName = props.detail[0].mName.slice(1)
-                  $('[name=firstName]').val(props.detail[0].mName.slice(1))
-                  buyerInfo.county = props.detail[0].mAddress.slice(0, 3)
-                  $('[name=county]').val(props.detail[0].mAddress.slice(0, 3))
-                  buyerInfo.address = props.detail[0].mAddress.slice(3)
-                  $('[name=address]').val(props.detail[0].mAddress.slice(3))
-                  //會員資料庫無郵遞區號預設是地址欄位前三個
-                  // buyerInfo.county = props.detail[0].mAddress.slice(0, 3)
-                  // $('[name=zip]').val(props.detail[0].mAddress.slice(0, 3))
-                  buyerInfo.email = props.detail[0].mEmail
-                  $('[name=email]').val(props.detail[0].mEmail)
-                  buyerInfo.mobile = props.detail[0].mPhone
-                  $('[name=mobile]').val(props.detail[0].mPhone)
+                onClick={(e) => {
+                  if ($(e.currentTarget).prop('checked')) {
+                    buyerInfo.lastName = props.detail[0].mName.slice(0, 1)
+                    $('[name=lastName]').val(props.detail[0].mName.slice(0, 1))
+                    buyerInfo.firstName = props.detail[0].mName.slice(1)
+                    $('[name=firstName]').val(props.detail[0].mName.slice(1))
+                    buyerInfo.county = props.detail[0].mAddress.slice(0, 3)
+                    $('[name=county]').val(props.detail[0].mAddress.slice(0, 3))
+                    buyerInfo.address = props.detail[0].mAddress.slice(3)
+                    $('[name=address]').val(props.detail[0].mAddress.slice(3))
+                    //會員資料庫無郵遞區號預設是地址欄位前三個
+                    // buyerInfo.county = props.detail[0].mAddress.slice(0, 3)
+                    // $('[name=zip]').val(props.detail[0].mAddress.slice(0, 3))
+                    buyerInfo.email = props.detail[0].mEmail
+                    $('[name=email]').val(props.detail[0].mEmail)
+                    buyerInfo.mobile = props.detail[0].mPhone
+                    $('[name=mobile]').val(props.detail[0].mPhone)
+                  } else {
+                    buyerInfo.lastName = ''
+                    $('[name=lastName]').val('')
+                    buyerInfo.firstName = ''
+                    $('[name=firstName]').val('')
+                    buyerInfo.county = ''
+                    $('[name=county]').val('')
+                    buyerInfo.address = ''
+                    $('[name=address]').val('')
+                    //會員資料庫無郵遞區號預設是地址欄位前三個
+                    // buyerInfo.county = props.detail[0].mAddress.slice(0, 3)
+                    // $('[name=zip]').val(props.detail[0].mAddress.slice(0, 3))
+                    buyerInfo.email = ''
+                    $('[name=email]').val('')
+                    buyerInfo.mobile = ''
+                    $('[name=mobile]').val('')
+                  }
                 }}
               />
             </div>
