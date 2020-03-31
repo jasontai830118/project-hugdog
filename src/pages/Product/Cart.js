@@ -439,7 +439,7 @@ const Cart = (props) => {
                       // )
 
                       let mmId = $('#coupon').find('option:selected').attr('id')
-                      props.couponId(mmId)
+                      mmId && props.couponId(mmId)
                     }}
                   >
                     <option value="">請選擇</option>
