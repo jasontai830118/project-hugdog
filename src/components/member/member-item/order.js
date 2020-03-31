@@ -132,7 +132,9 @@ const MemberOrderInfo = (props) => {
                         // src={require('../../../images/product/' +
                         //   value.pImg +
                         //   '.jpg')}
-                        src={require('../../../images/product/C1.jpg')}
+                        src={require('../../../images/product/' +
+                          'C1' +
+                          '.jpg')}
                         alt="..."
                       />
                     </Col>
@@ -304,7 +306,7 @@ const MemberOrderInfo = (props) => {
     // $('footer').removeClass('tr400')
   }
   return (
-    <div class="tab-content content orderListContainer" id="content2">
+    <div class="tab-content content orderListContainer" id="content1">
       <div>
         <h3>
           訂單查詢

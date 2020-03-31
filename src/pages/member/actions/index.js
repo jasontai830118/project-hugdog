@@ -93,9 +93,10 @@ export const getMemberDetail = (mId) => {
 export const showDog = (data) => {
   return { type: 'SHOW_DOG', data }
 }
-export const getDogData = () => {
+export const getDogData = (mId) => {
+  mId = localStorage.getItem('mId')
   return async (dispatch) => {
-    const req = new Request(`http://localhost:6001/dog/`, {
+    const req = new Request(`http://localhost:6001/dog/${mId}`, {
       method: 'GET',
       credentials: 'include',
     })

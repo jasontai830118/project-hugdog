@@ -4,8 +4,6 @@ import $ from 'jquery'
 import Swal from 'sweetalert2'
 import { IoMdHeartEmpty, IoMdHeart } from 'react-icons/io'
 import { IconContext } from 'react-icons'
-import Alert from 'react-bootstrap/Alert'
-
 // import { StickyContainer, Sticky } from 'react-sticky'
 
 //引入自己的css
@@ -16,9 +14,11 @@ import Breadcrumb from '../../components/Breadcrumbs'
 function ActivityEvent(props) {
   const [quantity, setQuantity] = useState(1)
   const [data, setData] = useState([])
-
+  const [aleart, setAleart] = useState(false)
   //加入收藏
   const addCollection = () => {
+    Swal.fire('收藏成功', '', 'success')
+
     console.log('加入收藏')
     fetch(`http://localhost:6001/activity_collection/insertCollect/`, {
       method: 'POST',
@@ -44,6 +44,7 @@ function ActivityEvent(props) {
   //取消收藏
   const removeCollection = () => {
     console.log('取消收藏')
+    Swal.fire('成功取消收藏', '', 'success')
     fetch(`http://localhost:6001/activity_collection/deleteCollect/`, {
       method: 'POST',
       headers: {
@@ -143,8 +144,7 @@ function ActivityEvent(props) {
   return (
     <>
       {data.map((v) => (
-        <div className="container activity-class my-3">
-          {/* <Breadcrumb /> */}
+        <div className="container activity-class my-3 ">
           <div className="row mt-3 left-right-container">
             <div className="col-lg-7 class-left">
               <figure className="classPic">
@@ -202,8 +202,8 @@ function ActivityEvent(props) {
                       <option>請選擇活動規格</option>
                       <option>{v.eDate}</option>
                       <option>2020-04-17 (四) 13:00 ~ 15:00</option>
-                      <option>2020-04-17 (四) 13:00 ~ 15:00</option>
-                      <option>2020-04-17 (四) 13:00 ~ 15:00</option>
+                      <option>2020-04-20 (日) 14:30 ~ 17:00</option>
+                      <option>2020-04-22 (二) 13:00 ~ 15:00</option>
                     </select>
                   </div>
                   <div className="quantity">

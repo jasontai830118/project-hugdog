@@ -113,9 +113,9 @@ const Products = (props) => {
 
   return (
     <>
-      <div className="d-flex">
+      <div className="d-md-flex">
         <ReactPlayer
-          className="react-player"
+          className="react-player mx-auto"
           url="https://youtu.be/v73T3eeEcaQ"
           muted
           onReady
@@ -123,7 +123,7 @@ const Products = (props) => {
           loop
         />
         <ReactPlayer
-          className="react-player"
+          className="react-player mx-auto"
           url="https://youtu.be/JaVptISRJVY"
           muted
           onReady
@@ -131,7 +131,7 @@ const Products = (props) => {
           loop
         />
         <ReactPlayer
-          className="react-player"
+          className="react-player mx-auto"
           url="https://youtu.be/SKpH2j6wfqs"
           muted
           onReady

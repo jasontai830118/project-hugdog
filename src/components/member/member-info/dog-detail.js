@@ -62,6 +62,8 @@ const DogInfo = (props) => {
     window.location.replace('http://localhost:3000/member/member-info')
   }
   console.log(props.data)
+  console.log('dName: ', dNamedefault)
+  console.log('dGender: ', dGenderdefault)
   useEffect(() => setDName(dNamedefault), [dNamedefault])
 
   useEffect(() => setDImg(dImgdefault), [dImgdefault])
@@ -98,7 +100,9 @@ const DogInfo = (props) => {
       $(this).find('a').addClass('active')
     })
   }, [])
-
+  console.log(props.data)
+  console.log('dName: ', dNamedefault)
+  console.log('dGender: ', dGenderdefault)
   return (
     <div class="tab-content content container" id="content1">
       <div>

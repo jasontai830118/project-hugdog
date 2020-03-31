@@ -19,7 +19,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import '../../../css/member/member-info.scss'
 
-const Cart = props => {
+const Cart = (props) => {
   //狗狗基本資料
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -69,7 +69,7 @@ const Cart = props => {
     let newMycartDisplay = []
     for (let i = 0; i < mycart.length; i++) {
       const index = newMycartDisplay.findIndex(
-        item => item.pId === mycart[i].pId
+        (item) => item.pId === mycart[i].pId
       )
       if (index !== -1) {
         newMycartDisplay[index].pQuantity += mycart[i].pQuantity
@@ -82,7 +82,7 @@ const Cart = props => {
   }, [mycart])
 
   //計算總價
-  const sum = items => {
+  const sum = (items) => {
     let total = 0
     for (let i = 0; i < items.length; i++) {
       total += items[i].pQuantity * items[i].pPrice
@@ -111,9 +111,13 @@ const Cart = props => {
                             <>
                               <h3>購物車內沒有任何商品</h3>
                               <hr />
-                              <img src="#" alt="..." />
+
                               <Link to="/products">
-                                <Button variant="primary" size="md">
+                                <Button
+                                  variant="primary"
+                                  size="md"
+                                  className="pull-right"
+                                >
                                   前往選購
                                 </Button>
                               </Link>
@@ -150,7 +154,7 @@ const Cart = props => {
                                 <Button
                                   className="border-dark bg-light text-dark"
                                   id="-"
-                                  onClick={e => {
+                                  onClick={(e) => {
                                     updateQuantityToLocalStorage(e, index, 1)
                                   }}
                                 >
@@ -166,7 +170,7 @@ const Cart = props => {
                                 <Button
                                   className="border-dark bg-light text-dark"
                                   id="+"
-                                  onClick={e => {
+                                  onClick={(e) => {
                                     updateQuantityToLocalStorage(e, index, 1)
                                   }}
                                 >
@@ -234,10 +238,8 @@ const Cart = props => {
                         <Col md={{ offset: 6 }}>
                           <Button
                             className="bg-transparent border-0 text-dark p-0"
-                            onClick={e => {
-                              $('#coupon')
-                                .toggle()
-                                .focus()
+                            onClick={(e) => {
+                              $('#coupon').toggle().focus()
                               if ($(e.target).hasClass('text-dark')) {
                                 $(e.target)
                                   .removeClass('text-dark')
@@ -291,13 +293,13 @@ const Cart = props => {
     </div>
   )
 }
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
     list: store.getProducts,
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ getProducts }, dispatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart))

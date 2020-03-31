@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import $ from 'jquery'
+import Swal from 'sweetalert2'
 //redux
 import { connect } from 'react-redux'
 //action
@@ -60,7 +61,7 @@ const MemberInfo = (props) => {
       mAddress,
     }
     props.updateServerMember(memberInfo)
-    alert('更新成功')
+    Swal.fire('修改成功!!', '', 'success')
   }
   //寫入會員資訊
   // function getformInfo(e, info) {
@@ -185,6 +186,7 @@ const MemberInfo = (props) => {
                             name="dId"
                             value={mId}
                             class="form-control"
+                            disabled
                           />
                         </td>
                       </tr>

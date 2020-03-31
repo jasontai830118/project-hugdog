@@ -29,7 +29,7 @@ class App extends React.Component {
     //   $('.draggable').draggable()
     // })
 
-    $('.robot').click(function () {
+    $('.robot').dblclick(function () {
       // $(".help").toggle("appear")
       $('.coupon').toggle('disappear')
     })

@@ -31,7 +31,7 @@ function QuestionArt(props) {
   } else if (props.data.qType === '7') {
     showQuestionType = '搔抓身體'
   } else if (props.data.qType === '8') {
-    showQuestionType = '身體出現分泌物'
+    showQuestionType = '身體出現腫脹'
   } else if (props.data.qType === '9') {
     showQuestionType = '呼吸困難'
   } else if (props.data.qType === '10') {
@@ -67,7 +67,7 @@ function QuestionArt(props) {
   //刪除發問
   async function deleteQuestion() {
     let id = props.data.id
-    console.log('name', id)
+    // console.log('name', id)
     const req = new Request(
       `http://localhost:6001/knowledge/question/del/${id}`,
       {
@@ -79,6 +79,7 @@ function QuestionArt(props) {
     const data = await res.json()
     if (data.success) {
       alert('成功刪除')
+      window.location.reload()
     } else {
       alert('刪除失敗')
     }
@@ -97,7 +98,7 @@ function QuestionArt(props) {
               <Image
                 className="questionImg m-1"
                 src={require('../../images/knowledge/question/' +
-                  props.data.qId +
+                  props.data.mId +
                   '.jpg')}
                 alt=""
                 roundedCircle

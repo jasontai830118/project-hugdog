@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import $ from 'jquery'
+import Swal from 'sweetalert2'
 //redux
 import { connect } from 'react-redux'
 //action
@@ -97,6 +98,7 @@ const MemberRegister = (props) => {
       const res = await fetch(req)
       const order = await res.json()
       await console.log(order)
+      Swal.fire('註冊成功!!', '即將跳轉登入頁', 'success')
       window.location.replace('http://localhost:3000/login/', 2000)
     }
     return true

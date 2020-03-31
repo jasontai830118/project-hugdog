@@ -163,49 +163,6 @@ function Question(props) {
     await console.log(order)
   }
 
-  //
-
-  // //選項
-  // const optionType = new Array()
-  // optionType[0] = new Array()
-  // optionType[a] = new Array()
-  // optionType[b] = new Array()
-  // optionType[c] = new Array()
-  // optionType[0][0] = '請選擇類型'
-  // optionType[a][0] = '請選擇類型'
-  // optionType[a][1] = '過度舔毛'
-  // optionType[a][2] = '排泄異常'
-  // optionType[a][3] = '顫抖'
-  // optionType[a][4] = '攻擊'
-  // optionType[b][0] = '請選擇類型'
-  // optionType[b][5] = '食慾精神不振'
-  // optionType[b][6] = '嘔吐'
-  // optionType[b][7] = '搔抓身體'
-  // optionType[b][8] = '身體出現分泌物'
-  // optionType[b][9] = '呼吸困難'
-  // optionType[b][18] = '其他'
-  // optionType[a][18] = '其他'
-  // optionType[c][0] = '請選擇類型'
-  // optionType[c][10] = '鮮食調理'
-  // optionType[c][11] = '乾糧餵食'
-  // optionType[c][12] = '罐頭主食/副食'
-  // optionType[c][13] = '幼貓飲食'
-  // optionType[c][14] = '成貓飲食'
-  // optionType[c][15] = '高齡貓飲食'
-  // optionType[c][16] = '營養品與處方'
-  // optionType[c][17] = '食物中毒'
-  // optionType[c][18] = '其他'
-  // function ChangeType() {
-  //   var i, iClassify
-  //   iClassify = document.frm.optClassify.selectedIndex
-  //   iType = 0
-  //   while (optionType[iClassify][iType] != null) iType++
-  //   document.frm.optClassify.length = iType
-  //   for (i = 0; i <= iType - 1; i++)
-  //     document.frm.optClassify[i] = new Option(optionType[iClassify][i])
-  //   document.frm.optClassify.focus()
-  // }
-
   return (
     <>
       <div className="knowledgebanner"></div>
@@ -330,7 +287,15 @@ function Question(props) {
                       required
                     >
                       <option value="">請選擇類型</option>
-                      <option value="a">行為</option>
+                      <option value="7">搔抓身體</option>
+                      <option value="11">乾糧餵食</option>
+                      <option value="12">罐頭主食/副食</option>
+                      <option value="13">幼貓飲食</option>
+                      <option value="14">成貓飲食</option>
+                      <option value="15">高齡貓飲食</option>
+                      <option value="16">食物中毒</option>
+                      <option value="17">營養品與處方</option>
+                      <option value="18">其他</option>
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>

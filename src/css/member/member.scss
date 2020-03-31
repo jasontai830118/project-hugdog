@@ -9,6 +9,9 @@
   .member-sidebar-RWD {
     display: none;
   }
+  .member-form-container {
+    display: flex;
+  }
   @media screen and (max-width: 1000px) {
     .member-sidebar {
       display: none;
@@ -20,14 +23,19 @@
       margin-bottom: 50px;
     }
     .member-form-container {
-      display: inline;
+      display: table-row;
+    }
+    .member-form-2 {
+      display: table-row;
+      transform: translateX(40px);
     }
   }
   .member-bg {
     max-width: 1920px;
     height: 674px;
     background-size: cover;
-    background: url(../../images/member/member-bg.png) center center;
+
+    background: url(../../images/member/memberBanner1.jpg) center center;
     // opacity: 70%;
     text-align: center;
     margin-bottom: 80px;
@@ -48,13 +56,15 @@
     z-index: 5;
     margin: 0 auto;
     float: none;
-    transform: translateY(107px) scale(0.8);
+    // transform: translateY(107px) scale(0.8);
+    transform: translate(-15px, 230px) scale(0.6);
 
     img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
+      // transform: rotate(60deg);
     }
   }
 
@@ -111,7 +121,7 @@
 
       /* list-style: url(../../images/member/paws-s.png); */
       list-style: none;
-      transform: translateX(-30px);
+      transform: translate(-30px, -10px);
 
       li {
         height: 37px;
@@ -123,9 +133,10 @@
     height: 50px;
     // border-bottom: 1px black solid;
     background: #eeeeee;
-    border-radius: 10px 10px 0 0;
+    border-radius: 30px 30px 0 0;
     line-height: 50px;
     font-size: 20px;
+    border: 1px solid #eeeeee;
 
     p {
       transform: translateX(20px);
@@ -143,10 +154,18 @@
 
 /* member-info */
 .full-body {
-  background: #fffcf0;
+  // background: #fffcf0;
   margin: 0;
 }
 .fastLogin {
   text-align: center;
   transform: translate(500px, 350px);
+}
+.member-form {
+  border: 1px solid #eeeeee;
+  box-shadow: 5px 5px 5px rgb(223, 223, 223);
+}
+.member-form:hover {
+  transform: scale(1.1);
+  transition: 0.4;
 }

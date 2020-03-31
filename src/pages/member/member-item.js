@@ -138,12 +138,12 @@ const MemberInfo = (props) => {
             <ul class="nav nav-tabs">
               <li class="nav-item" id="pokemon1" data-effect="show1">
                 <Link class="nav-link active" to="#">
-                  我的優惠
+                  我的訂單
                 </Link>
               </li>
               <li class="nav-item" id="pokemon2" data-effect="show2">
                 <Link class="nav-link" to="#">
-                  我的訂單
+                  我的優惠
                 </Link>
               </li>
               <li class="nav-item" id="pokemon3" data-effect="show3">

@@ -104,10 +104,10 @@ function Coupon(props) {
   // if (props.data) console.log(props.data)
   return (
     <>
-      <div class="tab-content content couponListContainer" id="content1">
+      <div class="tab-content content couponListContainer" id="content2">
         <div>
           <h3>
-            個人資訊
+            我的優惠
             <br />
           </h3>
           <div class="row">

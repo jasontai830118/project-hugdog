@@ -63,9 +63,9 @@ function Member() {
                   alt="Background"
                 ></img>
               </div>
-              <div className="head-text">
+              {/* <div className="head-text">
                 {localStorage.getItem('mName')}，歡迎使用HugDog會員頁面
-              </div>
+              </div> */}
             </div>
             <div className="full-body">
               <div className="member-content d-flex row ">
@@ -134,8 +134,8 @@ function Member() {
                   </Nav>
                 </div>
 
-                <div className="member-form-container d-flex container">
-                  <div>
+                <div className="member-form-container  container">
+                  <div className="member-form-2">
                     <div className="member-form">
                       <div className="title-box">
                         <p>個人資訊</p>
@@ -188,7 +188,7 @@ function Member() {
                       </ul>
                     </div>
                   </div>
-                  <div>
+                  <div className="member-form-2">
                     <div className="member-form">
                       <div className="title-box">
                         <p>服務查詢</p>
@@ -240,7 +240,7 @@ function Member() {
           </div>
         </Switch>
       )}
-      <Pokemon />
+      {localStorage.getItem('mId') === '0' ? '' : <Pokemon />}
     </>
   )
 }

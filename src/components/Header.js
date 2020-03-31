@@ -161,6 +161,9 @@ function Header(props) {
                     登出
                   </Link>
                 )}
+                <Link to="/member" className="dropdown-item nav-link">
+                  會員首頁
+                </Link>
                 {localStorage.getItem('mId') === '0' ? (
                   ''
                 ) : (
@@ -168,13 +171,6 @@ function Header(props) {
                     優惠券
                   </Link>
                 )}
-                <Link to="/member" className="dropdown-item nav-link">
-                  會員頁測試
-                </Link>
-                <div className="dropdown-divider" role="separator"></div>
-                <Link to="#" className="dropdown-item nav-link">
-                  連結3
-                </Link>
               </div>
             </div>
             <Nav.Link
