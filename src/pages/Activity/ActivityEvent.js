@@ -237,7 +237,7 @@ function ActivityEvent(props) {
                           +
                         </button>
                         <div className="ml-2 d-flex align-items-center">
-                          部份規格剩最後 <span>1</span> 個名額
+                          {/* 部份規格剩最後 <span>1</span> 個名額 */}
                         </div>
                       </div>
                     </div>

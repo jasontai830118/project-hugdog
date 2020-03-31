@@ -810,7 +810,7 @@ function Home(props) {
                   />
                 </figure>
                 <div className="collection-info1">
-                  <h3 className="">Fall Apparel</h3>
+                  <h3 className="">特色有機零嘴</h3>
                   <div className="">
                     <button type="button" className="btn btn-outline-theme1">
                       立即選購
@@ -826,7 +826,7 @@ function Home(props) {
                   />
                 </figure>
                 <div className="collection-info2">
-                  <h3 className="">Fall Apparel</h3>
+                  <h3 className="">時尚秋冬新裝</h3>
                   <div className="">
                     <button type="button" className="btn btn-outline-theme1">
                       立即選購
@@ -985,14 +985,14 @@ function Home(props) {
       </div>
       <div className="container home2 mb-4">
         <div className="">
-          <h3 className="text-center mb-4">Pet Supplies</h3>
+          <h3 className="text-center mb-4">寵物用品分類</h3>
           <div className="row pet-supplies d-flex justify-content-between">
             <div className="col-12 col-sm-12 col-md-6">
               <figure className="supply supply1 position-relative">
                 <img src={require('../images/index/sup1.jpg')} alt="" />
               </figure>
               <div className="supply-info">
-                <h2 className="text-center">PARK TIME</h2>
+                <h2 className="text-center">個性商品</h2>
                 <div className="">
                   <button type="button" className="btn btn-outline-theme1">
                     立即前往選購
@@ -1005,7 +1005,7 @@ function Home(props) {
                 <img src={require('../images/index/sup2.jpg')} alt="" />
               </figure>
               <div className="supply-info">
-                <h2 className="text-center">LEAD ME</h2>
+                <h2 className="text-center">戶外活動</h2>
                 <div className="">
                   <button type="button" className="btn btn-outline-theme1">
                     立即前往選購
@@ -1018,7 +1018,7 @@ function Home(props) {
                 <img src={require('../images/index/sup8.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>PARK TIME</h2>
+                <h2>玩樂時光</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -1033,7 +1033,7 @@ function Home(props) {
                 <img src={require('../images/index/sup7.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>PARK TIME</h2>
+                <h2>吃得健康</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -1048,7 +1048,7 @@ function Home(props) {
                 <img src={require('../images/index/sup13.jpg')} alt="" />
               </figure>
               <div className="supply-info-top">
-                <h2>PARK TIME</h2>
+                <h2>時尚新裝</h2>
               </div>
               <div className="supply-info2">
                 <div className="">
@@ -1060,7 +1060,7 @@ function Home(props) {
             </div>
           </div>
         </div>
-        <h3 className="text-center my-4">Our Blog</h3>
+        <h3 className="text-center my-4">知識專欄</h3>
         <div className="row blog-card">
           <div className="col-md-4">
             <Link>
@@ -1077,13 +1077,15 @@ function Home(props) {
                 <span className="ml-2 text-muted card-date">2020-02-22</span>
               </figure>
               <h5 className="card-title mt-2">
-                毛孩有口臭並不是理所當然，該重視口腔保健了！
+                破除迷思系列：散步對狗狗來說只是消耗體力？
               </h5>
               <p>
-                口腔問題大概是最常被獸醫師提起的犬貓疾病之一，
-                原因在於很多毛爸媽都以為口臭是自然而然產生的。
+                只要一拿出牽繩，狗狗就會興奮得狂跳，
+                究竟為什麼狗狗這麼喜歡散步呢？ 散步對牠們又有什麼好處？
               </p>
-              <Link>閱讀更多</Link>
+              <Link>
+                <div className="text-right">閱讀更多</div>
+              </Link>
             </div>
           </div>
           <div className="col-md-4">
@@ -1107,7 +1109,9 @@ function Home(props) {
                 口腔問題大概是最常被獸醫師提起的犬貓疾病之一，
                 原因在於很多毛爸媽都以為口臭是自然而然產生的。
               </p>
-              <Link>閱讀更多</Link>
+              <Link>
+                <div className="text-right">閱讀更多</div>
+              </Link>
             </div>
           </div>
           <div className="col-md-4">
@@ -1125,11 +1129,11 @@ function Home(props) {
                 <span className="ml-2 text-muted card-date">2020-02-22</span>
               </figure>
               <h5 className="card-title mt-2">
-                毛孩有口臭並不是理所當然，該重視口腔保健了！
+                入冬警報！別輕忽毛孩關節照護｜愛犬健康談
               </h5>
               <p>
-                口腔問題大概是最常被獸醫師提起的犬貓疾病之一，
-                原因在於很多毛爸媽都以為口臭是自然而然產生的。
+                人類飽受關節炎之苦， 毛孩又何嘗不是？只是牠們無法表達而已。
+                一般常認為這是動物老化後無法避免的情況， 所以經常被忽略。
               </p>
               <Link>
                 <div className="text-right">閱讀更多</div>
