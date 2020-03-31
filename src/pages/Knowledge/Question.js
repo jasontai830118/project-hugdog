@@ -333,19 +333,21 @@ function Question(props) {
         </div>
         <div>
           <Row>
-            <Col xs={12} md={12}>
-              <Row xs={12} md={6} className="justify-content-right">
+            <Col>
+              <Row>
                 {props.post &&
                   props.post.map((value, index) => {
                     if (classify) {
                       if (props.post[index].qClassify === classify) {
                         return (
-                          <QuestionArt
-                            key={index}
-                            data={props.post[index]}
-                            changeClassify={props.post.qClassify}
-                            r={setReShowow}
-                          />
+                          <div className="col-md-6">
+                            <QuestionArt
+                              key={index}
+                              data={props.post[index]}
+                              changeClassify={props.post.qClassify}
+                              r={setReShowow}
+                            />
+                          </div>
                         )
                       }
                     } else {
