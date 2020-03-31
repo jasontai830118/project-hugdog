@@ -24,40 +24,13 @@ function PartnerClosed(props) {
     console.log('mm', props.plus)
   }, [])
 
-  const clickOpen = () => {
-    if (localStorage.getItem('mId') && localStorage.getItem('mId') !== '0') {
-      setOpen(true)
-    } else {
-      return mAlert()
-    }
-  }
-
   //sweetalert
   const Swal = require('sweetalert2')
-  function mAlert() {
-    Swal.fire({
-      icon: 'warning',
-      title: '尚未登入',
-    }).then(function () {
-      window.location.href = '/login'
-    })
-  }
   function sAlert() {
     Swal.fire({
-      title: '確定取消?',
+      title: '完成取消',
       icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: '確定',
-      cancleButtonText: '取消',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          icon: 'warning',
-          title: '已刪除',
-        })
-      }
     })
   }
   //設定加入最愛
@@ -129,7 +102,9 @@ function PartnerClosed(props) {
                       <Card.Img
                         className="partnerImg"
                         variant="top"
-                        src={require('../../images/knowledge/partner/p001.jpg')}
+                        src={require('../../images/knowledge/partner/' +
+                          value.pId +
+                          '.jpg')}
                         alt=""
                       />
                     </div>

@@ -163,24 +163,40 @@ function PartnerNowon(props) {
             </Col>
             <Col className="">
               <div className="text-right align-items-end justify-content-end mt-2 d-flex">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  aria-controls="example-collapse-text"
-                  aria-expanded
-                  className="mr-2"
-                  onClick={(e) => {
-                    if (localStorage.mId !== props.data.mId) {
-                      mAlert()
-                      $(e.currentTarget).addClass('disabled').text('已報名')
-                    } else {
-                      sAlert()
-                    }
-                    postPlus()
-                  }}
-                >
-                  我要參加
-                </Button>
+                {props.data.pNumberLimit == props.data.pNumber ? (
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    aria-controls="example-collapse-text"
+                    aria-expanded
+                    className="mr-2"
+                    disabled
+                  >
+                    已滿團
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    aria-controls="example-collapse-text"
+                    aria-expanded
+                    className="mr-2"
+                    onClick={(e) => {
+                      if (localStorage.mId !== props.data.mId) {
+                        mAlert()
+                        $(e.currentTarget).addClass('disabled').text('已報名')
+                      } else {
+                        sAlert()
+                      }
+                      postPlus()
+                      setTimeout(() => {
+                        window.location.reload()
+                      }, 900)
+                    }}
+                  >
+                    我要參加
+                  </Button>
+                )}
 
                 {/* <Button
                   type="submit"

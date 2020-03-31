@@ -90,7 +90,7 @@ function QuestionArt(props) {
 
   return (
     <>
-      <Col>
+      <Col className="questionArt">
         {/* <div className="bg-light p-1 m-1"> */}
         <div className="mb-3 mt-2 bg-light p-3" style={{ width: '33rem' }}>
           <div className="d-flex">
