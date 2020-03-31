@@ -41,44 +41,48 @@ function ServiceAdminProfile(props) {
       //-----取得座標位置-----
       Promise.resolve(
         getGoogleMapLocation(userData.sCity, userData.sDist, userData.sAddr)
-      ).then((data) => {
-        const location = data
-        userData.lat = location.lat
-        userData.lng = location.lng
-      })
-      //完成驗證
-      Swal.fire({
-        title: '確認更新資料?',
-        text: '確認後將更新保姆資料',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#cea160',
-        cancelButtonColor: '#8f8f8f',
-        confirmButtonText: '確認',
-        cancelButtonText: '返回',
-      }).then((result) => {
-        if (result.value) {
-          //子元件回傳的資料並傳送
-          fetch('http://localhost:6001/service/user/edit/' + userData.id, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-          })
-            .then((r) => r.json())
-            .then((obj) => {
-              console.log(obj)
-              //回饋訊息
-              Swal.fire({
-                title: '更新成功',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 1500,
+      )
+        .then((data) => {
+          const location = data
+          userData.lat = location.lat
+          userData.lng = location.lng
+          console.log(location)
+        })
+        .then(() => {
+          //完成驗證
+          Swal.fire({
+            title: '確認更新資料?',
+            text: '確認後將更新保姆資料',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#cea160',
+            cancelButtonColor: '#8f8f8f',
+            confirmButtonText: '確認',
+            cancelButtonText: '返回',
+          }).then((result) => {
+            if (result.value) {
+              //子元件回傳的資料並傳送
+              fetch('http://localhost:6001/service/user/edit/' + userData.id, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
               })
-            })
-        }
-      })
+                .then((r) => r.json())
+                .then((obj) => {
+                  console.log(obj)
+                  //回饋訊息
+                  Swal.fire({
+                    title: '更新成功',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500,
+                  })
+                })
+            }
+          })
+        })
       return false
     }
   }
