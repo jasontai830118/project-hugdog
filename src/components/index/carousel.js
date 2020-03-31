@@ -30,7 +30,7 @@ const CarouselPage = () => {
   const [isHover, setIsHover] = useState(false)
   const [data, setData] = useState([
     {
-      text: '保姆照顧服務',
+      text: '狗狗保姆服務',
       src: '/service',
       btnText: '去看看',
     },
