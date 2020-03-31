@@ -20,12 +20,12 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 //action
 import { bindActionCreators } from 'redux'
-import { getPartner } from './actions/index'
+import { getPartner, getPartnerPlus } from './actions/index'
 import { getMemberDetail } from '../member/actions/index'
 import '../../components/Knowledge/knowledge.scss'
 
 import PartnerNowon from './PartnerNowon'
-
+import PartnerClosed from './PartnerClosed'
 // import { Container } from 'react-bootstrap/lib/Tab'
 
 function Partner(props) {
@@ -334,8 +334,15 @@ function Partner(props) {
                   })}
               </Col>
             </Tab>
-            <Tab eventKey="Closed" title="預告">
-              <Row></Row>
+            <Tab eventKey="Closed" title="已報名">
+              <Col xs={12} className="justify-content-center mb-2">
+                <PartnerClosed />
+              </Col>
+            </Tab>
+            <Tab eventKey="" title="我的收藏">
+              <Col xs={12} className="justify-content-center mb-2">
+                ) })}
+              </Col>
             </Tab>
           </Tabs>
         </div>
@@ -345,9 +352,16 @@ function Partner(props) {
 }
 
 const mapStateToProps = (store) => {
-  return { post: store.getPartner, mPost: store.getMemberDetail }
+  return {
+    post: store.getPartner,
+    mPost: store.getMemberDetail,
+    plus: store.getPartnerPlus,
+  }
 }
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getPartner, getMemberDetail }, dispatch)
+  return bindActionCreators(
+    { getPartner, getMemberDetail, getPartnerPlus },
+    dispatch
+  )
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Partner))

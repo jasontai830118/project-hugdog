@@ -21,10 +21,23 @@ import MemberActivity from './member-activity'
 import Pokemon from '../../components/member/pokemon'
 
 function Member() {
+  if (
+    localStorage.getItem('mImg') === null ||
+    localStorage.getItem('mImg') === ''
+  ) {
+    localStorage.setItem('mImg', 'm300')
+  }
   return (
     <>
       {localStorage.getItem('mId') === '0' ? (
-        <h1>請登入</h1>
+        <div className="d-flex">
+          <img
+            // src={require('../../images/member/member-img/m004.jpg')}
+            src={require('../../images/member/nologin.png')}
+            alt="Background"
+          ></img>
+          <h1 className="fastLogin">趕緊去登入</h1>
+        </div>
       ) : (
         <Switch>
           <Route path="/member/member-info">
@@ -227,7 +240,7 @@ function Member() {
           </div>
         </Switch>
       )}
-      {/* <Pokemon /> */}
+      <Pokemon />
     </>
   )
 }

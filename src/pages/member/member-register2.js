@@ -16,7 +16,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
 import MemberSidebar from '../../components/member/member-sidebar'
-const MemberRegister = (props) => {
+const MemberRegister = props => {
   //會員註冊資訊
   const memberInfo = {
     mName: '',
@@ -79,109 +79,109 @@ const MemberRegister = (props) => {
   return (
     <>
       <div className="container">
-        <div className="tab-content content" id="content1">
+        <div class="tab-content content" id="content1">
           <div>
             <h3>
               會員註冊
               <br />
             </h3>
-            <div className="row">
-              <div className="col-md-8">
-                <div className="card card-width">
-                  <div className="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card card-width">
+                  <div class="card-body">
                     <form>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>姓名</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mName"
                           name="mName"
                           placeholder="請輸入姓名"
-                          onChange={(e) => getformInfo(e, 'mName')}
+                          onChange={e => getformInfo(e, 'mName')}
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>帳號</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mAccount"
                           name="mAccount"
-                          onChange={(e) => getformInfo(e, 'mAccount')}
+                          onChange={e => getformInfo(e, 'mAccount')}
                           placeholder="請輸入帳號"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>密碼</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mPassword"
                           name="mPassword"
-                          onChange={(e) => getformInfo(e, 'mPassword')}
+                          onChange={e => getformInfo(e, 'mPassword')}
                           placeholder="請輸入密碼"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>性別</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mGender"
                           name="mGender"
-                          onChange={(e) => getformInfo(e, 'mGender')}
+                          onChange={e => getformInfo(e, 'mGender')}
                           placeholder="請選擇性別"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>生日</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mBday"
                           name="mBday"
-                          onChange={(e) => getformInfo(e, 'mBday')}
+                          onChange={e => getformInfo(e, 'mBday')}
                           placeholder="請輸入生日"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>電話</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mPhone"
                           name="mPhone"
-                          onChange={(e) => getformInfo(e, 'mPhone')}
+                          onChange={e => getformInfo(e, 'mPhone')}
                           placeholder="請輸入電話"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>信箱</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mEmail"
                           name="mEmail"
-                          onChange={(e) => getformInfo(e, 'mEmail')}
+                          onChange={e => getformInfo(e, 'mEmail')}
                           placeholder="請輸入信箱"
                         />
                       </div>
-                      <div className="form-group">
+                      <div class="form-group">
                         <label>地址</label>
                         <input
                           type="text"
-                          className="form-control"
+                          class="form-control"
                           id="mAddress"
                           name="mAddress"
-                          onChange={(e) => getformInfo(e, 'mAddress')}
+                          onChange={e => getformInfo(e, 'mAddress')}
                           placeholder="請輸入地址"
                         />
                       </div>
 
                       <button
                         type="submit"
-                        className="btn btn-primary"
+                        class="btn btn-primary"
                         onClick={() => {
                           insertMember(memberInfo)
                         }}
@@ -204,10 +204,10 @@ const MemberRegister = (props) => {
     </>
   )
 }
-const mapStateToProps = (store) => {
+const mapStateToProps = store => {
   return { data: store.getMember }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getMemberData }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MemberRegister)

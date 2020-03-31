@@ -13,18 +13,18 @@ export default function Component1() {
       {(props) => (
         <div style={props} className="">
           <div style={c1Style}>
-            {/* <img
+            <img
               src={require('../../../images/activity/activity-banner.png')}
               alt=""
-              className="img-fluid"
-            /> */}
-            <h1>Component 1</h1>
+              className=""
+            />
+            {/* <h1>Component 1</h1>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus
               nobis adipisci eum minima deserunt at porro, veritatis officia
               commodi itaque voluptates vel suscipit assumenda soluta ipsa
               voluptatibus laudantium labore harum?
-            </p>
+            </p> */}
             {/* <Spring
               from={{ number: 0 }}
               to={{ number: 10 }}
@@ -45,16 +45,10 @@ export default function Component1() {
 
 const c1Style = {
   //backgroundImage: 'url(../../../images/activity/activity-banner.png)',
-  background: 'steelblue',
+  background: '#e0e0e0',
   color: 'white',
-  padding: '1.5rem',
-  height: '50vh',
-}
-
-const counter = {
-  background: '#333',
-  textAlign: 'center',
-  width: '100px',
-  borderRadius: '50%',
-  margin: '1rem auto',
+  display: 'flex',
+  justifyContent: 'center',
+  // padding: '1.5rem',
+  // height: '50vh',
 }

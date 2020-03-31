@@ -16,7 +16,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import '../../../css/member/member-info.scss'
 
-const MemberOrderInfo = (props) => {
+const MemberOrderInfo = props => {
   //狗狗基本資料
   // var mId = []
   // var j = parseInt(localStorage.getItem('mId') - 1)
@@ -39,77 +39,77 @@ const MemberOrderInfo = (props) => {
   }, [])
 
   return (
-    <div className="tab-content content" id="content2">
+    <div class="tab-content content" id="content2">
       <div>
         <h3>
           訂單查詢
           <br />
         </h3>
-        <div className="row">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <form
                   name="myForm"
                   method="POST"
                   action="dog-updateEdit.php"
                   enctype="multipart/form-data"
                 >
-                  <table className="table table-borderless">
+                  <table class="table table-borderless">
                     <tbody>
                       <tr>
-                        <td className="text-right"></td>
+                        <td class="text-right"></td>
                         <td>
                           <input
                             type="text"
                             name="dId"
                             value="2222"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗姓名</td>
+                        <td class="text-right">狗狗姓名</td>
                         <td>
                           <input
                             type="text"
                             name="dName"
                             value="Sunny"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">主人編號</td>
+                        <td class="text-right">主人編號</td>
                         <td>
                           <input
                             type="text"
                             name="mId"
                             value="m001"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗性別</td>
+                        <td class="text-right">狗狗性別</td>
                         <td>
                           <input
                             type="text"
                             name="dGender"
                             value="girl"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗年紀</td>
+                        <td class="text-right">狗狗年紀</td>
                         <td>
                           <input
                             placeholder="歲"
                             type="text"
                             name="dYear"
                             value="6"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                         <td>
@@ -118,28 +118,28 @@ const MemberOrderInfo = (props) => {
                             type="text"
                             name="dMonth"
                             value="2"
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗體重</td>
+                        <td class="text-right">狗狗體重</td>
                         <td>
                           <input
                             type="text"
                             name="dWeight"
-                            className="form-control"
+                            class="form-control"
                             value="4"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗資訊</td>
+                        <td class="text-right">狗狗資訊</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value=""
                           />
                         </td>
@@ -147,12 +147,12 @@ const MemberOrderInfo = (props) => {
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td className="" colspan="6">
+                        <td class="" colspan="6">
                           <button
                             href="./member-updateEdit.php"
-                            className="btn btn-sm btn-danger"
+                            class="btn btn-sm btn-danger"
                           >
-                            <i className="fa fa-trash"></i> 修改
+                            <i class="fa fa-trash"></i> 修改
                           </button>
                         </td>
                       </tr>
@@ -172,10 +172,10 @@ const MemberOrderInfo = (props) => {
     </div>
   )
 }
-const mapStateToProps = (store) => {
+const mapStateToProps = store => {
   return { data: store.getMemberOrder }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getMemberOrderData }, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(MemberOrderInfo)

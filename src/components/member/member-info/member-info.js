@@ -159,125 +159,125 @@ const MemberInfo = (props) => {
   }, [])
 
   return (
-    <div className="tab-content content memberInfo" id="content1">
+    <div class="tab-content content memberInfo" id="content1">
       <div>
         <h3>
           個人資訊
           <br />
         </h3>
-        <div className="row">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <form
                   name="myForm"
                   method="POST"
                   // action="dog-updateEdit.php"
                   // enctype="multipart/form-data"
                 >
-                  <table className="table table-borderless">
+                  <table class="table table-borderless">
                     <tbody>
                       <tr>
-                        <td className="text-right">會員編號</td>
+                        <td class="text-right">會員編號</td>
                         <td>
                           <input
                             type="text"
                             name="dId"
                             value={mId}
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員姓名</td>
+                        <td class="text-right">會員姓名</td>
                         <td>
                           <input
                             type="text"
                             name="dName"
                             value={mName}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setMName(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員帳號</td>
+                        <td class="text-right">會員帳號</td>
                         <td>
                           <input
                             type="text"
                             name="mId"
                             value={mAccount}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setMAccount(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員密碼</td>
+                        <td class="text-right">會員密碼</td>
                         <td>
                           <input
                             type="text"
                             name="dGender"
                             value={mPassword}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setMPassword(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員性別</td>
+                        <td class="text-right">會員性別</td>
                         <td>
                           <input
                             type="text"
                             value={mGender}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setMGender(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員生日</td>
+                        <td class="text-right">會員生日</td>
                         <td>
                           <input
                             type="text"
                             name="dWeight"
-                            className="form-control"
+                            class="form-control"
                             value={mBday}
                             onChange={(e) => setMBday(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員電話</td>
+                        <td class="text-right">會員電話</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={mPhone}
                             onChange={(e) => setMPhone(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員信箱</td>
+                        <td class="text-right">會員信箱</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={mEmail}
                             onChange={(e) => setMEmail(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">會員地址</td>
+                        <td class="text-right">會員地址</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={mAddress}
                             onChange={(e) => setMAddress(e.target.value)}
                           />
@@ -286,13 +286,13 @@ const MemberInfo = (props) => {
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td className="" colspan="6">
+                        <td class="" colspan="6">
                           <div
                             href="./member-updateEdit.php"
-                            className="btn btn-sm btn-primary pull-right"
+                            class="btn btn-sm btn-primary pull-right"
                             onClick={(e) => handleSubmit(e)}
                           >
-                            <i className="fa fa-trash"></i> 修改
+                            <i class="fa fa-trash"></i> 修改
                           </div>
                         </td>
                       </tr>

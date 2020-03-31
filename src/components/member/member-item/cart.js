@@ -19,7 +19,7 @@ import {
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import '../../../css/member/member-info.scss'
 
-const Cart = (props) => {
+const Cart = props => {
   //狗狗基本資料
   const [mycart, setMycart] = useState([])
   const [mycartDisplay, setMycartDisplay] = useState([])
@@ -69,7 +69,7 @@ const Cart = (props) => {
     let newMycartDisplay = []
     for (let i = 0; i < mycart.length; i++) {
       const index = newMycartDisplay.findIndex(
-        (item) => item.pId === mycart[i].pId
+        item => item.pId === mycart[i].pId
       )
       if (index !== -1) {
         newMycartDisplay[index].pQuantity += mycart[i].pQuantity
@@ -82,7 +82,7 @@ const Cart = (props) => {
   }, [mycart])
 
   //計算總價
-  const sum = (items) => {
+  const sum = items => {
     let total = 0
     for (let i = 0; i < items.length; i++) {
       total += items[i].pQuantity * items[i].pPrice
@@ -92,16 +92,16 @@ const Cart = (props) => {
   //設定猜你喜歡只列出4項商品(未完成;無法重新render更新顯示數量;以及按了快速結帳會消失隱藏)
   let arr = props.list.rows && props.list.rows.slice(0, 4)
   return (
-    <div className="tab-content content" id="content4">
+    <div class="tab-content content" id="content4">
       <div>
         <h3>
           購物車
           <br />
         </h3>
-        <div className="row">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <Container>
                   <Row className="mt-5">
                     <Col md={12}>
@@ -150,7 +150,7 @@ const Cart = (props) => {
                                 <Button
                                   className="border-dark bg-light text-dark"
                                   id="-"
-                                  onClick={(e) => {
+                                  onClick={e => {
                                     updateQuantityToLocalStorage(e, index, 1)
                                   }}
                                 >
@@ -166,7 +166,7 @@ const Cart = (props) => {
                                 <Button
                                   className="border-dark bg-light text-dark"
                                   id="+"
-                                  onClick={(e) => {
+                                  onClick={e => {
                                     updateQuantityToLocalStorage(e, index, 1)
                                   }}
                                 >
@@ -234,8 +234,10 @@ const Cart = (props) => {
                         <Col md={{ offset: 6 }}>
                           <Button
                             className="bg-transparent border-0 text-dark p-0"
-                            onClick={(e) => {
-                              $('#coupon').toggle().focus()
+                            onClick={e => {
+                              $('#coupon')
+                                .toggle()
+                                .focus()
                               if ($(e.target).hasClass('text-dark')) {
                                 $(e.target)
                                   .removeClass('text-dark')
@@ -289,13 +291,13 @@ const Cart = (props) => {
     </div>
   )
 }
-const mapStateToProps = (store) => {
+const mapStateToProps = store => {
   return {
     list: store.getProducts,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getProducts }, dispatch)
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Cart))

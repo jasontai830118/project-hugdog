@@ -144,7 +144,7 @@ function ActivityEvent(props) {
     <>
       {data.map((v) => (
         <div className="container activity-class my-3">
-          <Breadcrumb />
+          {/* <Breadcrumb /> */}
           <div className="row mt-3 left-right-container">
             <div className="col-lg-7 class-left">
               <figure className="classPic">

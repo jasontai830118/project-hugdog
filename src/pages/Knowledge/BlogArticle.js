@@ -46,7 +46,7 @@ const BlogArticle = (props) => {
     showBlogType = '美容與保養'
   }
 
-  let arr = props.post && props.post.slice(-4, -1)
+  let arr = props.post && props.post.slice(0, 3)
 
   const [heart, setHeart] = useState(true)
 
@@ -108,12 +108,11 @@ const BlogArticle = (props) => {
               <div className="sidebar mr-4 ml-4">
                 {props.post &&
                   arr.map((value, index) => {
+                    console.log(index, 'value:', value)
                     return (
                       <BlogArticleSm key={index} data={props.post[index]} />
                     )
                   })}
-
-                <BlogArticleSm />
               </div>
             </div>
           </Col>

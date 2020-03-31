@@ -107,35 +107,35 @@ const DogInsert = (props) => {
           />
         </div>
         <div className="container dog-insert">
-          <div className="tab-content content" id="content1">
+          <div class="tab-content content" id="content1">
             <div>
               <h3>
                 狗狗登錄
                 <br />
               </h3>
 
-              <div className="row">
-                <div className="col-md-8">
+              <div class="row">
+                <div class="col-md-8">
                   <div className="dog-confirm alert-danger disappear"></div>
-                  <div className="card card-width">
-                    <div className="card-body">
+                  <div class="card card-width">
+                    <div class="card-body">
                       <form>
-                        <div className="form-group d-flex">
+                        <div class="form-group d-flex">
                           <label>狗狗姓名</label>
                           <input
                             type="text"
-                            className="form-control"
+                            class="form-control"
                             id="dName"
                             name="dName"
                             placeholder="請輸入姓名"
                             onChange={(e) => getformInfo(e, 'dName')}
                           />
                         </div>
-                        <div className="form-group d-flex">
+                        <div class="form-group d-flex">
                           <label>性別</label>
                           <select
                             type="text"
-                            className="form-control"
+                            class="form-control"
                             id="dGender"
                             name="dGender"
                             onChange={(e) => getformInfo(e, 'dGender')}
@@ -147,13 +147,13 @@ const DogInsert = (props) => {
                           </select>
                         </div>
 
-                        <div className="form-group d-flex ">
+                        <div class="form-group d-flex ">
                           <label>年紀</label>
                           <div>
                             <div className="d-flex">
                               <input
                                 type="number"
-                                className="form-control"
+                                class="form-control"
                                 id="dYear"
                                 name="dYear"
                                 onChange={(e) => getformInfo(e, 'dYear')}
@@ -162,7 +162,7 @@ const DogInsert = (props) => {
                               年
                               <input
                                 type="number"
-                                className="form-control"
+                                class="form-control"
                                 id="dMonth"
                                 name="dMonth"
                                 onChange={(e) => getformInfo(e, 'dMonth')}
@@ -172,22 +172,22 @@ const DogInsert = (props) => {
                             </div>
                           </div>
                         </div>
-                        <div className="form-group d-flex">
+                        <div class="form-group d-flex">
                           <label>體重</label>
                           <input
                             type="number"
-                            className="form-control"
+                            class="form-control"
                             id="dWeight"
                             name="dWeight"
                             onChange={(e) => getformInfo(e, 'dWeight')}
                             placeholder="請輸入體重"
                           />
                         </div>
-                        <div className="form-group d-flex">
+                        <div class="form-group d-flex">
                           <label>狗狗資訊</label>
                           <input
                             type="textbox"
-                            className="form-control"
+                            class="form-control"
                             id="dInfo"
                             name="dInfo"
                             onChange={(e) => getformInfo(e, 'dInfo')}
@@ -197,7 +197,7 @@ const DogInsert = (props) => {
 
                         <div
                           type="submit"
-                          className="btn btn-primary dogInsertSumbit pull-right"
+                          class="btn btn-primary dogInsertSumbit pull-right"
                           onClick={() => {
                             insertDog(dogInfo)
                           }}

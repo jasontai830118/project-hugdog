@@ -24,26 +24,26 @@ function PartnerPlus(props) {
   //   await console.log(plusOne)
   // }
 
-  const [One, setOne] = useState([])
+  // const [One, setOne] = useState([])
   //刪除發問
-  async function deleteOne() {
-    let id = props.data.id
-    console.log('name', id)
-    const req = new Request(
-      `http://localhost:6001/knowledge/partner/delone/${id}`,
-      {
-        method: 'POST',
-        credentials: 'include',
-      }
-    )
-    const res = await fetch(req)
-    const data = await res.json()
-    if (data.success) {
-      alert('成功刪除')
-    } else {
-      alert('刪除失敗')
-    }
-  }
+  // async function deleteOne() {
+  //   let id = props.data.id
+  //   console.log('name', id)
+  //   const req = new Request(
+  //     `http://localhost:6001/knowledge/partner/delone/${id}`,
+  //     {
+  //       method: 'POST',
+  //       credentials: 'include',
+  //     }
+  //   )
+  //   const res = await fetch(req)
+  //   const data = await res.json()
+  //   if (data.success) {
+  //     alert('成功刪除')
+  //   } else {
+  //     alert('刪除失敗')
+  //   }
+  // }
 
   return (
     <>
@@ -54,18 +54,7 @@ function PartnerPlus(props) {
               <strong> {localStorage.getItem('mName')}</strong>
             </div>
           </Col>
-          <Col className="text-right">
-            <h5>
-              <Badge
-                variant="secondary"
-                onClick={() => {
-                  deleteOne()
-                }}
-              >
-                取消報名
-              </Badge>
-            </h5>
-          </Col>
+          <Col className="text-right"></Col>
         </>
       </Row>
     </>

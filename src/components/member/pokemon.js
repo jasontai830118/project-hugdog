@@ -20,7 +20,7 @@ class App extends React.Component {
       $('.coupon').css('display', 'none')
       const $src = $('#close').attr('src')
     })
-    $('.check').click(function () {
+    $('.check').dblclick(function () {
       $('.robot-container').removeClass('disappear').addClass('appear')
       $('.check').removeClass('appear').addClass('disappear')
       // $(".coupon").css("display","block")
@@ -33,7 +33,12 @@ class App extends React.Component {
       // $(".help").toggle("appear")
       $('.coupon').toggle('disappear')
     })
-
+    $('.robot').hover(function () {
+      $('.help').removeClass('disappear')
+    })
+    $('.robot').mouseout(function () {
+      $('.help').addClass('disappear')
+    })
     // const speed = '5'
     // $('#speed').val(
     //   '您的位置為: (' +
@@ -42,55 +47,55 @@ class App extends React.Component {
     //     $('.box').css('left') +
     //     ')'
     // )
-    $(document).ready(function () {
-      animateDiv()
-    })
-    $(document).ready(function () {
-      animateDiv()
-    })
+    // $(document).ready(function () {
+    //   animateDiv()
+    // })
+    // $(document).ready(function () {
+    //   animateDiv()
+    // })
 
-    function makeNewPosition($container) {
-      // Get viewport dimensions (remove the dimension of the div)
-      $container = $container || $(window)
-      var h = $container.height() - 50
-      var w = $container.width() - 50
+    // function makeNewPosition($container) {
+    //   // Get viewport dimensions (remove the dimension of the div)
+    //   $container = $container || $(window)
+    //   var h = $container.height() - 50
+    //   var w = $container.width() - 50
 
-      var nh = Math.floor(Math.random() * h)
-      var nw = Math.floor(Math.random() * w)
+    //   var nh = Math.floor(Math.random() * h)
+    //   var nw = Math.floor(Math.random() * w)
 
-      return [nh, nw]
-    }
+    //   return [nh, nw]
+    // }
 
-    function animateDiv() {
-      var $target = $('.a')
-      var newq = makeNewPosition($target.parent())
-      var oldq = $target.offset()
-      var speed = calcSpeed([oldq.top, oldq.left], newq)
+    // function animateDiv() {
+    //   var $target = $('.a')
+    //   var newq = makeNewPosition($target.parent())
+    //   var oldq = $target.offset()
+    //   var speed = calcSpeed([oldq.top, oldq.left], newq)
 
-      $('.a').animate(
-        {
-          top: newq[0],
-          left: newq[1],
-        },
-        speed,
-        function () {
-          animateDiv()
-        }
-      )
-    }
+    //   $('.a').animate(
+    //     {
+    //       top: newq[0],
+    //       left: newq[1],
+    //     },
+    //     speed,
+    //     function () {
+    //       animateDiv()
+    //     }
+    //   )
+    // }
 
-    function calcSpeed(prev, next) {
-      var x = Math.abs(prev[1] - next[1])
-      var y = Math.abs(prev[0] - next[0])
+    // function calcSpeed(prev, next) {
+    //   var x = Math.abs(prev[1] - next[1])
+    //   var y = Math.abs(prev[0] - next[0])
 
-      var greatest = x > y ? x : y
+    //   var greatest = x > y ? x : y
 
-      var speedModifier = 0.1
+    //   var speedModifier = 0.1
 
-      var speed = Math.ceil(greatest / speedModifier)
+    //   var speed = Math.ceil(greatest / speedModifier)
 
-      return speed
-    }
+    //   return speed
+    // }
   }
   render() {
     return (
@@ -111,11 +116,15 @@ class App extends React.Component {
           </div> */}
           <div className="container pokemon handle" id="container">
             <img
-              src={require('../../images/member/check.png')}
+              src={require('../../images/member/dogHouse.png')}
               alt="Background"
               className="check disappear"
             />
-            <div className="card coupon disappear">我是折價券</div>
+            <div className="card coupon disappear ">
+              <Link to="/coupon/event">
+                <h2>我是折價券</h2>
+              </Link>
+            </div>
             <div id="draggable" className="draggable">
               <div className="robot-container a" id="a">
                 <img
@@ -125,12 +134,8 @@ class App extends React.Component {
                   className="close"
                 />
                 <div className="robot" id="robot">
-                  <ul className="list-group help">
-                    <a href="https://www.google.com.tw/">
-                      <li className="list-group-item active">
-                        請問我有什麼可以幫您的嗎?
-                      </li>
-                    </a>
+                  <ul className="list-group help disappear active">
+                    <li class="list-group-item">請問我有什麼可以幫您的嗎?</li>
                   </ul>
                 </div>
               </div>

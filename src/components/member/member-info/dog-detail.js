@@ -100,77 +100,77 @@ const DogInfo = (props) => {
   }, [])
 
   return (
-    <div className="tab-content content container" id="content1">
+    <div class="tab-content content container" id="content1">
       <div>
         <h3>
           狗狗資訊
           <br />
         </h3>
-        <div className="row">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <form
                   name="myForm"
                   method="POST"
                   // action="dog-updateEdit.php"
                   // enctype="multipart/form-data"
                 >
-                  <table className="table table-borderless">
+                  <table class="table table-borderless">
                     <tbody>
                       <tr>
-                        <td className="text-right">狗狗編號</td>
+                        <td class="text-right">狗狗編號</td>
                         <td>
                           <input
                             type="text"
                             name="dId"
                             value={dId}
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">主人編號</td>
+                        <td class="text-right">主人編號</td>
                         <td>
                           <input
                             type="text"
                             name="mId"
                             value={mId}
-                            className="form-control"
+                            class="form-control"
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗姓名</td>
+                        <td class="text-right">狗狗姓名</td>
                         <td>
                           <input
                             type="text"
                             name="dName"
                             value={dName}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setDName(e.target.value)}
                           />
                         </td>
                       </tr>
 
                       <tr>
-                        <td className="text-right">狗狗性別</td>
+                        <td class="text-right">狗狗性別</td>
                         <td>
                           <input
                             type="text"
                             value={dGender}
-                            className="form-control"
+                            class="form-control"
                             onChange={(e) => setDGender(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗年齡</td>
+                        <td class="text-right">狗狗年齡</td>
                         <td>
                           <input
                             type="text"
                             name="dWeight"
-                            className="form-control"
+                            class="form-control"
                             value={dYear}
                             onChange={(e) => setDYear(e.target.value)}
                           />
@@ -180,7 +180,7 @@ const DogInfo = (props) => {
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={dMonth}
                             onChange={(e) => setDMonth(e.target.value)}
                           />
@@ -188,24 +188,24 @@ const DogInfo = (props) => {
                         月
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗體重</td>
+                        <td class="text-right">狗狗體重</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={dWeight}
                             onChange={(e) => setDWeight(e.target.value)}
                           />
                         </td>
                       </tr>
                       <tr>
-                        <td className="text-right">狗狗資訊</td>
+                        <td class="text-right">狗狗資訊</td>
                         <td>
                           <input
                             type="text"
                             name="dInfo"
-                            className="form-control"
+                            class="form-control"
                             value={dInfo}
                             onChange={(e) => setDInfo(e.target.value)}
                           />
@@ -214,20 +214,20 @@ const DogInfo = (props) => {
                     </tbody>
                     <tfoot>
                       <tr>
-                        <td className="" colspan="6">
+                        <td class="" colspan="6">
                           <div
                             href="./member-updateEdit.php"
-                            className="btn  btn-primary"
+                            class="btn  btn-primary"
                             onClick={(e) => handleSubmit(e)}
                           >
-                            <i className="fa fa-trash"></i> 修改
+                            <i class="fa fa-trash"></i> 修改
                           </div>
                           <div
                             href="./member-updateEdit.php"
-                            className="btn  btn-primary"
+                            class="btn  btn-primary"
                             onClick={back}
                           >
-                            <i className="fa fa-trash"></i> 返回
+                            <i class="fa fa-trash"></i> 返回
                           </div>
                         </td>
                       </tr>

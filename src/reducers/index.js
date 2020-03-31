@@ -271,6 +271,26 @@ const getQuestionDetail = (state = [], action) => {
   }
 }
 
+//partnerPlus
+const getPartnerPlus = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_PARTNERPLUS':
+      return action.data
+    default:
+      return state
+  }
+}
+
+const getPartnerPlusDetail = (state = [], action) => {
+  switch (action.type) {
+    case 'SHOW_PARTNERPLUS_DETAIL':
+      console.log('re', action.data)
+      return action.data
+    default:
+      return state
+  }
+}
+
 //knowledge end
 const rootReducer = combineReducers({
   getMember,
@@ -305,6 +325,8 @@ const rootReducer = combineReducers({
   getCommentList,
   updateDog,
   updateService,
+  getPartnerPlus,
+  getPartnerPlusDetail,
 })
 
 export { rootReducer }

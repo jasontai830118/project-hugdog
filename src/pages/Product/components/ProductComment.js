@@ -88,8 +88,8 @@ const ProductComment = (props) => {
               text: '前往登入頁面?',
               icon: 'info',
               showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
+              confirmButtonColor: '#cea160',
+              cancelButtonColor: '#cccccc',
               confirmButtonText: '確定',
               cancelButtonText: '取消',
             }).then((result) => {

@@ -15,12 +15,9 @@ import { bindActionCreators } from 'redux'
 import PartnerPlus from './PartnerPlus'
 
 function PartnerNowon(props) {
-  // const mId = localStorage.getItem('mId')
-  // const pTitle = localStorage.getItem(pTi)
-  // const plusOne = { mId, pTitle, pJoin, pJoinName }
-
   //設定參加狀態
   const [open, setOpen] = useState(false)
+  const [plus, setPlus] = useState(+1)
 
   const clickOpen = () => {
     if (localStorage.getItem('mId') && localStorage.getItem('mId') !== '0') {
@@ -46,12 +43,38 @@ function PartnerNowon(props) {
       title: '不能報名',
     })
   }
-  //設定加入最愛
+  //設定加入最愛愛心切換
   const [heart, setHeart] = useState(true)
 
   $('.trun').click(function () {
     document.getElementById('trun').innerHTML = <FaHeart />
   })
+
+  //寫入
+  const mId = localStorage.mId
+  const pId = props.data.id ? props.data.id : ''
+  const PlusInfo = {
+    pId: pId,
+    pJoin: '1',
+    mId: mId,
+    pJoinName: localStorage.mName,
+  }
+
+  //建立參加
+  async function postPlus() {
+    const req = new Request('http://localhost:6001/knowledge/partner/plus', {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(PlusInfo),
+    })
+    const res = await fetch(req)
+    const order = await res.json()
+    await console.log(order)
+  }
 
   return (
     <>
@@ -61,7 +84,7 @@ function PartnerNowon(props) {
       >
         <Card.Header className="justify-content-between d-flex">
           <IconContext.Provider value={{ size: '1.2rem' }}>
-            <div className="d-inlined-inline-block">
+            <div class="d-inlined-inline-block">
               <FaRegCalendarAlt />
               <span className="carddate mr-3 text-danger">
                 {' '}
@@ -71,7 +94,7 @@ function PartnerNowon(props) {
               <span className="cardtime text-danger"> {props.data.pTime}</span>
             </div>
 
-            <div className="d-inline-block">
+            <div class="d-inline-block">
               <MdLocationOn />
               <span className="cardtime ">
                 活動地點：
@@ -150,26 +173,10 @@ function PartnerNowon(props) {
                   aria-expanded={open}
                   className="mr-2"
                   onClick={() => {
-                    if (
-                      localStorage.getItem('mId') &&
-                      localStorage.getItem('mId') == '0'
-                    ) {
-                      mAlert()
-                    } else {
-                      if (
-                        localStorage.getItem('mId') &&
-                        localStorage.getItem('mId') !== '0' &&
-                        props.data.mId !== localStorage.getItem('mId')
-                      ) {
-                        setOpen(!open)
-                        // updateplus()
-                      } else {
-                        sAlert()
-                      }
-                    }
+                    postPlus()
                   }}
                 >
-                  我要參加+1
+                  我要參加
                 </Button>
 
                 <Button

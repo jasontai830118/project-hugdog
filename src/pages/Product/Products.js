@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 //action
 import { bindActionCreators } from 'redux'
 import { getProducts, getCategory, getVendor } from './actions/index'
+import ReactPlayer from 'react-player'
 
 const Products = (props) => {
   //在App.js設定動態參數
@@ -112,6 +113,32 @@ const Products = (props) => {
 
   return (
     <>
+      <div className="d-flex">
+        <ReactPlayer
+          className="react-player"
+          url="https://youtu.be/v73T3eeEcaQ"
+          muted
+          onReady
+          playing
+          loop
+        />
+        <ReactPlayer
+          className="react-player"
+          url="https://youtu.be/JaVptISRJVY"
+          muted
+          onReady
+          playing
+          loop
+        />
+        <ReactPlayer
+          className="react-player"
+          url="https://youtu.be/SKpH2j6wfqs"
+          muted
+          onReady
+          playing
+          loop
+        />
+      </div>
       <Container className="products">
         <Row className="my-5 d-flex justify-content-center">
           <ProductSidebar />

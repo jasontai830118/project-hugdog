@@ -48,7 +48,7 @@ const DogInfo = (props) => {
     }
   }
   return (
-    <div className="tab-content content dogListContainer" id="content2">
+    <div class="tab-content content dogListContainer" id="content2">
       <div>
         <h3 className="mb-4">
           狗狗資訊
@@ -59,12 +59,12 @@ const DogInfo = (props) => {
           </Link>
           <br />
         </h3>
-        <div className="row">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <form name="myForm" method="POST" enctype="multipart/form-data">
-                  <table className="table table-striped">
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">編號</th>

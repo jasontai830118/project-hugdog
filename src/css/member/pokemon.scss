@@ -24,6 +24,7 @@
   height: 240px;
   margin: 2% auto;
   background: url(../../images/member/dog2.gif) center center;
+  z-index: 3;
 }
 
 #draggable {
@@ -40,7 +41,9 @@
   line-height: 120px;
   background: lightblue;
   opacity: 70%;
-
+  h2 {
+    transform: translateY(40px);
+  }
   /* display: none; */
 }
 
@@ -55,12 +58,15 @@
   height: 27px;
 }
 .check {
-  width: 27px;
-  height: 27px;
+  width: 300px;
+  height: 300px;
 }
 
 .pokemon {
   position: relative;
+  top: -450px;
+  left: 900px;
+  // transform: translate(900px, 300px);
 }
 
 // .draggable img {

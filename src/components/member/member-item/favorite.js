@@ -74,18 +74,18 @@ const LoveList = (props) => {
   }
   console.log('pName: ', pName)
   return (
-    <div className="tab-content content favoriteItems" id="content3">
+    <div class="tab-content content favoriteItems" id="content3">
       <div>
         <h3>
           最愛商品
           <br />
         </h3>
-        <div className="row favorite">
-          <div className="col-md-8">
-            <div className="card card-width">
-              <div className="card-body">
+        <div class="row favorite">
+          <div class="col-md-8">
+            <div class="card card-width">
+              <div class="card-body">
                 <form name="myForm" method="POST" enctype="multipart/form-data">
-                  <table className="table table-striped">
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th scope="col">#</th>

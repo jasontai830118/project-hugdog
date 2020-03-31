@@ -49,8 +49,8 @@ const ProductDetail = (props) => {
         text: '前往購物車結帳?',
         icon: 'info',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#cea160',
+        cancelButtonColor: '#cccccc',
         confirmButtonText: '確定',
         cancelButtonText: '取消',
       }).then((result) => {
@@ -106,8 +106,8 @@ const ProductDetail = (props) => {
         text: '前往清單查看?',
         icon: 'info',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#cea160',
+        cancelButtonColor: '#cccccc',
         confirmButtonText: '確定',
         cancelButtonText: '取消',
       }).then((result) => {
@@ -225,8 +225,8 @@ const ProductDetail = (props) => {
                         text: '前往登入頁面?',
                         icon: 'info',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#cea160',
+                        cancelButtonColor: '#cccccc',
                         confirmButtonText: '確定',
                         cancelButtonText: '取消',
                       }).then((result) => {
@@ -286,8 +286,8 @@ const ProductDetail = (props) => {
                         text: '前往登入頁面?',
                         icon: 'info',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#cea160',
+                        cancelButtonColor: '#cccccc',
                         confirmButtonText: '確定',
                         cancelButtonText: '取消',
                       }).then((result) => {
@@ -336,8 +336,8 @@ const ProductDetail = (props) => {
                             text: '前往購物車結帳?',
                             icon: 'info',
                             showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
+                            confirmButtonColor: '#cea160',
+                            cancelButtonColor: '#cccccc',
                             confirmButtonText: '確定',
                             cancelButtonText: '取消',
                           }).then((result) => {
@@ -354,8 +354,8 @@ const ProductDetail = (props) => {
                             text: '前往購物車結帳?',
                             icon: 'success',
                             showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
+                            confirmButtonColor: '#cea160',
+                            cancelButtonColor: '#cccccc',
                             confirmButtonText: '確定',
                             cancelButtonText: '取消',
                           }).then((result) => {
@@ -371,8 +371,8 @@ const ProductDetail = (props) => {
                         text: '前往登入頁面?',
                         icon: 'info',
                         showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        confirmButtonColor: '#cea160',
+                        cancelButtonColor: '#cccccc',
                         confirmButtonText: '確定',
                         cancelButtonText: '取消',
                       }).then((result) => {
@@ -470,13 +470,11 @@ const ProductDetail = (props) => {
                                   roundedCircle
                                   width="50"
                                   src={
-                                    require('../../images/member/member-img/m' +
-                                      value.mImg.slice(1) +
-                                      '.jpg')
-                                      ? require('../../images/member/member-img/m' +
-                                          value.mImg.slice(1) +
+                                    value.mImg === '' || value.mImg === null
+                                      ? require('../../images/member/member-img/m300.jpg')
+                                      : require('../../images/member/member-img/' +
+                                          value.mImg.toLowerCase() +
                                           '.jpg')
-                                      : 'https://via.placeholder.com/50'
                                   }
                                 />
                                 <span>{index + 1 + 'F'}</span>
@@ -601,6 +599,7 @@ const ProductDetail = (props) => {
                                             'p-0 text-decoration-none btn btn-link'
                                           )
                                         editComment(value.id, value.mId)
+                                        window.location.reaload()
                                       }}
                                     >
                                       編輯完成 |{' '}

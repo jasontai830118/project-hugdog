@@ -185,12 +185,16 @@ export const updateServerService = () => {
 export const showActivityOrder = (data) => {
   return { type: 'SHOW_ACTIVITY_ORDER', data }
 }
-export const getActivityOrder = () => {
+export const getActivityOrder = (mId) => {
+  mId = localStorage.getItem('mId')
   return async (dispatch) => {
-    const req = new Request(`http://localhost:6001/activity_successEvent`, {
-      method: 'GET',
-      credentials: 'include',
-    })
+    const req = new Request(
+      `http://localhost:6001/activity_successEvent/${mId}`,
+      {
+        method: 'GET',
+        credentials: 'include',
+      }
+    )
     const res = await fetch(req)
     const data = await res.json()
     console.log(data)
