@@ -208,7 +208,7 @@ export const showLoveList = (data) => {
 export const getLoveList = (mId) => {
   mId = localStorage.getItem('mId')
   return async (dispatch) => {
-    const req = new Request(`http://localhost:6001/member/list/${mId}`, {
+    const req = new Request(`http://localhost:6001/list/${mId}`, {
       method: 'GET',
       credentials: 'include',
     })
