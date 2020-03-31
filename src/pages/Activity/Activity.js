@@ -164,16 +164,22 @@ function ActivityMain(props) {
           <div className="col-6 icon_dropdown-menu icon_dropdown-menu1 px-4 pb-4">
             <div className="d-flex justify-content-around ">
               <Link>
-                <div className=" ">全部</div>
+                <div type="button" onClick={() => handleSearchType('課程')}>
+                  全部
+                </div>
               </Link>
               <Link>
                 <div className="">進行中</div>
               </Link>
               <Link>
-                <div className="">預告中</div>
+                <div type="button" onClick={() => handleSearchType('送小禮')}>
+                  預告中
+                </div>
               </Link>
               <Link>
-                <div className="">已截止</div>
+                <div type="button" onClick={() => handleSearchType('優惠')}>
+                  已截止
+                </div>
               </Link>
             </div>
           </div>
