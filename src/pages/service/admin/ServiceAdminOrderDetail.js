@@ -21,17 +21,26 @@ function ServiceAdminOrderDetail(props) {
   const [order, setOrder] = useState([])
   const [isSend, setIsSend] = useState(false) //防止重複點選
 
-  //接受預約
-  const handleSubmit = () => {
+  //改變訂單狀態
+  const handleSubmit = (orderStsId) => {
     setIsSend(true)
+    //設定彈跳訊息狀態
+    let title, text, icon
+    if (orderStsId === 'o02') {
+      title = '確認接受預約'
+      text = '確認以進行後續服務'
+    } else if (orderStsId === 'o05') {
+      title = '確認取消預約?'
+      text = '取消後將無法再進行服務'
+    }
     Swal.fire({
-      title: '確認接受預約?',
-      text: '確認以進行後續服務',
+      title: title,
+      text: text,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#cea160',
       cancelButtonColor: '#8f8f8f',
-      confirmButtonText: '確認接受',
+      confirmButtonText: '確認',
       cancelButtonText: '返回',
     }).then((result) => {
       if (result.value) {
@@ -43,17 +52,22 @@ function ServiceAdminOrderDetail(props) {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              ordersts: 'o02',
+              ordersts: orderStsId,
             }),
           }
         )
           .then((r) => r.json())
           .then((obj) => {
-            // console.log(obj)
-            //回饋訊息
+            if (orderStsId === 'o02') {
+              title = '已接受預約'
+              icon = 'success'
+            } else if (orderStsId === 'o05') {
+              title = '已取消預約'
+              icon = 'error'
+            }
             Swal.fire({
-              title: '已接受預約',
-              icon: 'success',
+              title: title,
+              icon: icon,
               showConfirmButton: false,
               timer: 1500,
             }).then((result) => {
@@ -66,51 +80,7 @@ function ServiceAdminOrderDetail(props) {
       return false
     })
   }
-  //取消預約
-  const handleCancel = () => {
-    setIsSend(true)
-    Swal.fire({
-      title: '確認取消預約?',
-      text: '取消後將無法再進行服務',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#c04a68',
-      cancelButtonColor: '#8f8f8f',
-      confirmButtonText: '確認取消',
-      cancelButtonText: '返回',
-    }).then((result) => {
-      if (result.value) {
-        fetch(
-          `http://localhost:6001/service/orderdetail/ordersts/${props.match.params.orderId}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              ordersts: 'o05',
-            }),
-          }
-        )
-          .then((r) => r.json())
-          .then((obj) => {
-            // console.log(obj)
-            //回饋訊息
-            Swal.fire({
-              title: '已取消預約',
-              icon: 'error',
-              showConfirmButton: false,
-              timer: 1500,
-            }).then((result) => {
-              window.location.reload()
-            })
-          })
-      } else {
-        setIsSend(false)
-      }
-      return false
-    })
-  }
+
   useEffect(() => {
     //返回最頂端
     SctollToTop()
@@ -308,7 +278,7 @@ function ServiceAdminOrderDetail(props) {
                           type="button"
                           className="mr-3"
                           disabled={isSend}
-                          onClick={handleSubmit}
+                          onClick={() => handleSubmit('o02')}
                         >
                           <FaCheck />
                           接受預約
@@ -323,7 +293,7 @@ function ServiceAdminOrderDetail(props) {
                           variant="secondary"
                           type="button"
                           disabled={isSend}
-                          onClick={handleCancel}
+                          onClick={() => handleSubmit('o05')}
                         >
                           <FaTimes />
                           取消預約
